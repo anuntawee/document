@@ -242,7 +242,7 @@
 
                                         </div>
                                         <div class="col-6">
-                                            <form>
+                                            <!-- <form>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control bg-light border-0 small"
                                                         placeholder="ค้นหาโครงการ" aria-label="Search"
@@ -253,7 +253,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </form> -->
                                             <br>
                                         </div>
                                         <div class="container">
@@ -285,7 +285,52 @@
                                         </tr>
                                         </tbody>
                                         </table>
-                                        
+
+                                        <div id="1" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร Draft</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
+                                            <br>
+                                        </div>
+                                        <div id="2" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร Review</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
+                                            <br>
+                                        </div>
+                                        <div id="3" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร Final</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
+                                            <br>
+                                        </div>
+                                        <div id="4" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร Internal Sign</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
+                                            <br>
+                                        </div>
+                                        <div id="5" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร External sign</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
+                                            <br>
+                                        </div>
                                     </div>
 
 
@@ -361,6 +406,16 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+        $("#pagelist").change(function () {
+            var viewID = $("#pagelist option:selected").val();
+            $("#pagelist option").each(function () {
+                var hideID = $(this).val();
+                $("#" + hideID).hide();
+            });
+            $("#" + viewID).show();
+        });
+    </script>
 
 </body>
 
