@@ -83,7 +83,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-             <!-- Divider -->
+            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -304,7 +304,45 @@
                     <div class="row">
                         <div>
                             <div class="card">
-                                <div class="card-body"><h1>โครงการ</h1></div>
+                                <div class="card-body">
+                                    <h1>จัดการโครงการ</h1>
+                                    <!-- Button to Open the Modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#myModal">
+                                        เพิ่มโครงการ
+                                    </button>
+
+                                    <!-- The Modal -->
+                                    <div class="modal" id="myModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title"> เพิ่มโครงการ</h4>
+                                                    <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    <input type="text" class="form-control" placeholder="ชื่อโครงการ">
+                                                    <br>
+                                                    <input type="text" class="form-control" placeholder="คีย์เวิร์ด">
+                                                </div>
+
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                        >Submit</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <table id="example" class="row-border" style="width:100%">
                                         <thead>
