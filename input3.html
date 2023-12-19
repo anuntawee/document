@@ -44,7 +44,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-           
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="menu.html">
@@ -113,7 +113,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <!-- <form
+                    <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -124,7 +124,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form> -->
+                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -193,58 +193,107 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="">Document</h1>
-                    </div> -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="">Upload เอกสาร</h1>
+                    </div>
 
                     <br>
                     <div class="row">
                         <div>
                             <div class="card">
-                                <!-- <div class="card-body">กระดานทั้งหมด</div> -->
+
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-6">
 
                                         </div>
                                         <div class="col-6">
-
+                                         
                                             <br>
                                         </div>
-                                        <div class="container text-center">
-                                            <div class="row row-cols-1 row-cols-md-3 g-3">
-                                                <div class="col">
-                                                    <div class="card h-100">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">
-                                                              <a href="timeplan.html">Time
-                                                                    plan ของ Project </a>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-                                                        <div class="card-body">
-                                                           <h5 class="card-title"> <a href="listdocument.html">Upload เอกสาร </a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a
-                                                                    href="projectstatus.html">ภาพรวมโครงการ
-                                                                </a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="container">
+                                            <div id="home" class="container tab-pane active"><br>
+                                                <table class="table table-hover  table-bordered ">
+                                                    <tbody">
+                                                        <tr>
+                                                            <th>
+                                                                <h1>เพิ่มเอกสาร Change Request</h1>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                <h3>ประเภท </h3>
+                                                                <form action="include/action.php" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    <select name="" id="pagelist"
+                                                                        class="custom-select mb-3">
+                                                                        <option selected>Custom Select Menu</option>
+                                                                        <option value="1">Draft</option>
+                                                                        <option value="2">Review</option>
+                                                                        <option value="3">Final</option>
+                                                                        <option value="4">Internal Sign</option>
+                                                                        <option value="5">External sign</option>
+                                                                    </select>
                                             </div>
+                                        </div>
+                                        </th>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+
+                                        <div id="1" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร Draft</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
+                                            <br>
+                                        </div>
+                                        <div id="2" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร Review</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
+                                            <br>
+                                        </div>
+                                        <div id="3" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร Final</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
+                                            <br>
+                                        </div>
+                                        <div id="4" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร Internal Sign</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
+                                            <br>
+                                        </div>
+                                        <div id="5" style="display:none">
+                                            <form action="/action_page.php">
+                                                <h1>Upload เอกสาร External sign</h1>
+                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <br>
+                                                <input type="submit" class="btn btn-primary">
+                                            </form>
                                             <br>
                                         </div>
                                     </div>
+
+
+
+
                                 </div>
+                                <hr>
+
                             </div>
                         </div>
                     </div>
