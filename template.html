@@ -61,7 +61,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-           
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="project.html" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -252,29 +252,29 @@
                                         </div>
                                         <div class="col-10">
                                             <form action="">
-                                                <h5>1) Business Requirement Document</h5>
-                                                <h5>2) Acceptance Record</h5>
-                                                <h5>3) Change Request </h5>
-                                                <h5>4) Correction Register</h5>
-                                                <h5>5) Maintenance Documentation</h5>
-                                                <h5>6) Product Operation Guide</h5>
-                                                <h5>7) Progress Status Record</h5>
-                                                <h5>8) Project Plan</h5>
-                                                <h5>9) Project Repository</h5>
-                                                <h5>10) Project Repository Backup</h5>
-                                                <h5>11) Requirements Specification</h5>
-                                                <h5>12) Software</h5>
-                                                <h5>13) Software Component</h5>
-                                                <h5>14) Software Configuration</h5>
-                                                <h5>15) Software Design</h5>
-                                                <h5>16) Software User Documentation</h5>
-                                                <h5>17) Statement of Work</h5>
-                                                <h5>18) Test Cases and Test Procedures</h5>
-                                                <h5>19) Test Report</h5>
-                                                <h5>20) Traceability Record</h5>
-                                                <h5>21) Verification Results</h5>
-                                                <h5>22) Validation Results</h5>
-                                                <h5>23) Propasal (If Any)</h5>
+                                                <h5 onclick="downloadFile()">1) Business Requirement Document</h5>
+                                                <h5 onclick="downloadFile2()">2) Acceptance Record</h5>
+                                                <h5 onclick="downloadFile3()">3) Change Request </h5>
+                                                <h5 onclick="downloadFile4()">4) Correction Register</h5>
+                                                <h5 onclick="downloadFile5()">5) Maintenance Documentation</h5>
+                                                <h5 onclick="downloadFile6()">6) Product Operation Guide</h5>
+                                                <h5 onclick="downloadFile7()">7) Progress Status Record</h5>
+                                                <h5 onclick="downloadFile8()">8) Project Plan</h5>
+                                                <h5 onclick="downloadFile9()">9) Project Repository</h5>
+                                                <h5 onclick="downloadFile10()">10) Project Repository Backup</h5>
+                                                <h5 onclick="downloadFile11()">11) Requirements Specification</h5>
+                                                <h5 onclick="downloadFile12()">12) Software</h5>
+                                                <h5 onclick="downloadFile13()">13) Software Component</h5>
+                                                <h5 onclick="downloadFile14()">14) Software Configuration</h5>
+                                                <h5 onclick="downloadFile15()">15) Software Design</h5>
+                                                <h5 onclick="downloadFile16()">16) Software User Documentation</h5>
+                                                <h5 onclick="downloadFile17()">17) Statement of Work</h5>
+                                                <h5 onclick="downloadFile18()">18) Test Cases and Test Procedures</h5>
+                                                <h5 onclick="downloadFile19()">19) Test Report</h5>
+                                                <h5 onclick="downloadFile20()">20) Traceability Record</h5>
+                                                <h5 onclick="downloadFile21()">21) Verification Results</h5>
+                                                <h5 onclick="downloadFile22()">22) Validation Results</h5>
+                                                <h5 onclick="downloadFile23()">23) Propasal (If Any)</h5>
                                             </form>
                                         </div>
                                         <div class="col-1">
@@ -363,6 +363,87 @@
                 const isVisible = documentText.includes(searchTerm);
                 document.style.display = isVisible ? 'block' : 'none';
             });
+        }
+        function downloadFile() {
+            downloadFileWithName('01_AcceptanceRecord.docx', 'template/01_AcceptanceRecord.docx');
+        }
+
+        function downloadFile2() {
+            downloadFileWithName('02_ChangeRequirement.docx', 'template/02_ChangeRequirement.docx');
+        }
+
+        function downloadFile3() {
+            downloadFileWithName('03_Correction Register.xlsx', 'template/03_Correction Register.xlsx');
+        }
+        function downloadFile4() {
+            downloadFileWithName('#', 'template/#');
+        }
+        function downloadFile5() {
+            downloadFileWithName('05_MOM.docx', 'template/05_MOM.docx');
+        }
+        function downloadFile6() {
+            downloadFileWithName('#', 'template/#');
+        }
+        function downloadFile7() {
+            downloadFileWithName('07_Implementation Timeline (SI Process).xlsx', 'template/07_Implementation Timeline (SI Process).xlsx');
+        }
+        function downloadFile8() {
+            downloadFileWithName('08_Project Plan.docx', 'template/08_Project Plan.docx');
+        }
+        function downloadFile9() {
+            downloadFileWithName('#', 'template/#');
+        }
+        function downloadFile10() {
+            downloadFileWithName('03_Correction Register.xlsx', 'template/03_Correction Register.xlsx');
+        }
+        function downloadFile11() {
+            downloadFileWithName('11_SRS.docx', 'template/11_SRS.docx');
+        }
+        function downloadFile12() {
+            downloadFileWithName('#', 'template/#');
+        }
+        function downloadFile13() {
+            downloadFileWithName('#', 'template/#');
+        }
+        function downloadFile14() {
+            downloadFileWithName('#', 'template/#');
+        }
+        function downloadFile15() {
+            downloadFileWithName('15_Data Dictionary.docx', 'template/15_Data Dictionary.docx');
+        }
+        function downloadFile16() {
+            downloadFileWithName('#', 'template/#');
+        }
+        function downloadFile17() {
+            downloadFileWithName('17_StatementofWork.docx', 'template/17_StatementofWork.docx');
+        }
+        function downloadFile18() {
+            downloadFileWithName('#', 'template/#');
+        }
+        function downloadFile19() {
+            downloadFileWithName('19_Test Report (Correction).xlsx', 'template/19_Test Report (Correction).xlsx');
+        }
+        function downloadFile20() {
+            downloadFileWithName('20_Traceability Record.xlsx', 'template/20_Traceability Record.xlsx');
+        }
+        function downloadFile21() {
+            downloadFileWithName('21_UAT.docx', 'template/21_UAT.docx');
+        }
+        function downloadFile22() {
+            downloadFileWithName('#', 'template/#');
+        }
+        function downloadFile23() {
+            downloadFileWithName('#', 'template/#');
+        }
+
+        function downloadFileWithName(fileName, filePath) {
+            var downloadLink = document.createElement('a');
+            downloadLink.setAttribute('href', filePath);
+            downloadLink.setAttribute('download', fileName);
+            downloadLink.style.display = 'none';
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
         }
     </script>
 </body>
