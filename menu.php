@@ -24,71 +24,19 @@
     <link rel="stylesheet" href="css\style.css">
 
 </head>
+<?php
+include 'connect\function.php';
+$user = new User();
+?>
 
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3"> <strong> Report</strong></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="menu.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>HOME</span></a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-           
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="project.html" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span> Management</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="template.html" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span> Template</span>
-                </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-
-
-        </ul>
-        <!-- End of Sidebar -->
+        <?php
+        include 'navbar.php';
+        ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -103,21 +51,6 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
-                    <!-- Topbar Search -->
-                    <!-- <form
-                 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -185,57 +118,47 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-
-                    <!-- <div class="row">
-                        <div>
-                            <div class="card">
-                                <div class="card-body">กระดานบอร์ดงาน</div>
-                                <div class="container-fluid">
-                                    <li class="fas fa-home">&nbsp;หน้าแรก</li>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <br>
                     <div class="row">
 
                         <div>
                             <div class="card  text-center">
                                 <div class="container">
-                                  <br>
-                                        <h1 class="">โครงการทั้งหมด</h1>
-                                  
+                                    <br>
+                                    <h1 class="">โครงการทั้งหมด</h1>
+
                                     <div class="row">
                                         <div class="col-6">
                                         </div>
                                         <div class="col-6">
-                                            <!-- <form>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control bg-light border-0 small"
-                                                        placeholder="ค้นหาโครงการ" aria-label="Search"
-                                                        aria-describedby="basic-addon2">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-primary" type="button">
-                                                            <i class="fas fa-search fa-sm"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form> -->
+
                                             <br>
                                         </div>
                                         <div class="container">
                                             <div class="row row-cols-1 row-cols-md-5 g-4">
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">
-                                                                <a href="listmenu.html">Steel</a>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
+                                                <?php
+                                                $getuser = $user->getallproject();
+                                                if (is_array($getuser) || is_object($getuser)) {
+                                                    foreach ($getuser as $i => $rowre)
+                                                        if (isset ($rowre)) {
+                                                            //print_r($rowre);
+                                                            ?>
+                                                            <div class="col">
+                                                                <div class="card h-100">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">
+                                                                            <a href="listmenu.html"> <?php echo $rowre['project_name']; ?></a>
+                                                                        </h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <?php
+                                                        }
+                                                } else {
+                                                    // echo "ยังไม่ได้กรอกข้อมูล";
+                                                }
+                                                ?>
+                                                <!-- <div class="col">
                                                     <div class="card h-100">
 
                                                         <div class="card-body">
@@ -249,7 +172,7 @@
 
                                                         <div class="card-body">
                                                             <h5 class="card-title"> <a href="listmenu.html">โครงการที่
-                                                                    3 Ketchup  Mobile</a></h5>
+                                                                    3 Ketchup Mobile</a></h5>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -270,12 +193,12 @@
                                                                     5</a></h5>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <br>
                                         </div>
 
-                                        <div class="container">
+                                        <!-- <div class="container">
                                             <div class="row row-cols-1 row-cols-md-5 g-4">
                                                 <div class="col">
                                                     <div class="card h-100">
@@ -467,7 +390,7 @@
                                                 </div>
                                             </div>
                                             <br>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -479,13 +402,9 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
+            <?php
+            include 'footer.php';
+            ?>
             <!-- End of Footer -->
 
         </div>
