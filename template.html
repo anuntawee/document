@@ -25,6 +25,12 @@
 
 </head>
 
+<style>
+    h5:hover {
+        text-decoration: underline;
+    }
+</style>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -251,7 +257,7 @@
 
                                         </div>
                                         <div class="col-10">
-                                            <form action="">
+                                            <span>
                                                 <h5 onclick="downloadFile()">1) Business Requirement Document</h5>
                                                 <h5 onclick="downloadFile2()">2) Acceptance Record</h5>
                                                 <h5 onclick="downloadFile3()">3) Change Request </h5>
@@ -275,7 +281,7 @@
                                                 <h5 onclick="downloadFile21()">21) Verification Results</h5>
                                                 <h5 onclick="downloadFile22()">22) Validation Results</h5>
                                                 <h5 onclick="downloadFile23()">23) Propasal (If Any)</h5>
-                                            </form>
+                                            </span>
                                         </div>
                                         <div class="col-1">
 
@@ -439,14 +445,23 @@
         }
 
         function downloadFileWithName(fileName, filePath) {
-            var downloadLink = document.createElement('a');
-            downloadLink.setAttribute('href', filePath);
-            downloadLink.setAttribute('download', fileName);
-            downloadLink.style.display = 'none';
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
+            // สร้าง popup สำหรับการยืนยันการดาวน์โหลด
+            var confirmation = confirm("คุณต้องการดาวน์โหลดไฟล์ " + fileName + " หรือไม่?");
+            // ถ้าผู้ใช้กด OK
+            if (confirmation) {
+                var downloadLink = document.createElement('a');
+                downloadLink.setAttribute('href', filePath);
+                downloadLink.setAttribute('download', fileName);
+                downloadLink.style.display = 'none';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            } else {
+                // ถ้าผู้ใช้กด Cancel
+                alert("การดาวน์โหลดไฟล์ " + fileName + " ถูกยกเลิก");
+            }
         }
+
     </script>
 </body>
 
