@@ -33,7 +33,13 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="project.php" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span> Management</span>
+            <span> Project</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="admin.php" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span> ManagementUser</span>
         </a>
     </li>
     <li class="nav-item">

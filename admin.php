@@ -57,20 +57,6 @@ $user = new User();
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <!-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -137,17 +123,16 @@ $user = new User();
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <br>
                     <div class="row">
                         <div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h1>จัดการโครงการ</h1>
+                                    <h1>กำหนด Role-Permission</h1>
                                     <!-- Button to Open the Modal -->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#myModal">
-                                        เพิ่มโครงการ
+                                        เพิ่มผู้ใช้งาน
                                     </button>
 
                                     <!-- The Modal -->
@@ -157,48 +142,74 @@ $user = new User();
 
                                                 <!-- Modal Header -->
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title"> เพิ่มโครงการ</h4>
+                                                    <h4 class="modal-title">เพิ่มผู้ใช้งาน</h4>
                                                     <button type="button" class="btn-close"
                                                         data-bs-dismiss="modal"></button>
                                                 </div>
+
                                                 <!-- Modal body -->
                                                 <div class="modal-body">
                                                     <form id="add_user_form" method="POST" name="id_project"
                                                         class="validated" enctype="multipart/form-data">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="ชื่อโครงการ" name="project_name">
-                                                        <br>
-                                                        <!-- <input type="text" id="project_person" name="project_person"
-                                                            placeholder="Enter ผู้รับชอบ..." class="form-control"> -->
-                                                        <select id="project_person" name="project_person"
-                                                            class="form-control">
-                                                            <option selected="เพิ่มผู้รับชอบ">เพิ่มผู้รับชอบ</option>
-                                                            <?php
-                                                            $getalluser = $user->getalluser();
-                                                            if (is_array($getalluser) || is_object($getalluser)) {
-                                                                $displayedRoles = array(); // สร้างตัวแปรเพื่อเก็บค่าชื่อที่เคยแสดงแล้ว
-                                                                foreach ($getalluser as $i => $rowree) {
-                                                                    if (isset ($rowree)) {
-                                                                        $memberRole = $rowree['member_role'];
-                                                                        // ตรวจสอบว่าชื่อนี้มีอยู่ในรายการที่เคยแสดงแล้วหรือไม่
-                                                                        if (!in_array($memberRole, $displayedRoles)) {
-                                                                            // ถ้ายังไม่มีก็แสดงชื่อนี้
-                                                                            ?>
-                                                                            <option value="<?php echo $rowree['member_role']; ?>">
-                                                                                <?php echo $rowree['member_role']; ?>
-                                                                            </option>
-                                                                            <?php
-                                                                            // เพิ่มชื่อนี้เข้าไปในรายการที่เคยแสดงแล้ว
-                                                                            $displayedRoles[] = $memberRole;
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                        <br>
-                                                        <label for="">ผู้รับผิดชอบโครงการ</label>
-                                                        <ul id="nameList"></ul>
+                                                        <div class="row text-center">
+                                                            <div class="col-6">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="ชื่อ" name="member_name"
+                                                                    id="member_name">
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="นามสกุล" name="member_lastname"
+                                                                    id="member_lastname">
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <br>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="E-Mail" name="member_email">
+                                                                <br>
+                                                                <select class="form-control" placeholder="Role"
+                                                                    name="member_role" id="member_role">
+                                                                    <option selected>Role</option>
+                                                                    <option value="Lead Project">Lead Project </option>
+                                                                    <option value="Senior Project Manager">Senior
+                                                                        Project
+                                                                        Manager</option>
+                                                                    <option value="Project Manager">Project Manager
+                                                                    </option>
+                                                                    <option value="Assistant Project Manage">Assistant
+                                                                        Project
+                                                                        Manager</option>
+                                                                    <option value="Project Coordinator">Project
+                                                                        Coordinator
+                                                                    </option>
+                                                                    <option value="Senior Developer">Senior Developer
+                                                                    </option>
+                                                                    <option value="Bussiness Analyze">Bussiness Analyze
+                                                                    </option>
+                                                                    <option value="System Analyze">System Analyze
+                                                                    </option>
+                                                                    <option value="Dev-Ops Engineer">Dev-Ops Engineer
+                                                                    </option>
+                                                                    <option value="Data Engineer">Data Engineer</option>
+                                                                    <option value="Data Engineer & AI/ML">Data Engineer
+                                                                        &
+                                                                        AI/ML
+                                                                    </option>
+                                                                    <option value="Tester">Tester</option>
+                                                                    <option value="Lead UX/UI Designer">Lead UX/UI
+                                                                        Designer
+                                                                    </option>
+                                                                    <option value="CO-Founder COO">CO-Founder COO
+                                                                    </option>
+                                                                    <option value="Founder CEO">Founder CEO</option>
+                                                                    <option value="Founder CFO">Founder CFO</option>
+                                                                    <option value="Founder CIO">Founder CIO</option>
+                                                                    <option value="ADMIN">ADMIN</option>
+                                                                </select>
+                                                                <br>
+                                                                <h4>กำหนด Role-Permission</h4>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                                 <!-- Modal footer -->
                                                 <div class="modal-footer">
@@ -209,7 +220,6 @@ $user = new User();
                                                         data-bs-dismiss="modal">Close</button>
                                                     </form>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -219,42 +229,74 @@ $user = new User();
                                         <thead>
                                             <tr>
                                                 <th>ลำดับ</th>
-                                                <th>ชื่อโครงการ</th>
-                                                <th>ผู้รับผิดชอบ</th>
-                                                <th>จัดการ</th>
-
+                                                <th>NAME</th>
+                                                <th>ROLE</th>
+                                                <th>VIEW</th>
+                                                <th>COMEMNT</th>
+                                                <th>EDITS</th>
+                                                <th>APPROVE</th>
+                                                <th>SIGNOFF</th>
+                                                <th>ACTION</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $getuser = $user->getallproject();
+                                            $getuser = $user->getalluser();
                                             if (is_array($getuser) || is_object($getuser)) {
                                                 foreach ($getuser as $i => $rowre)
                                                     if (isset ($rowre)) {
-                                                        //print_r($rowre);
+                                                        // print_r($rowre);
                                                         ?>
                                                         <tr>
-                                                            <td width="5%">
+                                                            <td>
                                                                 <?php echo "" . ($i + 1); ?>
                                                             </td>
-                                                            <td width="10%">
-                                                                <?php echo $rowre['project_name']; ?>
-                                                            </td>
-                                                            <td >
-                                                                <!-- <?php echo str_replace('"', "\n", $rowre['project_person']); ?> -->
-                                                                <?php echo str_replace(['[', ']', '"'], '', $rowre['project_person']); ?>
+                                                            <td>
+                                                                <?php echo $rowre['member_name']; ?>
+                                                                <?php echo $rowre['member_lastname']; ?>
                                                             </td>
                                                             <td>
-                                                                <!-- <button type="button" class="btn btn-outline-primary"><i
-                                                                        class="fas fa-fw fa-pencil-alt"
-                                                                        aria-hidden="true"></i></button>
-                                                                <button type="button" class="btn btn-outline-warning"> <i
-                                                                        class="fas fa-fw fa-calendar"
-                                                                        aria-hidden="true"></i></button> -->
-                                                                <button type="button" class="btn btn-outline-danger"
-                                                                    onclick="return delete_project(<?php echo $rowre['project_id']; ?>);">
-                                                                    <i class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
+                                                                <?php echo $rowre['member_role']; ?>
                                                             </td>
+                                                            <div class="text-center">
+                                                                <td>
+                                                                    <input type="checkbox" name="view" id="view"
+                                                                        value="<?php echo $rowre['member_view']; ?>"
+                                                                        <?php if ($rowre['member_view'] == 1) echo "checked"; ?>
+                                                                        onclick="edit_user_form(<?php echo $rowre['member_id']; ?>, this);">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="checkbox" name="comment" id="comment"
+                                                                        value="<?php echo $rowre['member_comment']; ?>"
+                                                                        <?php if ($rowre['member_comment'] == 1) echo "checked"; ?>
+                                                                        onclick="edit_user_form(<?php echo $rowre['member_id']; ?>, this);">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="checkbox" name="edits" id="edits"
+                                                                        value="<?php echo $rowre['member_edits']; ?>"
+                                                                        <?php if ($rowre['member_edits'] == 1) echo "checked"; ?>
+                                                                        onclick="edit_user_form(<?php echo $rowre['member_id']; ?>, this);">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="checkbox" name="approve" id="approve"
+                                                                        value="<?php echo $rowre['member_approve']; ?>"
+                                                                        <?php if ($rowre['member_approve'] == 1) echo "checked"; ?>
+                                                                        onclick="edit_user_form(<?php echo $rowre['member_id']; ?>, this);">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="checkbox" name="signoff" id="signoff"
+                                                                        value="<?php echo $rowre['member_signoff']; ?>"
+                                                                        <?php if ($rowre['member_signoff'] == 1) echo "checked"; ?>
+                                                                        onclick="edit_user_form(<?php echo $rowre['member_id']; ?>, this);">
+                                                                </td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-outline-danger"
+                                                                        onclick="return delete_project(<?php echo $rowre['member_id']; ?>);">
+                                                                        <i class="fas fa-fw fa-trash"
+                                                                            aria-hidden="true"></i></button>
+                                                                </td>
+
+                                                            </div>
                                                         </tr>
                                                         <?php
                                                     }
@@ -266,9 +308,14 @@ $user = new User();
                                         <tfoot>
                                             <tr>
                                                 <th>ลำดับ</th>
-                                                <th>ชื่อโครงการ</th>
-                                                <th>ผู้รับผิดชอบ</th>
-                                                <th>จัดการ</th>
+                                                <th>NAME</th>
+                                                <th>ROLE</th>
+                                                <th>VIEW</th>
+                                                <th>COMEMNT</th>
+                                                <th>EDITS</th>
+                                                <th>APPROVE</th>
+                                                <th>SIGNOFF</th>
+                                                <th></th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -337,24 +384,8 @@ $user = new User();
 
     <script>
         new DataTable('#example');
-        const input = document.getElementById('project_person');
-        const nameList = document.getElementById('nameList');
-        let selectedOptions = [];
-
-        input.addEventListener('change', function (e) {
-            const selectedOption = e.target.value;
-            if (!selectedOptions.includes(selectedOption)) {
-                selectedOptions.push(selectedOption);
-                renderSelectedOptions();
-            }
-        });
-
         function add_user_form() {
             var formData = new FormData($("#add_user_form")[0]); // Use the actual form element
-            selectedOptions.forEach(option => {
-                formData.append('selectedOptions[]', option);
-            });
-
             $.ajax({
                 type: "POST",
                 url: "connect/process.php",
@@ -388,25 +419,45 @@ $user = new User();
             }
             return false;
         }
-
-        function renderSelectedOptions() {
-            nameList.innerHTML = '';
-            selectedOptions.forEach((option, index) => {
-                const listItem = document.createElement('li');
-                listItem.textContent = option;
-                listItem.dataset.index = index;
-                listItem.addEventListener('click', () => removeOption(index));
-                nameList.appendChild(listItem);
+        document.addEventListener("DOMContentLoaded", function () {
+            checkCheckbox();
+        });
+        function checkCheckbox() {
+            var checkboxIds = ["view", "comment", "edits", "approve", "signoff"];
+            checkboxIds.forEach(function (id) {
+                var checkbox = document.getElementById(id);
+                var valueFromPHP = checkbox.value;
+                checkbox.checked = (valueFromPHP == 1);
             });
         }
 
-        function removeOption(index) {
-            selectedOptions.splice(index, 1);
-            renderSelectedOptions();
+        function edit_user_form(member_id, checkbox) {
+            var value = checkbox.checked ? 1 : 0;
+            var member_name = checkbox.name;
+            // console.log("member_id: " + member_id);
+            // console.log("Value: " + value);
+            // console.log("member_name: " + member_name);
+            var formData = new FormData();
+            formData.append(member_name, value);
+            formData.append('member_id', member_id);
+
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    //close modal
+                    $(".close").trigger("click");
+                    // alert(data);
+                    location.reload();
+                }
+            });
+            return false;
         }
 
     </script>
-
 </body>
 
 </html>

@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="css\style.css">
 
 </head>
+<?php
+include 'connect\function.php';
+$user = new User();
+?>
 
 <body id="page-top">
 
@@ -31,64 +35,9 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3"> <strong> Report</strong></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-
-           <!-- Nav Item - Dashboard -->
-           <li class="nav-item active">
-            <a class="nav-link" href="menu.html">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>HOME</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
-
-     
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="project.html" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span> Management</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="template.html" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span> Template</span>
-            </a>
-        </li>
-        <!-- Divider -->
-            <hr class="sidebar-divider">
-
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-
-
-        </ul>
+        <?php
+        include 'navbar.php';
+        ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -106,7 +55,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    <!-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -117,7 +66,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -293,9 +242,8 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <a href="listmenu.html"><button
-                                    class="btn btn-danger float-right">BACK</button></a>
-                                    <br><br>
+                                <a href="listmenu.php"><button class="btn btn-danger float-right">BACK</button></a>
+                                <br><br>
                             </div>
                         </div>
                     </div>
