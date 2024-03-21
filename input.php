@@ -21,6 +21,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="css\style.css">
 
 </head>
@@ -143,25 +144,11 @@ $user = new User();
                     <div class="row">
                         <div>
                             <div class="card">
-
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-6">
-
                                         </div>
                                         <div class="col-6">
-                                            <!-- <form>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control bg-light border-0 small"
-                                                        placeholder="ค้นหาโครงการ" aria-label="Search"
-                                                        aria-describedby="basic-addon2">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-primary" type="button">
-                                                            <i class="fas fa-search fa-sm"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form> -->
                                             <br>
                                         </div>
                                         <div class="container">
@@ -193,7 +180,6 @@ $user = new User();
                                         </tr>
                                         </tbody>
                                         </table>
-
                                         <div id="1" style="display:none">
                                             <form action="/action_page.php">
                                                 <h1>Upload เอกสาร Draft</h1>
@@ -245,6 +231,71 @@ $user = new User();
                                 <a href="listmenu.php"><button class="btn btn-danger float-right">BACK</button></a>
                                 <br><br>
                             </div>
+                            <div class="card">
+                                <div class="container">
+
+
+                                    <table id="example" class="display" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>NameDocument</th>
+                                                <th>Status</th>
+                                                <th>Version</th>
+                                                <th>Timestamp</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>ชื่อเอกสาร</td>
+                                                <td>Draf</td>
+                                                <td>1</td>
+                                                <td>20/04/2066</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>ชื่อเอกสาร</td>
+                                                <td>Review</td>
+                                                <td>1</td>
+                                                <td>20/04/2066</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>ชื่อเอกสาร</td>
+                                                <td>Final</td>
+                                                <td>1</td>
+                                                <td>20/04/2066</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>ชื่อเอกสาร</td>
+                                                <td>Internal Sign</td>
+                                                <td>1</td>
+                                                <td>20/04/2066</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>ชื่อเอกสาร</td>
+                                                <td>External sign</td>
+                                                <td>1</td>
+                                                <td>20/04/2066</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <!-- <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr> -->
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -298,20 +349,14 @@ $user = new User();
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
     <script>
+        new DataTable('#example');
         $("#pagelist").change(function () {
             var viewID = $("#pagelist option:selected").val();
             $("#pagelist option").each(function () {

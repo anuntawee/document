@@ -280,6 +280,7 @@ $user = new User();
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <hr>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-4">
@@ -405,11 +406,11 @@ $user = new User();
                                                                                             </div>
                                                                                         </div>
                                                                                     </form>
-
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <hr>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-4">
@@ -536,15 +537,11 @@ $user = new User();
                                                                                             </div>
                                                                                         </div>
                                                                                     </form>
-                                                                                    <br>
-                                                                                    <!-- <a href="#"><button
-                                                                                        class="btn btn-primary justify-content-end">SUBMIT</button></a>
-                                                                                <a href="listmenu.php"><button
-                                                                                        class="btn btn-danger justify-content-end">BACK</button></a> -->
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <hr>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-4">
@@ -670,11 +667,11 @@ $user = new User();
                                                                                             </div>
                                                                                         </div>
                                                                                     </form>
-                                                                                    <br>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <hr>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-4">
@@ -800,11 +797,11 @@ $user = new User();
                                                                                             </div>
                                                                                         </div>
                                                                                     </form>
-                                                                                    <br>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <hr>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-4">
@@ -930,11 +927,11 @@ $user = new User();
                                                                                             </div>
                                                                                         </div>
                                                                                     </form>
-                                                                                    <br>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <hr>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-4">
@@ -1060,11 +1057,11 @@ $user = new User();
                                                                                             </div>
                                                                                         </div>
                                                                                     </form>
-                                                                                    <br>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <hr>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-4">
@@ -1195,6 +1192,7 @@ $user = new User();
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    
                                                                 </div>
                                                             </form>
                                                         </div>
