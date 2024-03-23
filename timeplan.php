@@ -154,18 +154,31 @@ $user = new User();
                                                     $getuser = $user->getalltimeplan();
                                                     if (is_array($getuser) || is_object($getuser)) {
                                                         foreach ($getuser as $i => $rowre) {
-                                                            if (isset ($rowre['timeplan_status_name']) && isset ($rowre['timeplan_status_name_2'])) {
+                                                            if (isset ($rowre)) {
+                                                                print_r($rowre);
                                                                 ?>
                                                                 <tr>
                                                                     <td>
                                                                         <?php echo $rowre['timeplan_status_name']; ?>
                                                                     </td>
-                                                                    <td> <?php echo $rowre['timeplan_re_getstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_re_getend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_re_getname']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_re_workstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_re_workend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_re_workname']; ?></td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_re_getstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_re_getend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_re_getname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_re_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_re_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_re_workname']; ?>
+                                                                    </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-danger"
                                                                             onclick="return delete_project();">
@@ -177,12 +190,24 @@ $user = new User();
                                                                     <td>
                                                                         <?php echo $rowre['timeplan_status_name_2']; ?>
                                                                     </td>
-                                                                    <td> <?php echo $rowre['timeplan_pro_getstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_pro_getend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_pro_getname']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_pro_workstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_pro_workend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_pro_workname']; ?></td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_pro_getstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_pro_getend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_pro_getname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_pro_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_pro_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_pro_workname']; ?>
+                                                                    </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-danger"
                                                                             onclick="return delete_project();">
@@ -194,12 +219,24 @@ $user = new User();
                                                                     <td>
                                                                         <?php echo $rowre['timeplan_status_name_3']; ?>
                                                                     </td>
-                                                                    <td> <?php echo $rowre['timeplan_sing_getstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sing_getend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sing_getname']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sing_workstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sing_workend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sing_workname']; ?></td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sing_getstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sing_getend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sing_getname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sing_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sing_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sing_workname']; ?>
+                                                                    </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-danger"
                                                                             onclick="return delete_project();">
@@ -211,12 +248,24 @@ $user = new User();
                                                                     <td>
                                                                         <?php echo $rowre['timeplan_status_name_4']; ?>
                                                                     </td>
-                                                                    <td> <?php echo $rowre['timeplan_dev_getstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_dev_getend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_dev_getname']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_dev_workstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_dev_workend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_dev_workname']; ?></td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_dev_getstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_dev_getend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_dev_getname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_dev_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_dev_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_dev_workname']; ?>
+                                                                    </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-danger"
                                                                             onclick="return delete_project();">
@@ -228,12 +277,24 @@ $user = new User();
                                                                     <td>
                                                                         <?php echo $rowre['timeplan_status_name_5']; ?>
                                                                     </td>
-                                                                    <td> <?php echo $rowre['timeplan_sit_getstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sit_getend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sit_getname']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sit_workstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sit_workend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_sit_workname']; ?></td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sit_getstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sit_getend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sit_getname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sit_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sit_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_sit_workname']; ?>
+                                                                    </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-danger"
                                                                             onclick="return delete_project();">
@@ -245,12 +306,24 @@ $user = new User();
                                                                     <td>
                                                                         <?php echo $rowre['timeplan_status_name_6']; ?>
                                                                     </td>
-                                                                    <td> <?php echo $rowre['timeplan_inter_getstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_inter_getend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_inter_getname']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_inter_workstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_inter_workend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_inter_workname']; ?></td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_inter_getstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_inter_getend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_inter_getname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_inter_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_inter_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_inter_workname']; ?>
+                                                                    </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-danger"
                                                                             onclick="return delete_project();">
@@ -262,12 +335,24 @@ $user = new User();
                                                                     <td>
                                                                         <?php echo $rowre['timeplan_status_name_7']; ?>
                                                                     </td>
-                                                                    <td> <?php echo $rowre['timeplan_user_getstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_user_getend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_user_getname']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_user_workstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_user_workend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_user_workname']; ?></td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_user_getstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_user_getend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_user_getname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_user_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_user_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_user_workname']; ?>
+                                                                    </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-danger"
                                                                             onclick="return delete_project();">
@@ -279,12 +364,24 @@ $user = new User();
                                                                     <td>
                                                                         <?php echo $rowre['timeplan_status_name_8']; ?>
                                                                     </td>
-                                                                    <td> <?php echo $rowre['timeplan_end_getstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_end_getend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_end_getname']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_end_workstart']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_end_workend']; ?></td>
-                                                                    <td> <?php echo $rowre['timeplan_end_workname']; ?></td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_end_getstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_end_getend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_end_getname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_end_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_end_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_end_workname']; ?>
+                                                                    </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-danger"
                                                                             onclick="return delete_project();">
