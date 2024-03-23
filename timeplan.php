@@ -22,6 +22,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="css\style.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 
 </head>
 <?php
@@ -125,1077 +128,1214 @@ $user = new User();
                     </div> -->
 
                     <br>
-                    <div class="row">
-                        <div>
-                            <div class="card">
-                                <!-- <div class="card-body">กระดานทั้งหมด</div> -->
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="row">
+                    <div class="row ">
+                        <div class="card" id="card2">
+                            <div class="container-flure">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <h1 class="text-center" data-bs-toggle="collapse" data-bs-target="#demo2">Show
+                                            Time plan</h1>
+                                        <div id="demo2" class="collapse">
+                                            <table id="example" class="row-border" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>รายละเอียดโครงการ</th>
+                                                        <th>วันที่เริ่มกำหนดแผน</th>
+                                                        <th>วันสิ้นสุดกำหนดแผน</th>
+                                                        <th>ชื่อผู้รับผิดชอบกำหนดแผน</th>
+                                                        <th>วันที่เริ่มปฎับัติการ</th>
+                                                        <th>วันสิ้นสุดปฎับัติการ</th>
+                                                        <th>ชื่อผู้รับผิดชอบปฎิบัติการ</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    $getuser = $user->getalltimeplan();
+                                                    if (is_array($getuser) || is_object($getuser)) {
+                                                        foreach ($getuser as $i => $rowre) {
+                                                            if (isset ($rowre['timeplan_status_name']) && isset ($rowre['timeplan_status_name_2'])) {
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_status_name']; ?>
+                                                                    </td>
+                                                                    <td> <?php echo $rowre['timeplan_re_getstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_re_getend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_re_getname']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_re_workstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_re_workend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_re_workname']; ?></td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project();">
+                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_status_name_2']; ?>
+                                                                    </td>
+                                                                    <td> <?php echo $rowre['timeplan_pro_getstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_pro_getend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_pro_getname']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_pro_workstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_pro_workend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_pro_workname']; ?></td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project();">
+                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_status_name_3']; ?>
+                                                                    </td>
+                                                                    <td> <?php echo $rowre['timeplan_sing_getstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sing_getend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sing_getname']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sing_workstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sing_workend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sing_workname']; ?></td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project();">
+                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_status_name_4']; ?>
+                                                                    </td>
+                                                                    <td> <?php echo $rowre['timeplan_dev_getstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_dev_getend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_dev_getname']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_dev_workstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_dev_workend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_dev_workname']; ?></td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project();">
+                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_status_name_5']; ?>
+                                                                    </td>
+                                                                    <td> <?php echo $rowre['timeplan_sit_getstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sit_getend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sit_getname']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sit_workstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sit_workend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_sit_workname']; ?></td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project();">
+                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_status_name_6']; ?>
+                                                                    </td>
+                                                                    <td> <?php echo $rowre['timeplan_inter_getstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_inter_getend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_inter_getname']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_inter_workstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_inter_workend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_inter_workname']; ?></td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project();">
+                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_status_name_7']; ?>
+                                                                    </td>
+                                                                    <td> <?php echo $rowre['timeplan_user_getstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_user_getend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_user_getname']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_user_workstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_user_workend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_user_workname']; ?></td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project();">
+                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['timeplan_status_name_8']; ?>
+                                                                    </td>
+                                                                    <td> <?php echo $rowre['timeplan_end_getstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_end_getend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_end_getname']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_end_workstart']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_end_workend']; ?></td>
+                                                                    <td> <?php echo $rowre['timeplan_end_workname']; ?></td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project();">
+                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                            }
+                                                        }
+                                                    }
+                                                    ?>
 
-                                            <div class="card-body">
-                                                <h1>Time plan</h1>
-                                            </div>
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div id="demo">
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>รายละเอียดโครงการ</th>
+                                                        <th>วันที่เริ่มกำหนดแผน</th>
+                                                        <th>วันสิ้นสุดกำหนดแผน</th>
+                                                        <th>ชื่อผู้รับผิดชอบกำหนดแผน</th>
+                                                        <th>วันที่เริ่มปฎับัติการ</th>
+                                                        <th>วันสิ้นสุดปฎับัติการ</th>
+                                                        <th>ชื่อผู้รับผิดชอบปฎิบัติการ</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" id="card1">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <h1 class="text-center" data-bs-toggle="collapse" data-bs-target="#demo">Input
+                                            Time plan</h1>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div id="demo" class="collapse">
+                                                        <form id="add_user_form" method="POST" name="timeplan_id"
+                                                            class="validated" enctype="multipart/form-data">
                                                             แบบฟอร์มข้อมูล | วันกำหนดโครงการ
-                                                            <form action="" method="post">
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <br><br>
-                                                                        <h4>1. Get Requirement</h4>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันกำหนดแผน
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_re_getstart"
-                                                                                                    id="timeplan_re_getstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_re_getend"
-                                                                                                    id="timeplan_re_getend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_re_getname"
-                                                                                                        id="timeplan_re_getname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        $getuser = $user->getalluser();
-                                                                                                        if (is_array($getuser) || is_object($getuser)) {
-                                                                                                            foreach ($getuser as $i => $rowre)
-                                                                                                                if (isset ($rowre)) {
-                                                                                                                    // print_r($rowre);
-                                                                                                                    ?>
-                                                                                                                    <option
-                                                                                                                        value=" <?php echo $rowre['member_name']; ?>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <br><br>
+                                                                    <h4>1. Get Requirement</h4>
+                                                                    <input type="hidden" name="timeplan_status_name"
+                                                                        id="timeplan_status_name_name"
+                                                                        value="1.Get Requirement">
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันกำหนดแผน
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_re_getstart"
+                                                                                            id="timeplan_re_getstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_re_getend"
+                                                                                            id="timeplan_re_getend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_re_getname"
+                                                                                            id="timeplan_re_getname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            $getuser = $user->getalluser();
+                                                                                            if (is_array($getuser) || is_object($getuser)) {
+                                                                                                foreach ($getuser as $i => $rowre)
+                                                                                                    if (isset ($rowre)) {
+                                                                                                        // print_r($rowre);
+                                                                                                        ?>
+                                                                                                        <option
+                                                                                                            value=" <?php echo $rowre['member_name']; ?>
                                                                                                                                 <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                        <?php echo $rowre['member_name']; ?>
-                                                                                                                        <?php echo $rowre['member_lastname']; ?>
-                                                                                                                    </option>
-                                                                                                                    <?php
-                                                                                                                }
-                                                                                                        }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                    <!-- <input
-                                                                                                        class="form-control me-1"
-                                                                                                        type="search"
-                                                                                                        placeholder="ค้นหารายชื่อพนักงาน"
-                                                                                                        aria-label="Search"> -->
-
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันปฎิบัติการ
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_re_workstart"
-                                                                                                    id="timeplan_re_workstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_re_workend"
-                                                                                                    id="timeplan_re_workend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_re_workname"
-                                                                                                        id="timeplan_re_workname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
+                                                                                                            <?php echo $rowre['member_name']; ?>
+                                                                                                            <?php echo $rowre['member_lastname']; ?>
                                                                                                         </option>
                                                                                                         <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
-                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-
+                                                                                                    }
+                                                                                            }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <br><br>
-                                                                        <h4>2. เสนอ Proposal พร้อมแนบ QO</h4>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันกำหนดแผน
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_pro_getstart"
-                                                                                                    id="timeplan_pro_getstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_pro_getend"
-                                                                                                    id="timeplan_pro_getend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_pro_getname"
-                                                                                                        id="timeplan_pro_getname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันปฎิบัติการ
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_re_workstart"
+                                                                                            id="timeplan_re_workstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_re_workend"
+                                                                                            id="timeplan_re_workend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_re_workname"
+                                                                                            id="timeplan_re_workname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
                                                                                                                             <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันปฎิบัติการ
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_pro_workstart"
-                                                                                                    id="timeplan_pro_workstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_pro_workend"
-                                                                                                    id="timeplan_pro_workend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_pro_workname"
-                                                                                                        id="timeplan_pro_workname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
-                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <br><br>
-                                                                        <h4>3. Sign OQ และจัดทำเอกสารเพื่อ Kick off
-                                                                            project</h4>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันกำหนดแผน
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_sing_getstart"
-                                                                                                    id="timeplan_sing_getstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_sing_getend"
-                                                                                                    id="timeplan_sing_getend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_sing_getname"
-                                                                                                        id="timeplan_sing_getname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
-                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันปฎิบัติการ
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_sing_workstart"
-                                                                                                    id="timeplan_sing_workstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_sing_workend"
-                                                                                                    id="timeplan_sing_workend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_sing_workname"
-                                                                                                        id="timeplan_sing_workname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
-                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <br><br>
+                                                                    <h4>2. เสนอ Proposal พร้อมแนบ QO</h4>
+                                                                    <input type="hidden" name="timeplan_status_name_2"
+                                                                        id="timeplan_status_name_2"
+                                                                        value="2.เสนอ Proposal พร้อมแนบ QO">
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <br><br>
-                                                                        <h4>4. Development Phase</h4>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันกำหนดแผน
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_dev_getstart"
-                                                                                                    id="timeplan_dev_getstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_dev_getend"
-                                                                                                    id="timeplan_dev_getend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_dev_getname"
-                                                                                                        id="timeplan_dev_getname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
-                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันกำหนดแผน
 
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันปฎิบัติการ
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_dev_workstart"
-                                                                                                    id="timeplan_dev_workstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_dev_workend"
-                                                                                                    id="timeplan_dev_workend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_dev_workname"
-                                                                                                        id="timeplan_dev_workname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_pro_getstart"
+                                                                                            id="timeplan_pro_getstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_pro_getend"
+                                                                                            id="timeplan_pro_getend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_pro_getname"
+                                                                                            id="timeplan_pro_getname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
                                                                                                                             <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <br><br>
-                                                                        <h4>5. SIT</h4>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันกำหนดแผน
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_sit_getstart"
-                                                                                                    id="timeplan_sit_getstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_sit_getend"
-                                                                                                    id="timeplan_sit_getend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_sit_getname"
-                                                                                                        id="timeplan_sit_getname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
-                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันปฎิบัติการ
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_pro_workstart"
+                                                                                            id="timeplan_pro_workstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_pro_workend"
+                                                                                            id="timeplan_pro_workend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
 
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันปฎิบัติการ
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_sit_workstart"
-                                                                                                    id="timeplan_sit_workstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_sit_workend"
-                                                                                                    id="timeplan_sit_workend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_sit_workname"
-                                                                                                        id="timeplan_sit_workname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
+                                                                                        <select
+                                                                                            name="timeplan_pro_workname"
+                                                                                            id="timeplan_pro_workname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
                                                                                                                             <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <br><br>
-                                                                        <h4>6. Internal Test</h4>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันกำหนดแผน
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_inter_getstart"
-                                                                                                    id="timeplan_inter_getstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_inter_getend"
-                                                                                                    id="timeplan_inter_getend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_inter_getname"
-                                                                                                        id="timeplan_inter_getname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <br><br>
+                                                                    <h4>3. Sign OQ และจัดทำเอกสารเพื่อ Kick off
+                                                                        project</h4>
+                                                                    <input type="hidden" name="timeplan_status_name_3"
+                                                                        id="timeplan_status_name_3" value="3.Sign OQ และจัดทำเอกสารเพื่อ Kick off
+                                                                        project">
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันกำหนดแผน
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_sing_getstart"
+                                                                                            id="timeplan_sing_getstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_sing_getend"
+                                                                                            id="timeplan_sing_getend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_sing_getname"
+                                                                                            id="timeplan_sing_getname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
                                                                                                                             <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันปฎิบัติการ
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_sing_workstart"
+                                                                                            id="timeplan_sing_workstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_sing_workend"
+                                                                                            id="timeplan_sing_workend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_sing_workname"
+                                                                                            id="timeplan_sing_workname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
+                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <br><br>
+                                                                    <h4>4. Development Phase</h4>
+                                                                    <input type="hidden" name="timeplan_status_name_4"
+                                                                        id="timeplan_status_name_4"
+                                                                        value="4.Development Phase">
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันกำหนดแผน
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_dev_getstart"
+                                                                                            id="timeplan_dev_getstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_dev_getend"
+                                                                                            id="timeplan_dev_getend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_dev_getname"
+                                                                                            id="timeplan_dev_getname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
+                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันปฎิบัติการ
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_dev_workstart"
+                                                                                            id="timeplan_dev_workstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_dev_workend"
+                                                                                            id="timeplan_dev_workend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_dev_workname"
+                                                                                            id="timeplan_dev_workname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
+                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <br><br>
+                                                                    <h4>5. SIT</h4>
+                                                                    <input type="hidden" name="timeplan_status_name_5"
+                                                                        id="timeplan_status_name_5" value="5.SIT">
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันกำหนดแผน
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_sit_getstart"
+                                                                                            id="timeplan_sit_getstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_sit_getend"
+                                                                                            id="timeplan_sit_getend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_sit_getname"
+                                                                                            id="timeplan_sit_getname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
+                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันปฎิบัติการ
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_sit_workstart"
+                                                                                            id="timeplan_sit_workstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_sit_workend"
+                                                                                            id="timeplan_sit_workend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_sit_workname"
+                                                                                            id="timeplan_sit_workname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
+                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <br><br>
+                                                                    <h4>6. Internal Test</h4>
+                                                                    <input type="hidden" name="timeplan_status_name_6"
+                                                                        id="timeplan_status_name_6"
+                                                                        value="6.Internal Test">
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันกำหนดแผน
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_inter_getstart"
+                                                                                            id="timeplan_inter_getstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_inter_getend"
+                                                                                            id="timeplan_inter_getend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
 
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันปฎิบัติการ
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_inter_workstart"
-                                                                                                    id="timeplan_inter_workstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_inter_workend"
-                                                                                                    id="timeplan_inter_workend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_inter_workname"
-                                                                                                        id="timeplan_inter_workname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
+                                                                                        <select
+                                                                                            name="timeplan_inter_getname"
+                                                                                            id="timeplan_inter_getname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
                                                                                                                             <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <hr>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <br><br>
-                                                                        <h4>7. User Acceptance Test</h4>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันกำหนดแผน
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_user_getstart"
-                                                                                                    id="timeplan_user_getstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_user_getend"
-                                                                                                    id="timeplan_user_getend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_user_getname"
-                                                                                                        id="timeplan_user_getname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันปฎิบัติการ
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_inter_workstart"
+                                                                                            id="timeplan_inter_workstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_inter_workend"
+                                                                                            id="timeplan_inter_workend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_inter_workname"
+                                                                                            id="timeplan_inter_workname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
                                                                                                                             <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันปฎิบัติการ
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_user_workstart"
-                                                                                                    id="timeplan_user_workstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_user_workend"
-                                                                                                    id="timeplan_user_workend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                    <select
-                                                                                                        name="timeplan_user_workname"
-                                                                                                        id="timeplan_user_workname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
-                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <br><br>
-                                                                        <h4>8. ส่งมอบงาน</h4>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันกำหนดแผน
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_end_getstart" id="timeplan_end_getstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_end_getend" id="timeplan_end_getend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                <select
-                                                                                                        name="timeplan_end_getname"
-                                                                                                        id="timeplan_end_getname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
-                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <div class="container">
-                                                                            <div
-                                                                                class="row align-items-center justify-content-center">
-                                                                                <div class="col-md-12 text-center mb-5">
-                                                                                    วันปฎิบัติการ
-                                                                                    <form>
-                                                                                        <div class="row">
-                                                                                            <div class="col-6">
-                                                                                                วันเริ่ม
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                วันสิ้นสุด
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_end_workstart" id="timeplan_end_workstart">
-                                                                                            </div>
-                                                                                            <div class="col-6">
-                                                                                                <input type="date"
-                                                                                                    class="form-control"
-                                                                                                    name="timeplan_end_workend" id="timeplan_end_workend">
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                ผู้รับผิดชอบ
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <form class="d-flex">
-                                                                                                <select
-                                                                                                        name="timeplan_end_workname"
-                                                                                                        id="timeplan_end_workname"
-                                                                                                        class="form-control me-1">
-                                                                                                        <option select>
-                                                                                                            รายชื่อพนักงาน
-                                                                                                        </option>
-                                                                                                        <?php
-                                                                                                        foreach ($getuser as $i => $rowre)
-                                                                                                            if (isset ($rowre)) {
-                                                                                                                // print_r($rowre);
-                                                                                                                ?>
-                                                                                                                <option
-                                                                                                                    value="<?php echo $rowre['member_name']; ?>
-                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
-                                                                                                                    <?php echo $rowre['member_name']; ?>
-                                                                                                                    <?php echo $rowre['member_lastname']; ?>
-                                                                                                                </option>
-                                                                                                                <?php
-                                                                                                            }
-                                                                                                        ?>
-                                                                                                    </select>
-                                                                                                </form>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                    <br>
-                                                                                    <a href="#"><button
-                                                                                            class="btn btn-primary justify-content-end">SUBMIT</button></a>
-                                                                                    <a href="listmenu.php"><button
-                                                                                            class="btn btn-danger justify-content-end">BACK</button></a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <br><br>
+                                                                    <h4>7. User Acceptance Test</h4>
+                                                                    <input type="hidden" name="timeplan_status_name_7"
+                                                                        id="timeplan_status_name_7"
+                                                                        value="7.User Acceptance Test">
                                                                 </div>
-                                                            </form>
-                                                        </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันกำหนดแผน
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_user_getstart"
+                                                                                            id="timeplan_user_getstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_user_getend"
+                                                                                            id="timeplan_user_getend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_user_getname"
+                                                                                            id="timeplan_user_getname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
+                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันปฎิบัติการ
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_user_workstart"
+                                                                                            id="timeplan_user_workstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_user_workend"
+                                                                                            id="timeplan_user_workend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_user_workname"
+                                                                                            id="timeplan_user_workname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
+                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4">
+                                                                    <br><br>
+                                                                    <h4>8. ส่งมอบงาน</h4>
+                                                                    <input type="hidden" name="timeplan_status_name_8"
+                                                                        id="timeplan_status_name_8" value="8.ส่งมอบงาน">
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันกำหนดแผน
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_end_getstart"
+                                                                                            id="timeplan_end_getstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_end_getend"
+                                                                                            id="timeplan_end_getend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_end_getname"
+                                                                                            id="timeplan_end_getname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
+                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <div class="container">
+                                                                        <div
+                                                                            class="row align-items-center justify-content-center">
+                                                                            <div class="col-md-12 text-center mb-5">
+                                                                                วันปฎิบัติการ
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        วันเริ่ม
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        วันสิ้นสุด
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_end_workstart"
+                                                                                            id="timeplan_end_workstart">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            name="timeplan_end_workend"
+                                                                                            id="timeplan_end_workend">
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        ผู้รับผิดชอบ
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <select
+                                                                                            name="timeplan_end_workname"
+                                                                                            id="timeplan_end_workname"
+                                                                                            class="form-control me-1">
+                                                                                            <option select>
+                                                                                                รายชื่อพนักงาน
+                                                                                            </option>
+                                                                                            <?php
+                                                                                            foreach ($getuser as $i => $rowre)
+                                                                                                if (isset ($rowre)) {
+                                                                                                    // print_r($rowre);
+                                                                                                    ?>
+                                                                                                    <option
+                                                                                                        value="<?php echo $rowre['member_name']; ?>
+                                                                                                                            <?php echo $rowre['member_lastname']; ?>">
+                                                                                                        <?php echo $rowre['member_name']; ?>
+                                                                                                        <?php echo $rowre['member_lastname']; ?>
+                                                                                                    </option>
+                                                                                                    <?php
+                                                                                                }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" id="timeplan_project_name"
+                                                                name="timeplan_project_name"
+                                                                value="<?php echo $rowre['project_name']; ?>">
+                                                            <div class="d-flex justify-content-end">
+                                                                <button type="button" class="btn btn-primary"
+                                                                    onclick="return add_user_form();">SUBMIT</button>
+                                                                <a href="listmenu.php"><button
+                                                                        class="btn btn-danger">BACK</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1204,6 +1344,7 @@ $user = new User();
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -1268,6 +1409,7 @@ $user = new User();
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
     <script>
+        new DataTable('#example');
         $("#pagelist").change(function () {
             var viewID = $("#pagelist option:selected").val();
             $("#pagelist option").each(function () {
@@ -1276,6 +1418,25 @@ $user = new User();
             });
             $("#" + viewID).show();
         });
+        function add_user_form() {
+            var formData = new FormData($("#add_user_form")[0]); // Use the actual form element
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: formData,
+                processData: false, // Prevent jQuery from processing data
+                contentType: false, // Prevent jQuery from setting content type
+                success: function (data) {
+                    //close modal
+                    $(".close").trigger("click");
+                    alert(data);
+                    console.log(data);
+                    //reload page
+                    location.reload();
+                }
+            });
+            return false;
+        }
     </script>
 
 </body>

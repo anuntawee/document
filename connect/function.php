@@ -45,6 +45,18 @@ class User extends dbh
 			return $data;
 		}
 	}
+	public function getalltimeplan()
+	{
+		$sql = "SELECT * FROM tb_timeplan WHERE timeplan_id";
+		$result = $this->connect()->query($sql);
+		$numROW = $result->num_rows;
+		if ($numROW > 0) {
+			while ($row = $result->fetch_assoc()) {
+				$data[] = $row;
+			}
+			return $data;
+		}
+	}
 }
 class report extends dbh
 {
@@ -178,6 +190,43 @@ class insert extends dbh
 		if (!$add_user->execute()) {
 			echo $db->error;
 		} else {
+			echo "บันทึกข้อมูลเรียบร้อย";
+		}
+	}
+	public function add_timeplan($data)
+	{
+		$db = $this->connect();
+		$add_user = $db->prepare("INSERT INTO `tb_timeplan` (`timeplan_id`, `timeplan_project_name`, `timeplan_status_name`, `timeplan_re_getstart`, 
+		`timeplan_re_getend`, `timeplan_re_getname`, `timeplan_re_workstart`, `timeplan_re_workend`, `timeplan_re_workname`, `timeplan_status_name_2`, 
+		`timeplan_pro_getstart`, `timeplan_pro_getend`, `timeplan_pro_getname`, `timeplan_pro_workstart`, `timeplan_pro_workend`, `timeplan_pro_workname`, 
+		`timeplan_status_name_3`, `timeplan_sing_getstart`, `timeplan_sing_getend`, `timeplan_sing_getname`, `timeplan_sing_workstart`, `timeplan_sing_workend`, 
+		`timeplan_sing_workname`, `timeplan_status_name_4`, `timeplan_dev_getstart`, `timeplan_dev_getend`, `timeplan_dev_getname`, `timeplan_dev_workstart`, 
+		`timeplan_dev_workend`, `timeplan_dev_workname`, `timeplan_status_name_5`, `timeplan_sit_getstart`, `timeplan_sit_getend`, `timeplan_sit_getname`, 
+		`timeplan_sit_workstart`, `timeplan_sit_workend`, `timeplan_sit_workname`, `timeplan_status_name_6`, `timeplan_inter_getstart`, `timeplan_inter_getend`, 
+		`timeplan_inter_getname`, `timeplan_inter_workstart`, `timeplan_inter_workend`, `timeplan_inter_workname`, `timeplan_status_name_7`, `timeplan_user_getstart`, 
+		`timeplan_user_getend`, `timeplan_user_getname`, `timeplan_user_workstart`, `timeplan_user_workend`, `timeplan_user_workname`, `timeplan_status_name_8`, 
+		`timeplan_end_getstart`, `timeplan_end_getend`, `timeplan_end_getname`, `timeplan_end_workstart`, `timeplan_end_workend`, `timeplan_end_workname`) 
+		VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+		?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+		$add_user->bind_param("sssssssssssssssssssssssssssssssssssssssssssssssssssssssss", 
+		$data['timeplan_project_name'], $data['timeplan_status_name'], $data['timeplan_re_getstart'], $data['timeplan_re_getend'], $data['timeplan_re_getname'],
+		$data['timeplan_re_workstart'], $data['timeplan_re_workend'], $data['timeplan_re_workname'], $data['timeplan_status_name_2'], $data['timeplan_pro_getstart'],
+		$data['timeplan_pro_getend'], $data['timeplan_pro_getname'], $data['timeplan_pro_workstart'], $data['timeplan_pro_workend'], $data['timeplan_pro_workname'],
+		$data['timeplan_status_name_3'], $data['timeplan_sing_getstart'], $data['timeplan_sing_getend'], $data['timeplan_sing_getname'], $data['timeplan_sing_workstart'],
+		$data['timeplan_sing_workend'], $data['timeplan_sing_workname'], $data['timeplan_status_name_4'], $data['timeplan_dev_getstart'], $data['timeplan_dev_getend'],
+		$data['timeplan_dev_getname'], $data['timeplan_dev_workstart'], $data['timeplan_dev_workend'], $data['timeplan_dev_workname'], $data['timeplan_status_name_5'],
+		$data['timeplan_sit_getstart'], $data['timeplan_sit_getend'], $data['timeplan_sit_getname'], $data['timeplan_sit_workstart'], $data['timeplan_sit_workend'],
+		$data['timeplan_sit_workname'], $data['timeplan_status_name_6'], $data['timeplan_inter_getstart'], $data['timeplan_inter_getend'], $data['timeplan_inter_getname'],
+		$data['timeplan_inter_workstart'], $data['timeplan_inter_workend'], $data['timeplan_inter_workname'], $data['timeplan_status_name_7'], $data['timeplan_user_getstart'],
+		$data['timeplan_user_getend'], $data['timeplan_user_getname'], $data['timeplan_user_workstart'], $data['timeplan_user_workend'], $data['timeplan_user_workname'],
+		$data['timeplan_status_name_8'], $data['timeplan_end_getstart'], $data['timeplan_end_getend'], $data['timeplan_end_getname'], $data['timeplan_end_workstart'],
+		$data['timeplan_end_workend'], $data['timeplan_end_workname']
+	);
+		if (!$add_user->execute()) {
+			echo $db->error;
+			var_dump($data);
+		} else {
+			var_dump($data);
 			echo "บันทึกข้อมูลเรียบร้อย";
 		}
 	}

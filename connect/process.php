@@ -11,10 +11,12 @@ if (isset($_POST['project_name'])) {
 }
 else if (isset($_POST['member_name'])) {
   $insert->add_user($_POST);
-  
 }
-var_dump($_POST);
+else if (isset($_POST['timeplan_project_name'])) {
+  $insert->add_timeplan($_POST);
+}
 
+// var_dump($_POST);
 if (isset($_POST['show_edit_user_id'])) {
   $edit_user = $report->getallproject_id($_POST['show_edit_user_id']);
   foreach ($edit_user as $i => $rowre) {
