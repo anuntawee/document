@@ -60,100 +60,15 @@ $user = new User();
 
             <!-- Main Content -->
             <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <!-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
+                <?php
+                include 'topbar.php';
+                ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="">Upload เอกสาร</h1>
                     </div>
-
                     <br>
                     <div class="row">
                         <div>
@@ -171,7 +86,9 @@ $user = new User();
                                                     <tbody">
                                                         <tr>
                                                             <th>
-                                                                <h1>เพิ่มเอกสาร <?php  echo "$template_name";?></h1>
+                                                                <h1>เพิ่มเอกสาร
+                                                                    <?php echo "$template_name"; ?>
+                                                                </h1>
                                                             </th>
                                                         </tr>
                                                         <tr>
@@ -203,13 +120,13 @@ $user = new User();
                                                 <!-- <input type="hidden" id="doc_project_name_draft" name="doc_project_name_draft"
                                                     value="<?php echo $rowre['project_name']; ?>"> -->
                                                 <input type="hidden" id="doc_project_name_draft" name="doc_project_name"
-                                                    value="doc_project_name">
+                                                    value="<?php echo $project_name ?>">
                                                 <?php
-                                                $getversion = $user->getdraftdoc_version();
+                                                $getversion = $user->getdraftdoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
                                                     foreach ($getversion as $i => $rowre)
                                                         if (isset ($rowre)) {
-                                                            print_r($rowre);
+                                                            // print_r($rowre);
                                                             ?>
                                                             <input type="hidden" id="doc_version_draft" name="doc_version"
                                                                 value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
@@ -218,13 +135,12 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
-                                                <!-- <input type="text" id="doc_version_draft" name="doc_version"
-                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>"> -->
+                                                <input type="text" id="doc_project_name_draft" name="doc_project_name"
+                                                    value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
-                                                    onclick="return add_user_form('Draft');">SUBMIT</button>
+                                                    onclick="return add_user_form('Draft', '<?php echo $template_name; ?>');">SUBMIT</button>
                                             </form>
                                         </div>
-                                        <br>
                                         <div id="2" style="display:none">
                                             <form id="add_user_form_review" method="POST" name="upload_doc"
                                                 class="validated" enctype="multipart/form-data">
@@ -234,13 +150,13 @@ $user = new User();
                                                 <input type="hidden" id="doc_status_review" name="doc_status"
                                                     value="Review">
                                                 <input type="hidden" id="doc_project_name_review"
-                                                    name="doc_project_name" value="doc_project_name">
+                                                    name="doc_project_name" value="<?php echo $project_name ?>">
                                                 <?php
-                                                $getversion = $user->getreviewdoc_version();
+                                                $getversion = $user->getreviewdoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
                                                     foreach ($getversion as $i => $rowre)
                                                         if (isset ($rowre)) {
-                                                            print_r($rowre);
+                                                            // print_r($rowre);
                                                             ?>
                                                             <input type="hidden" id="doc_version_review" name="doc_version"
                                                                 value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
@@ -249,8 +165,10 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
+                                                <input type="text" id="doc_project_name_review" name="doc_project_name"
+                                                    value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
-                                                    onclick="return add_user_form('Review');">SUBMIT</button>
+                                                    onclick="return add_user_form('Review', '<?php echo $template_name; ?>');">SUBMIT</button>
                                             </form>
                                             <br>
                                         </div>
@@ -263,13 +181,13 @@ $user = new User();
                                                 <input type="hidden" id="doc_status_final" name="doc_status"
                                                     value="Final">
                                                 <input type="hidden" id="doc_project_name_final" name="doc_project_name"
-                                                    value="doc_project_name">
+                                                    value="<?php echo $project_name ?>">
                                                 <?php
-                                                $getversion = $user->getfinaldoc_version();
+                                                $getversion = $user->getfinaldoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
                                                     foreach ($getversion as $i => $rowre)
                                                         if (isset ($rowre)) {
-                                                            print_r($rowre);
+                                                            // print_r($rowre);
                                                             ?>
                                                             <input type="hidden" id="doc_version_final" name="doc_version"
                                                                 value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
@@ -278,8 +196,10 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
+                                                <input type="text" id="doc_project_name_final" name="doc_project_name"
+                                                    value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
-                                                    onclick="return add_user_form('Final');">SUBMIT</button>
+                                                    onclick="return add_user_form('Final', '<?php echo $template_name; ?>');">SUBMIT</button>
                                             </form>
                                             <br>
                                         </div>
@@ -292,13 +212,13 @@ $user = new User();
                                                 <input type="hidden" id="doc_status_internalsign" name="doc_status"
                                                     value="InternalSign">
                                                 <input type="hidden" id="doc_project_name_internalsign"
-                                                    name="doc_project_name" value="doc_project_name">
+                                                    name="doc_project_name" value="<?php echo $project_name ?>">
                                                 <?php
-                                                $getversion = $user->getintelnaldoc_version();
+                                                $getversion = $user->getintelnaldoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
                                                     foreach ($getversion as $i => $rowre)
                                                         if (isset ($rowre)) {
-                                                            print_r($rowre);
+                                                            // print_r($rowre);
                                                             ?>
                                                             <input type="hidden" id="doc_version_internalsign" name="doc_version"
                                                                 value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
@@ -307,8 +227,10 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
+                                                <input type="text" id="doc_project_name_internalsign"
+                                                    name="doc_project_name" value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
-                                                    onclick="return add_user_form('InternalSign');">SUBMIT</button>
+                                                    onclick="return add_user_form('InternalSign', '<?php echo $template_name; ?>');">SUBMIT</button>
                                             </form>
                                             <br>
                                         </div>
@@ -321,13 +243,13 @@ $user = new User();
                                                 <input type="hidden" id="doc_status_externalsign" name="doc_status"
                                                     value="ExternaSign">
                                                 <input type="hidden" id="doc_project_name_externalsign"
-                                                    name="doc_project_name" value="doc_project_name">
+                                                    name="doc_project_name" value="<?php echo $project_name ?>">
                                                 <?php
-                                                $getversion = $user->getextelnaldoc_version();
+                                                $getversion = $user->getextelnaldoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
                                                     foreach ($getversion as $i => $rowre)
                                                         if (isset ($rowre)) {
-                                                            print_r($rowre);
+                                                            // print_r($rowre);
                                                             ?>
                                                             <input type="hidden" id="doc_version_externalsign" name="doc_version"
                                                                 value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
@@ -336,15 +258,19 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
+                                                <input type="text" id="doc_project_name_externalsign"
+                                                    name="doc_project_name" value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
-                                                    onclick="return add_user_form('ExternaSign');">SUBMIT</button>
+                                                    onclick="return add_user_form('ExternaSign', '<?php echo $template_name; ?>');">SUBMIT</button>
                                             </form>
                                             <br>
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
-                                <a href="listmenu.php"><button class="btn btn-danger float-right">BACK</button></a>
+                                <a href="listdocument.php?project_name=<?php echo urlencode($project_name); ?>"><button
+                                        class="btn btn-danger float-right">BACK</button> </a>
+
                                 <br><br>
                             </div>
                             <div class="card">
@@ -357,12 +283,12 @@ $user = new User();
                                                 <th>Status</th>
                                                 <th>Version</th>
                                                 <th>Timestamp</th>
-                                                <th>Action</th>
+                                                <!-- <th>Action</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $getuser = $user->getalldoc();
+                                            $getuser = $user->getwheredoc("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                             if (is_array($getuser) || is_object($getuser)) {
                                                 foreach ($getuser as $i => $rowre)
                                                     if (isset ($rowre)) {
@@ -386,7 +312,7 @@ $user = new User();
                                                             <td>
                                                                 <?php echo $rowre['doc_time']; ?>
                                                             </td>
-                                                            <td></td>
+                                                            <!-- <td></td> -->
                                                         </tr>
                                                         <?php
                                                     }
@@ -417,13 +343,9 @@ $user = new User();
     <!-- End of Main Content -->
 
     <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2021</span>
-            </div>
-        </div>
-    </footer>
+    <?php
+    include 'footer.php';
+    ?>
     <!-- End of Footer -->
 
     </div>
@@ -496,7 +418,7 @@ $user = new User();
         //     });
         //     return false;
         // }
-        function add_user_form(docStatus) {
+        function add_user_form(docStatus, template_name) {
             var formData;
             var fileInput;
             var docStatusInput;
@@ -539,6 +461,7 @@ $user = new User();
             }
             var currentVersion = parseInt(docVersionInput.val());
             formData.append('doc_version', currentVersion + 1);
+            formData.append('template_name', template_name);
             docStatusInput.val(docStatus);
             $.ajax({
                 type: "POST",

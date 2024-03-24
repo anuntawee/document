@@ -20,7 +20,6 @@ class dbh
 }
 class User extends dbh
 {
-
 	public function getallproject()
 	{
 		$sql = "SELECT * FROM tb_project WHERE project_id";
@@ -45,6 +44,21 @@ class User extends dbh
 			return $data;
 		}
 	}
+	public function getdocstatus($condition = "")
+	{
+		$sql = "SELECT * FROM tb_doc";
+		if (!empty ($condition)) {
+			$sql .= " WHERE " . $condition;
+		}
+		$result = $this->connect()->query($sql);
+		$data = array();
+		if ($result->num_rows > 0) {
+			while ($row = $result->fetch_assoc()) {
+				$data[] = $row;
+			}
+		}
+		return $data;
+	}
 	public function getalltimeplan($condition = "")
 	{
 		$sql = "SELECT * FROM tb_timeplan";
@@ -61,78 +75,137 @@ class User extends dbh
 		return $data;
 	}
 
-	public function getalldoc()
+	public function getwheredoc($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT * FROM tb_doc WHERE doc_id";
+		$sql = "SELECT * FROM tb_doc";
+		if (!empty ($condition1) && !empty ($condition2)) {
+			$sql .= " WHERE " . $condition1 . " AND " . $condition2;
+		} elseif (!empty ($condition1)) {
+			$sql .= " WHERE " . $condition1;
+		} elseif (!empty ($condition2)) {
+			$sql .= " WHERE " . $condition2;
+		}
 		$result = $this->connect()->query($sql);
-		$numROW = $result->num_rows;
-		if ($numROW > 0) {
+		$data = array();
+		if ($result->num_rows > 0) {
 			while ($row = $result->fetch_assoc()) {
 				$data[] = $row;
 			}
-			return $data;
 		}
+		return $data;
 	}
-	public function getdraftdoc_version()
+	public function getdraftdoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Draft' ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Draft'";
+		// เพิ่มเงื่อนไขการค้นหาที่ถูกส่งมาในพารามิเตอร์
+		if (!empty ($condition1)) {
+			$sql .= " AND " . $condition1;
+		}
+		if (!empty ($condition2)) {
+			$sql .= " AND " . $condition2;
+		}
+		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
-		$numROW = $result->num_rows;
-		if ($numROW > 0) {
+		$data = array();
+		if ($result->num_rows > 0) {
 			while ($row = $result->fetch_assoc()) {
 				$data[] = $row;
 			}
-			return $data;
 		}
+		return $data;
 	}
-	public function getreviewdoc_version()
+	public function getreviewdoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Review' ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Review'";
+		// เพิ่มเงื่อนไขการค้นหาที่ถูกส่งมาในพารามิเตอร์
+		if (!empty ($condition1)) {
+			$sql .= " AND " . $condition1;
+		}
+		if (!empty ($condition2)) {
+			$sql .= " AND " . $condition2;
+		}
+		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
-		$numROW = $result->num_rows;
-		if ($numROW > 0) {
+		$data = array();
+		if ($result->num_rows > 0) {
 			while ($row = $result->fetch_assoc()) {
 				$data[] = $row;
 			}
-			return $data;
 		}
+		return $data;
 	}
-	public function getfinaldoc_version()
+	public function getfinaldoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Final' ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Final'";
+		// เพิ่มเงื่อนไขการค้นหาที่ถูกส่งมาในพารามิเตอร์
+		if (!empty ($condition1)) {
+			$sql .= " AND " . $condition1;
+		}
+		if (!empty ($condition2)) {
+			$sql .= " AND " . $condition2;
+		}
+		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
-		$numROW = $result->num_rows;
-		if ($numROW > 0) {
+		$data = array();
+		if ($result->num_rows > 0) {
 			while ($row = $result->fetch_assoc()) {
 				$data[] = $row;
 			}
-			return $data;
 		}
+		return $data;
 	}
-	public function getintelnaldoc_version()
+	public function getintelnaldoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'InternalSign' ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'InternalSign'";
+		// เพิ่มเงื่อนไขการค้นหาที่ถูกส่งมาในพารามิเตอร์
+		if (!empty ($condition1)) {
+			$sql .= " AND " . $condition1;
+		}
+		if (!empty ($condition2)) {
+			$sql .= " AND " . $condition2;
+		}
+		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
-		$numROW = $result->num_rows;
-		if ($numROW > 0) {
+		$data = array();
+		if ($result->num_rows > 0) {
 			while ($row = $result->fetch_assoc()) {
 				$data[] = $row;
 			}
-			return $data;
 		}
+		return $data;
 	}
-	public function getextelnaldoc_version()
+	public function getextelnaldoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'ExternaSign' ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'ExternaSign'";
+		// เพิ่มเงื่อนไขการค้นหาที่ถูกส่งมาในพารามิเตอร์
+		if (!empty ($condition1)) {
+			$sql .= " AND " . $condition1;
+		}
+		if (!empty ($condition2)) {
+			$sql .= " AND " . $condition2;
+		}
+		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
-		$numROW = $result->num_rows;
-		if ($numROW > 0) {
+		$data = array();
+		if ($result->num_rows > 0) {
 			while ($row = $result->fetch_assoc()) {
 				$data[] = $row;
 			}
-			return $data;
 		}
+		return $data;
 	}
+	// public function getreviewdoc_version()
+	// {
+	// 	$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Review' ORDER BY `doc_time` DESC LIMIT 1;";
+	// 	$result = $this->connect()->query($sql);
+	// 	$numROW = $result->num_rows;
+	// 	if ($numROW > 0) {
+	// 		while ($row = $result->fetch_assoc()) {
+	// 			$data[] = $row;
+	// 		}
+	// 		return $data;
+	// 	}
+	// }
 	public function getalltem()
 	{
 		$sql = "SELECT * FROM tb_template";
@@ -271,8 +344,8 @@ class insert extends dbh
 	public function add_user($data)
 	{
 		$db = $this->connect();
-		$add_user = $db->prepare("INSERT INTO `tb_member` (`memer_id`, `member_name`, `member_lastname`, `member_email`, `member_role`, `member_view`, `member_comment`, `member_edits`, `member_approve`, `member_signoff`) VALUES (NULL,?,?,?,?,NULL, NULL, NULL, NULL, NULL);");
-		$add_user->bind_param("ssss", $data['member_name'], $data['member_lastname'], $data['member_email'], $data['member_role']);
+		$add_user = $db->prepare("INSERT INTO `tb_member` (`memer_id`, `member_name`, `member_lastname`, `member_email`, `member_pass`, `member_role`, `member_view`, `member_comment`, `member_edits`, `member_approve`, `member_signoff`) VALUES (NULL,?,?,?,?,NULL, NULL, NULL, NULL, NULL);");
+		$add_user->bind_param("sssss", $data['member_name'], $data['member_lastname'], $data['member_email'], $data['member_pass'], $data['member_role']);
 		if (!$add_user->execute()) {
 			echo $db->error;
 		} else {
@@ -362,7 +435,13 @@ class insert extends dbh
 	}
 	public function add_doc($data)
 	{
-		$targetDirectory = "../document/";
+		$targetDirectory = "../document/{$data['doc_project_name']}/{$data['template_name']}/";
+		if (!file_exists($targetDirectory)) {
+			if (!mkdir($targetDirectory, 0777, true)) {
+				echo "เกิดข้อผิดพลาดในการสร้างโฟลเดอร์";
+			}
+		}
+		// $targetDirectory = "../document/{$data['doc_project_name']}/{$data['template_name']}/";
 		$targetFilePath = $targetDirectory . basename($_FILES["fileUpload"]["name"]);
 		$uploadOk = move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $targetFilePath);
 		$filename = basename($_FILES["fileUpload"]["name"]);
@@ -372,17 +451,17 @@ class insert extends dbh
 			var_dump($_FILES);
 			return;
 		}
-
 		$db = $this->connect();
-		$add_user = $db->prepare("INSERT INTO `tb_doc` (`doc_id`, `doc_name`, `doc_path`, `doc_status`, `doc_version`, `doc_project_name`, `doc_time`) 
-		VALUES (NULL,?,?,?,?,?,NOW());");
+		$add_user = $db->prepare("INSERT INTO `tb_doc` (`doc_id`, `doc_name`, `doc_path`, `doc_status`, `doc_version`, `doc_project_name`, `doc_template`, `doc_time`) 
+		VALUES (NULL,?,?,?,?,?,?,NOW());");
 		$add_user->bind_param(
-			"sssss",
+			"ssssss",
 			$filename,
 			$targetFilePath,
 			$data['doc_status'],
 			$data['doc_version'],
 			$data['doc_project_name'],
+			$data['template_name'],
 		);
 		if (!$add_user->execute()) {
 			echo $db->error;

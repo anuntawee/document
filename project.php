@@ -197,7 +197,7 @@ $user = new User();
                                                             ?>
                                                         </select>
                                                         <br>
-                                                        <label for="">ผู้รับผิดชอบโครงการ</label>
+                                                        <label for="">เลือกผู้รับผิดชอบโครงการจะแสดงด้านล่าง</label>
                                                         <ul id="nameList"></ul>
                                                 </div>
                                                 <!-- Modal footer -->

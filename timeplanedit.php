@@ -46,15 +46,91 @@ $user = new User();
         include 'navbar.php';
         ?>
         <!-- End of Sidebar -->
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
             <!-- Main Content -->
             <div id="content">
-                <?php
-                include 'topbar.php';
-                ?>
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="">Document</h1>
+                    </div> -->
+
                     <br>
                     <div class="row ">
                         <div class="card" id="card2">
@@ -112,39 +188,10 @@ $user = new User();
                                                                                 class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i></button> -->
                                                                         <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return delete_project();">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
-                                                                        <div class="modal fade" id="edit_username" tabindex="-1"
-                                                                            role="dialog" aria-labelledby="myModalLabel">
-                                                                            <div class="modal-dialog" role="document">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <button type="button" class="close"
-                                                                                            data-dismiss="modal"
-                                                                                            aria-label="Close"><span
-                                                                                                aria-hidden="true">&times;</span></button>
-                                                                                        <h4 class="modal-title" id="myModalLabel">
-                                                                                            แก้ไขข้อมูล</h4>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <div id="edit_form">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button"
-                                                                                            class="btn btn-primary"
-                                                                                            onclick="return edit_user_form();">Save
-                                                                                            changes</button>
-                                                                                        <button type="button" class="btn btn-danger"
-                                                                                            data-dismiss="modal">Close</button>
-                                                                                    </div>
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -171,8 +218,7 @@ $user = new User();
                                                                     </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return delete_project();">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
@@ -202,8 +248,7 @@ $user = new User();
                                                                     </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return delete_project();">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
@@ -233,8 +278,7 @@ $user = new User();
                                                                     </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return delete_project();">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
@@ -264,8 +308,7 @@ $user = new User();
                                                                     </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return delete_project();">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
@@ -295,8 +338,7 @@ $user = new User();
                                                                     </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return delete_project();">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
@@ -326,8 +368,7 @@ $user = new User();
                                                                     </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return delete_project();">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
@@ -357,8 +398,7 @@ $user = new User();
                                                                     </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return delete_project();">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
@@ -372,7 +412,7 @@ $user = new User();
 
                                                 </tbody>
                                                 <tfoot>
-                                                    <!-- <tr>
+                                                    <tr>
                                                         <th>รายละเอียดโครงการ</th>
                                                         <th>วันที่เริ่มกำหนดแผน</th>
                                                         <th>วันสิ้นสุดกำหนดแผน</th>
@@ -381,7 +421,7 @@ $user = new User();
                                                         <th>วันสิ้นสุดปฎับัติการ</th>
                                                         <th>ชื่อผู้รับผิดชอบปฎิบัติการ</th>
                                                         <th>Action</th>
-                                                    </tr> -->
+                                                    </tr>
                                                 </tfoot>
                                             </table>
                                         </div>
@@ -1404,10 +1444,10 @@ $user = new User();
                                                             <div class="d-flex justify-content-end">
                                                                 <button type="button" class="btn btn-primary"
                                                                     onclick="return add_user_form();">SUBMIT</button>
-                                                                <br>
+                                                                    <br>
                                                             </div>
                                                         </form>
-                                                    </div>
+                                                    </div> 
                                                     <a
                                                         href="listmenu.php?project_name=<?php echo urlencode($project_name); ?>"><button
                                                             class="btn btn-danger float-right">BACK</button>
@@ -1419,6 +1459,7 @@ $user = new User();
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -1426,9 +1467,13 @@ $user = new User();
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php
-            include 'footer.php';
-            ?>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
             <!-- End of Footer -->
 
         </div>
@@ -1456,7 +1501,7 @@ $user = new User();
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
@@ -1501,37 +1546,6 @@ $user = new User();
                     $(".close").trigger("click");
                     alert(data);
                     console.log(data);
-                    //reload page
-                    location.reload();
-                }
-            });
-            return false;
-        }
-        function show_edit_user(id) {
-            $.ajax({
-                type: "POST",
-                url: "connect/process.php",
-                data: { show_edit_report_id: id },
-                success: function (data) {
-                    $("#edit_form").html(data);
-                }
-            });
-            return false;
-        }
-        function edit_user_form() {
-            var formData = new FormData($("#edit_report_form")[0]); // Use the actual form element
-            $.ajax({
-                type: "POST",
-                url: "connect/process.php",
-                data: formData,
-                processData: false, // Prevent jQuery from processing data
-                contentType: false, // Prevent jQuery from setting content type
-                success: function (data) {
-                    //close modal
-                    $(".close").trigger("click");
-                    //show result
-                    alert(data);
-
                     //reload page
                     location.reload();
                 }

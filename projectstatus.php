@@ -27,6 +27,14 @@
     <link rel="stylesheet" href="css\style.css">
 
 </head>
+<?php
+if (isset ($_GET['project_name'])) {
+    $project_name = $_GET['project_name'];
+    // var_dump($project_name);
+}
+include 'connect\function.php';
+$user = new User();
+?>
 
 <body id="page-top">
 
@@ -119,439 +127,83 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <br>
                     <div class="row">
                         <div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h1>โครงการที่ 1</h1>
+                                    <h1>ภาพรวมโครงการ
+                                        <?php echo $project_name ?>
+                                    </h1>
                                 </div>
                                 <div class="col-12">
                                     <table id="example" class="row-border" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>ลำดับ</th>
-                                                <th>ชื่อโครงการ</th>
-                                                <th>Stage</th>
+                                                <th>รายการ</th>
+                                                <!-- <th>Stage</th> -->
                                                 <th>Status</th>
-                                                <th>ผู้รับผิดชอบ</th>
-                                                <th>จัดการ</th>
+                                                <th>เวลาที่ดำเนินการล่าสุด</th>
+                                                <!-- <th>จัดการ</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Business Requirement Document</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Draft</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
 
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Acceptance Record</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Review</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Change Request</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Final</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Correction Register</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Internal Sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Maintenance Documentation</td>
-                                                <td>คุย Requirements</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Meeting Record</td>
-                                                <td>เซ็นสัญญา</td>
-                                                <td> Draft</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td>Product Operation Guide</td>
-                                                <td>เซ็นสัญญา</td>
-                                                <td>Review</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>8</td>
-                                                <td>Progress Status Record</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Final</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>9</td>
-                                                <td>Project Plan</td>
-                                                <td>ส่งมอบงาน</td>
-                                                <td>Internal Sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>10</td>
-                                                <td>Project Repository</td>
-                                                <td>ส่งมอบงาน</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>11</td>
-                                                <td>Project Repository Backup</td>
-                                                <td>ส่งมอบงาน</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>12</td>
-                                                <td>Requirements Specification</td>
-                                                <td>คุย Requirements</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>13</td>
-                                                <td>Software</td>
-                                                <td>คุย Requirements</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>14</td>
-                                                <td>Software Component</td>
-                                                <td>คุย Requirements</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>15</td>
-                                                <td>Software Configuration</td>
-                                                <td>คุย Requirements</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>16</td>
-                                                <td>Software Design</td>
-                                                <td>คุย Requirements</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>17</td>
-                                                <td>Software User Documentation</td>
-                                                <td>คุย Requirements</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>18</td>
-                                                <td>Statement of Work</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Draft</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>19</td>
-                                                <td>Test Cases and Test Procedures</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Draft</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>20</td>
-                                                <td>Test Report</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Internal Sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>21</td>
-                                                <td>Traceability Record</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Internal Sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>22</td>
-                                                <td>Verification Results</td>
-                                                <td>คุย Requirements</td>
-                                                <td>External sign</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>23</td>
-                                                <td>Validation Results</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Final</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>24</td>
-                                                <td>Propasal (If Any)</td>
-                                                <td>คุย Requirements</td>
-                                                <td>Final</td>
-                                                <td>นางสาวฑิตฐิตา โตบึงกอก</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-outline-primary"><i
-                                                            class="fas fa-fw fa-pencil-alt"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-warning"> <i
-                                                            class="fas fa-fw fa-calendar"
-                                                            aria-hidden="true"></i></button>
-                                                    <button type="button" class="btn btn-outline-danger"><i
-                                                            class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                </td>
-                                            </tr>
+                                            <?php
+                                            $getuser = $user->getdocstatus("doc_project_name = '" . $project_name . "'");
+                                            if (is_array($getuser) || is_object($getuser)) {
+                                                $uniqueDocs = array(); // เก็บชื่อเอกสารที่ไม่ซ้ำกัน
+                                                $latestDocs = array(); // เก็บข้อมูลเอกสารที่มีวันที่ล่าสุด
+                                            
+                                                // วนลูปเพื่อจัดกลุ่มข้อมูลตามชื่อเอกสาร
+                                                foreach ($getuser as $rowre) {
+                                                    $docName = $rowre['doc_template'];
+                                                    $docStatus = $rowre['doc_status'];
+                                                    $docTime = strtotime($rowre['doc_time']);
+                                                    // เก็บข้อมูลล่าสุดของแต่ละชื่อเอกสาร
+                                                    if (!isset ($latestDocs[$docName]) || $docTime > $latestDocs[$docName]['time']) {
+                                                        $latestDocs[$docName] = array(
+                                                            'status' => $docStatus,
+                                                            'time' => $docTime
+                                                        );
+                                                    }
+                                                    if (!in_array($docName, $uniqueDocs)) {
+                                                        $uniqueDocs[] = $docName;
+                                                    }
+                                                }
+                                                // แสดงข้อมูลของชื่อเอกสารที่ไม่ซ้ำกันและมีวันที่ล่าสุด
+                                                foreach ($uniqueDocs as $i => $docName) {
+                                                    $latestStatus = $latestDocs[$docName]['status'];
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo "" . ($i + 1); ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $docName; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $latestStatus; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo date('Y-m-d H:i:s', $latestDocs[$docName]['time']); ?>
+                                                        </td>
+                                                        <!-- <td>
+                                                                <button type="button" class="btn btn-outline-primary"><i
+                                                                        class="fas fa-fw fa-pencil-alt"
+                                                                        aria-hidden="true"></i></button>
+                                                                <button type="button" class="btn btn-outline-warning"> <i
+                                                                        class="fas fa-fw fa-calendar"
+                                                                        aria-hidden="true"></i></button>
+                                                                <button type="button" class="btn btn-outline-danger"><i
+                                                                        class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
+                                                            </td> -->
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
                                         <tfoot>
                                             <!-- <tr>
@@ -565,7 +217,9 @@
                                         </tfoot>
                                     </table>
                                     <br>
-                                    <a href="listmenu.html"><button class="btn btn-danger float-right">BACK</button></a>
+                                    <a href="listmenu.php?project_name=<?php echo urlencode($project_name); ?>"><button
+                                            class="btn btn-danger float-right">BACK</button>
+                                    </a>
                                     <br>
                                     <br>
                                 </div>
@@ -573,18 +227,16 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- /.container-fluid -->
+
             </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
+            <?php
+            include 'footer.php';
+            ?>
             <!-- End of Footer -->
 
         </div>
