@@ -25,6 +25,11 @@
 
 </head>
 <?php
+if (isset ($_GET['project_name'])) {
+    $project_name = $_GET['project_name'];
+
+    // var_dump($project_name);
+}
 include 'connect\function.php';
 $user = new User();
 ?>
@@ -161,251 +166,42 @@ $user = new User();
                                         </div>
                                         <div class="container">
                                             <div class="row row-cols-1 row-cols-md-5 g-4">
-                                                <div class="col">
-                                                    <div class="card h-100">
+                                                <?php
+                                                $getuser = $user->getalltem();
+                                                if (is_array($getuser) || is_object($getuser)) {
+                                                    foreach ($getuser as $i => $rowre) {
+                                                        if (isset ($rowre)) {
+                                                            // print_r($rowre);
+                                                            ?>
+                                                            <div class="col">
+                                                                <div class="card h-100">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">
+                                                                            <!-- <a
+                                                                                href="listmenu.php?project_name=<?php echo urlencode($rowre['project_name']); ?>">
+                                                                                <?php echo $rowre['project_name']; ?>
+                                                                            </a> -->
+                                                                            <a
+                                                                                href="input.php?project_name=<?php echo urlencode($project_name); ?>&template_name=<?php echo urlencode($rowre['template_name']); ?>">
+                                                                                <?php echo $rowre['template_name']; ?>
+                                                                            </a>
 
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">
-                                                                <a href="input.php">Business Requirement Document </a>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
 
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input2.html">Acceptance
-                                                                    Record</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
+                                                                        </h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <?php
+                                                        }
+                                                    }
+                                                }
+                                                ?>
 
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input3.html">Change Request
-                                                                </a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input4.html">Correction
-                                                                    Register</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input5.html">Maintenance
-                                                                    Documentation</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <br>
                                         </div>
-
-                                        <div class="container">
-                                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Meeting
-                                                                    Record</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Product
-                                                                    Operation Guide</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Progress Status
-                                                                    Record</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Project
-                                                                    Plan</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Project
-                                                                    Repository</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </div>
-
-                                        <div class="container">
-                                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Project
-                                                                    Repository Backup</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Requirements
-                                                                    Specification</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Software</a>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Software
-                                                                    Component</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Software
-                                                                    Configuration</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </div>
-
-                                        <div class="container">
-                                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Software
-                                                                    Design</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Software User
-                                                                    Documentation</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Statement of
-                                                                    Work</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Test Cases and
-                                                                    Test Procedures</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Test Report</a>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                        <div class="container">
-                                            <div class="row row-cols-1 row-cols-md-5 g-4">
-                                                <div class="col">
-                                                    <div class="card h-100">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Traceability
-                                                                    Record</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Verification
-                                                                    Results</a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Validation
-                                                                    Results </a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card h-100">
-
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> <a href="input.html">Propasal (If
-                                                                    Any) </a></h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <a href="listmenu.php"><button
-                                                    class="btn btn-danger float-right">BACK</button></a>
-                                            <br>
-                                            <br>
-                                        </div>
+                                        <a href="listmenu.php?project_name=<?php echo urlencode($project_name); ?>"><button
+                                                class="btn btn-danger float-right">BACK</button> </a>
                                     </div>
                                 </div>
                             </div>

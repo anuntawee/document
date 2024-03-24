@@ -28,6 +28,10 @@
 
 </head>
 <?php
+if (isset ($_GET['project_name'])) {
+    $project_name = $_GET['project_name'];
+    // var_dump($project_name);
+}
 include 'connect\function.php';
 $user = new User();
 ?>
@@ -151,11 +155,11 @@ $user = new User();
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $getuser = $user->getalltimeplan();
+                                                    $getuser = $user->getalltimeplan("timeplan_project_name = '" . $project_name . "'");
                                                     if (is_array($getuser) || is_object($getuser)) {
                                                         foreach ($getuser as $i => $rowre) {
                                                             if (isset ($rowre)) {
-                                                                print_r($rowre);
+                                                                // print_r($rowre);
                                                                 ?>
                                                                 <tr>
                                                                     <td>
@@ -180,9 +184,13 @@ $user = new User();
                                                                         <?php echo $rowre['timeplan_re_workname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                        <!-- <button type="button" class="btn btn-outline-primary"><i
+                                                                                class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i></button> -->
+                                                                        <button type="button" class="btn btn-outline-warning"
                                                                             onclick="return delete_project();">
-                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
@@ -209,9 +217,10 @@ $user = new User();
                                                                         <?php echo $rowre['timeplan_pro_workname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                        <button type="button" class="btn btn-outline-warning"
                                                                             onclick="return delete_project();">
-                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
@@ -238,9 +247,10 @@ $user = new User();
                                                                         <?php echo $rowre['timeplan_sing_workname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                        <button type="button" class="btn btn-outline-warning"
                                                                             onclick="return delete_project();">
-                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
@@ -267,9 +277,10 @@ $user = new User();
                                                                         <?php echo $rowre['timeplan_dev_workname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                        <button type="button" class="btn btn-outline-warning"
                                                                             onclick="return delete_project();">
-                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
@@ -296,9 +307,10 @@ $user = new User();
                                                                         <?php echo $rowre['timeplan_sit_workname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                        <button type="button" class="btn btn-outline-warning"
                                                                             onclick="return delete_project();">
-                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
@@ -325,9 +337,10 @@ $user = new User();
                                                                         <?php echo $rowre['timeplan_inter_workname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                        <button type="button" class="btn btn-outline-warning"
                                                                             onclick="return delete_project();">
-                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
@@ -354,9 +367,10 @@ $user = new User();
                                                                         <?php echo $rowre['timeplan_user_workname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                        <button type="button" class="btn btn-outline-warning"
                                                                             onclick="return delete_project();">
-                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
@@ -383,9 +397,10 @@ $user = new User();
                                                                         <?php echo $rowre['timeplan_end_workname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-danger"
+                                                                        <button type="button" class="btn btn-outline-warning"
                                                                             onclick="return delete_project();">
-                                                                            <i class="fas fa-fw fa-trash" aria-hidden="true"></i>
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
@@ -1425,15 +1440,18 @@ $user = new User();
                                                             </div>
                                                             <input type="text" id="timeplan_project_name"
                                                                 name="timeplan_project_name"
-                                                                value="<?php echo $rowre['project_name']; ?>">
+                                                                value="<?php echo $project_name; ?>">
                                                             <div class="d-flex justify-content-end">
                                                                 <button type="button" class="btn btn-primary"
                                                                     onclick="return add_user_form();">SUBMIT</button>
-                                                                <a href="listmenu.php"><button
-                                                                        class="btn btn-danger">BACK</button>
+                                                                    <br>
                                                             </div>
                                                         </form>
-                                                    </div>
+                                                    </div> 
+                                                    <a
+                                                        href="listmenu.php?project_name=<?php echo urlencode($project_name); ?>"><button
+                                                            class="btn btn-danger float-right">BACK</button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

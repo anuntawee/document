@@ -25,9 +25,15 @@
 
 </head>
 <?php
+if (isset($_GET['project_name'])) {
+    $project_name = $_GET['project_name'];
+    // var_dump($project_name);
+}
+
 include 'connect\function.php';
 $user = new User();
 ?>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -158,8 +164,11 @@ $user = new User();
                                                     <div class="card h-100">
                                                         <div class="card-body">
                                                             <h5 class="card-title">
-                                                              <a href="timeplan.php">Time
-                                                                    plan ของ Project </a>
+                                                                <a
+                                                                    href="timeplan.php?project_name=<?php echo urlencode($project_name); ?>">Time
+                                                                    plan ของ Project</a>
+                                                                <!-- <a href="timeplan.php">Time
+                                                                    plan ของ Project </a> -->
                                                             </h5>
                                                         </div>
                                                     </div>
@@ -167,7 +176,12 @@ $user = new User();
                                                 <div class="col">
                                                     <div class="card h-100">
                                                         <div class="card-body">
-                                                           <h5 class="card-title"> <a href="listdocument.php">Upload เอกสาร </a></h5>
+                                                            <h5 class="card-title"> 
+                                                            <a
+                                                                    href="listdocument.php?project_name=<?php echo urlencode($project_name); ?>">Time
+                                                                    Upload
+                                                                    เอกสาร </a>    
+                                                          </h5>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -191,23 +205,22 @@ $user = new User();
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- End of Main Content -->
+            <!-- /.container-fluid -->
 
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2021</span>
-            </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
+            <!-- End of Main Content -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

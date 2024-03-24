@@ -26,6 +26,20 @@
 
 </head>
 <?php
+// ตรวจสอบว่ามีการส่งค่า project_name และ template_name มาหรือไม่
+if (isset ($_GET['project_name']) && isset ($_GET['template_name'])) {
+    // นำค่าที่รับมามาใช้งาน
+    $project_name = $_GET['project_name'];
+    $template_name = $_GET['template_name'];
+    // echo "Project Name: $project_name<br>";
+    // echo "Template Name: $template_name<br>";
+    // var_dump($project_name);
+    // var_dump($template_name);
+} else {
+    // หากไม่มีค่าที่ส่งมา สามารถแสดงข้อความเตือนหรือทำสิ่งอื่นๆ ตามต้องการได้
+    echo "ไม่พบข้อมูลที่ส่งมา";
+}
+
 include 'connect\function.php';
 $user = new User();
 ?>
@@ -157,71 +171,173 @@ $user = new User();
                                                     <tbody">
                                                         <tr>
                                                             <th>
-                                                                <h1>เพิ่มเอกสาร Business Requirement Document</h1>
+                                                                <h1>เพิ่มเอกสาร <?php  echo "$template_name";?></h1>
                                                             </th>
                                                         </tr>
                                                         <tr>
                                                             <th>
                                                                 <h3>ประเภท </h3>
-                                                                <form action="include/action.php" method="POST"
-                                                                    enctype="multipart/form-data">
-                                                                    <select name="" id="pagelist"
-                                                                        class="custom-select mb-3">
-                                                                        <option selected>Custom Select Menu</option>
-                                                                        <option value="1">Draft</option>
-                                                                        <option value="2">Review</option>
-                                                                        <option value="3">Final</option>
-                                                                        <option value="4">Internal Sign</option>
-                                                                        <option value="5">External sign</option>
-                                                                    </select>
+                                                                <select name="" id="pagelist"
+                                                                    class="custom-select mb-3">
+                                                                    <option selected>Custom Select Menu</option>
+                                                                    <option value="1">Draft</option>
+                                                                    <option value="2">Review</option>
+                                                                    <option value="3">Final</option>
+                                                                    <option value="4">Internal Sign</option>
+                                                                    <option value="5">External sign</option>
+                                                                </select>
+                                                            </th>
+                                                        </tr>
+                                                        </tbody>
                                             </div>
                                         </div>
-                                        </th>
-                                        </tr>
-                                        </tbody>
                                         </table>
                                         <div id="1" style="display:none">
-                                            <form action="/action_page.php">
+                                            <form id="add_user_form_draft" method="POST" name="upload_doc"
+                                                class="validated" enctype="multipart/form-data">
                                                 <h1>Upload เอกสาร Draft</h1>
-                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <input name="fileUpload" id="fileUploadDraft" type="file"
+                                                    class="form-control">
+                                                <input type="hidden" id="doc_status_draft" name="doc_status"
+                                                    value="Draft">
+                                                <!-- <input type="hidden" id="doc_project_name_draft" name="doc_project_name_draft"
+                                                    value="<?php echo $rowre['project_name']; ?>"> -->
+                                                <input type="hidden" id="doc_project_name_draft" name="doc_project_name"
+                                                    value="doc_project_name">
+                                                <?php
+                                                $getversion = $user->getdraftdoc_version();
+                                                if (is_array($getversion) || is_object($getversion)) {
+                                                    foreach ($getversion as $i => $rowre)
+                                                        if (isset ($rowre)) {
+                                                            print_r($rowre);
+                                                            ?>
+                                                            <input type="hidden" id="doc_version_draft" name="doc_version"
+                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                            <?php
+                                                        }
+                                                }
+                                                ?>
                                                 <br>
-                                                <input type="submit" class="btn btn-primary">
+                                                <!-- <input type="text" id="doc_version_draft" name="doc_version"
+                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>"> -->
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="return add_user_form('Draft');">SUBMIT</button>
                                             </form>
-                                            <br>
                                         </div>
+                                        <br>
                                         <div id="2" style="display:none">
-                                            <form action="/action_page.php">
+                                            <form id="add_user_form_review" method="POST" name="upload_doc"
+                                                class="validated" enctype="multipart/form-data">
                                                 <h1>Upload เอกสาร Review</h1>
-                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <input name="fileUpload" id="fileUploadReview" type="file"
+                                                    class="form-control">
+                                                <input type="hidden" id="doc_status_review" name="doc_status"
+                                                    value="Review">
+                                                <input type="hidden" id="doc_project_name_review"
+                                                    name="doc_project_name" value="doc_project_name">
+                                                <?php
+                                                $getversion = $user->getreviewdoc_version();
+                                                if (is_array($getversion) || is_object($getversion)) {
+                                                    foreach ($getversion as $i => $rowre)
+                                                        if (isset ($rowre)) {
+                                                            print_r($rowre);
+                                                            ?>
+                                                            <input type="hidden" id="doc_version_review" name="doc_version"
+                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                            <?php
+                                                        }
+                                                }
+                                                ?>
                                                 <br>
-                                                <input type="submit" class="btn btn-primary">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="return add_user_form('Review');">SUBMIT</button>
                                             </form>
                                             <br>
                                         </div>
                                         <div id="3" style="display:none">
-                                            <form action="/action_page.php">
+                                            <form id="add_user_form_final" method="POST" name="upload_doc"
+                                                class="validated" enctype="multipart/form-data">
                                                 <h1>Upload เอกสาร Final</h1>
-                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <input name="fileUpload" id="fileUploadfinal" type="file"
+                                                    class="form-control">
+                                                <input type="hidden" id="doc_status_final" name="doc_status"
+                                                    value="Final">
+                                                <input type="hidden" id="doc_project_name_final" name="doc_project_name"
+                                                    value="doc_project_name">
+                                                <?php
+                                                $getversion = $user->getfinaldoc_version();
+                                                if (is_array($getversion) || is_object($getversion)) {
+                                                    foreach ($getversion as $i => $rowre)
+                                                        if (isset ($rowre)) {
+                                                            print_r($rowre);
+                                                            ?>
+                                                            <input type="hidden" id="doc_version_final" name="doc_version"
+                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                            <?php
+                                                        }
+                                                }
+                                                ?>
                                                 <br>
-                                                <input type="submit" class="btn btn-primary">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="return add_user_form('Final');">SUBMIT</button>
                                             </form>
                                             <br>
                                         </div>
                                         <div id="4" style="display:none">
-                                            <form action="/action_page.php">
+                                            <form id="add_user_form_internalsign" method="POST" name="upload_doc"
+                                                class="validated" enctype="multipart/form-data">
                                                 <h1>Upload เอกสาร Internal Sign</h1>
-                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <input name="fileUpload" id="fileUploadinternalsign" type="file"
+                                                    class="form-control">
+                                                <input type="hidden" id="doc_status_internalsign" name="doc_status"
+                                                    value="InternalSign">
+                                                <input type="hidden" id="doc_project_name_internalsign"
+                                                    name="doc_project_name" value="doc_project_name">
+                                                <?php
+                                                $getversion = $user->getintelnaldoc_version();
+                                                if (is_array($getversion) || is_object($getversion)) {
+                                                    foreach ($getversion as $i => $rowre)
+                                                        if (isset ($rowre)) {
+                                                            print_r($rowre);
+                                                            ?>
+                                                            <input type="hidden" id="doc_version_internalsign" name="doc_version"
+                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                            <?php
+                                                        }
+                                                }
+                                                ?>
                                                 <br>
-                                                <input type="submit" class="btn btn-primary">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="return add_user_form('InternalSign');">SUBMIT</button>
                                             </form>
                                             <br>
                                         </div>
                                         <div id="5" style="display:none">
-                                            <form action="/action_page.php">
+                                            <form id="add_user_form_externasign" method="POST" name="upload_doc"
+                                                class="validated" enctype="multipart/form-data">
                                                 <h1>Upload เอกสาร External sign</h1>
-                                                <input type="file" id="myFile" name="filename" class="form-control">
+                                                <input name="fileUpload" id="fileUploadexternalsign" type="file"
+                                                    class="form-control">
+                                                <input type="hidden" id="doc_status_externalsign" name="doc_status"
+                                                    value="ExternaSign">
+                                                <input type="hidden" id="doc_project_name_externalsign"
+                                                    name="doc_project_name" value="doc_project_name">
+                                                <?php
+                                                $getversion = $user->getextelnaldoc_version();
+                                                if (is_array($getversion) || is_object($getversion)) {
+                                                    foreach ($getversion as $i => $rowre)
+                                                        if (isset ($rowre)) {
+                                                            print_r($rowre);
+                                                            ?>
+                                                            <input type="hidden" id="doc_version_externalsign" name="doc_version"
+                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                            <?php
+                                                        }
+                                                }
+                                                ?>
                                                 <br>
-                                                <input type="submit" class="btn btn-primary">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="return add_user_form('ExternaSign');">SUBMIT</button>
                                             </form>
                                             <br>
                                         </div>
@@ -233,12 +349,11 @@ $user = new User();
                             </div>
                             <div class="card">
                                 <div class="container">
-
-
                                     <table id="example" class="display" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>NameDocument</th>
+                                                <th>Document</th>
                                                 <th>Status</th>
                                                 <th>Version</th>
                                                 <th>Timestamp</th>
@@ -246,41 +361,37 @@ $user = new User();
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>ชื่อเอกสาร</td>
-                                                <td>Draf</td>
-                                                <td>1</td>
-                                                <td>20/04/2066</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>ชื่อเอกสาร</td>
-                                                <td>Review</td>
-                                                <td>1</td>
-                                                <td>20/04/2066</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>ชื่อเอกสาร</td>
-                                                <td>Final</td>
-                                                <td>1</td>
-                                                <td>20/04/2066</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>ชื่อเอกสาร</td>
-                                                <td>Internal Sign</td>
-                                                <td>1</td>
-                                                <td>20/04/2066</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>ชื่อเอกสาร</td>
-                                                <td>External sign</td>
-                                                <td>1</td>
-                                                <td>20/04/2066</td>
-                                                <td></td>
-                                            </tr>
+                                            <?php
+                                            $getuser = $user->getalldoc();
+                                            if (is_array($getuser) || is_object($getuser)) {
+                                                foreach ($getuser as $i => $rowre)
+                                                    if (isset ($rowre)) {
+                                                        // print_r($rowre);
+                                                        ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php echo $rowre['doc_name']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <a href="document/<?php echo $rowre['doc_path']; ?>"
+                                                                    download>Download
+                                                                    File</a>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $rowre['doc_status']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $rowre['doc_version']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $rowre['doc_time']; ?>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                            }
+                                            ?>
                                         </tbody>
                                         <tfoot>
                                             <!-- <tr>
@@ -365,6 +476,87 @@ $user = new User();
             });
             $("#" + viewID).show();
         });
+
+        // function add_user_form() {
+        //     var formData = new FormData($("#add_user_form")[0]); // Use the actual form element
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "connect/process.php",
+        //         data: formData,
+        //         processData: false, // Prevent jQuery from processing data
+        //         contentType: false, // Prevent jQuery from setting content type
+        //         success: function (data) {
+        //             //close modal
+        //             $(".close").trigger("click");
+        //             alert(data);
+        //             console.log(data);
+        //             //reload page
+        //             location.reload();
+        //         }
+        //     });
+        //     return false;
+        // }
+        function add_user_form(docStatus) {
+            var formData;
+            var fileInput;
+            var docStatusInput;
+            var docProjectNameInput;
+            var docVersionInput;
+
+            // เลือกฟอร์มที่ถูกแสดงอยู่
+            if (docStatus === 'Draft') {
+                formData = new FormData($("#add_user_form_draft")[0]); // Use the actual form element
+                fileInput = $("#fileUploadDraft");
+                docStatusInput = $("#doc_status_draft");
+                docProjectNameInput = $("#doc_project_name_draft");
+                docVersionInput = $("#doc_version_draft");
+
+            } else if (docStatus === 'Review') {
+                formData = new FormData($("#add_user_form_review")[0]); // Use the actual form element
+                fileInput = $("#fileUploadReview");
+                docStatusInput = $("#doc_status_review");
+                docProjectNameInput = $("#doc_project_name_review");
+                docVersionInput = $("#doc_version_review");
+            }
+            else if (docStatus === 'Final') {
+                formData = new FormData($("#add_user_form_final")[0]); // Use the actual form element
+                fileInput = $("#fileUploadfinal");
+                docStatusInput = $("#doc_status_final");
+                docProjectNameInput = $("#doc_project_name_final");
+                docVersionInput = $("#doc_version_final");
+            } else if (docStatus === 'InternalSign') {
+                formData = new FormData($("#add_user_form_internalsign")[0]); // Use the actual form element
+                fileInput = $("#fileUploadinternalsign");
+                docStatusInput = $("#doc_status_internalsign");
+                docProjectNameInput = $("#doc_project_name_internalsign");
+                docVersionInput = $("#doc_version_internalsign");
+            } else if (docStatus === 'ExternaSign') {
+                formData = new FormData($("#add_user_form_externasign")[0]); // Use the actual form element
+                fileInput = $("#fileUploadexternalsign");
+                docStatusInput = $("#doc_status_externalsign");
+                docProjectNameInput = $("#doc_project_name_externalsign");
+                docVersionInput = $("#doc_version_externalsign");
+            }
+            var currentVersion = parseInt(docVersionInput.val());
+            formData.append('doc_version', currentVersion + 1);
+            docStatusInput.val(docStatus);
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: formData,
+                processData: false, // Prevent jQuery from processing data
+                contentType: false, // Prevent jQuery from setting content type
+                success: function (data) {
+                    //close modal
+                    $(".close").trigger("click");
+                    alert(data);
+                    console.log(data);
+                    //reload page
+                    location.reload();
+                }
+            });
+            return false;
+        }
     </script>
 
 </body>

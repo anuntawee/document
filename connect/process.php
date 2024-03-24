@@ -15,8 +15,13 @@ else if (isset($_POST['member_name'])) {
 else if (isset($_POST['timeplan_project_name'])) {
   $insert->add_timeplan($_POST);
 }
-
+else if (isset($_POST['doc_status'])) {
+  $insert->add_doc($_POST);
+}
 // var_dump($_POST);
+// var_dump($_FILES);
+
+
 if (isset($_POST['show_edit_user_id'])) {
   $edit_user = $report->getallproject_id($_POST['show_edit_user_id']);
   foreach ($edit_user as $i => $rowre) {

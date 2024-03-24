@@ -147,7 +147,8 @@ $user = new User();
                                                                 <div class="card h-100">
                                                                     <div class="card-body">
                                                                         <h5 class="card-title">
-                                                                            <a href="listmenu.php"> <?php echo $rowre['project_name']; ?></a>
+                                                                        <a href="listmenu.php?project_name=<?php echo urlencode($rowre['project_name']); ?>"><?php echo $rowre['project_name']; ?></a>
+                                                                            <!-- <a href="listmenu.php"> <?php echo $rowre['project_name']; ?></a> -->
                                                                         </h5>
                                                                     </div>
                                                                 </div>
