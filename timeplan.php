@@ -113,7 +113,7 @@ $user = new User();
                                                                                 aria-hidden="true"></i></button> -->
                                                                         <button type="button" class="btn btn-outline-warning"
                                                                             data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>, '<?php echo $rowre['timeplan_status_name']; ?>');">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
@@ -1507,17 +1507,21 @@ $user = new User();
             });
             return false;
         }
-        function show_edit_user(id) {
+        function show_edit_user(id, status) {
             $.ajax({
                 type: "POST",
                 url: "connect/process.php",
-                data: { show_edit_report_id: id },
+                data: {
+                    show_edit_report_id: id,
+                    show_edit_report_status: status
+                },
                 success: function (data) {
                     $("#edit_form").html(data);
                 }
             });
             return false;
         }
+
         function edit_user_form() {
             var formData = new FormData($("#edit_report_form")[0]); // Use the actual form element
             $.ajax({

@@ -233,6 +233,23 @@ class report extends dbh
 			return $data;
 		}
 	}
+	public function gettimeplan($id, $status)
+	{
+		$sql = "SELECT * FROM `tb_timeplan` WHERE `timeplan_id` = ? AND `timeplan_status_name` = ?";
+		$stmt = $this->connect()->prepare($sql);
+		$stmt->bind_param("is", $id, $status);
+		$stmt->execute();
+		$result = $stmt->get_result();
+
+		$data = array();
+		if ($result->num_rows > 0) {
+			while ($row = $result->fetch_assoc()) {
+				$data[] = $row;
+			}
+		}
+		return $data;
+	}
+
 }
 class delete extends dbh
 {

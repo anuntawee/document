@@ -42,6 +42,19 @@ if (isset($_POST['show_edit_user_id'])) {
     <input type="hidden" name="edit_user_id" value="' . $rowre['member_id'] . '">
     </form>';
   }
+}else if (isset($_POST['show_edit_report_id'])) {
+  $edit_user = $report->gettimeplan($_POST['show_edit_report_id'],$_POST['show_edit_report_status']);
+  foreach ($edit_user as $i => $rowre) {
+    echo '<form id="edit_user_from" method="POST" class="validated"
+    enctype="multipart/form-data">
+    <input type="date" name="" id="" value="'.$rowre['timeplan_re_getstart']. '">
+    <input type="date" name="" id="" value="'.$rowre['timeplan_re_getend']. '">
+    <input type="text" name="" id="" value="'.$rowre['timeplan_re_getname']. '">
+    <input type="date" name="" id="" value="'.$rowre['timeplan_re_workstart']. '">
+    <input type="date" name="" id="" value="'.$rowre['timeplan_re_workend']. '">
+    <input type="text" name="" id="" value="'.$rowre['timeplan_re_workname']. '">
+    </form>';
+  }
 }
 
 if(isset($_POST['member_id'])) {
