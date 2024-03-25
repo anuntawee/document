@@ -106,6 +106,9 @@ $user = new User();
                                             </div>
                                             <br>
                                         </div>
+                                        <a href="menu.php"><button
+                                                class="btn btn-danger float-right">BACK</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

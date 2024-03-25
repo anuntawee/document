@@ -79,33 +79,33 @@ $user = new User();
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $getuser = $user->getalltimeplan("timeplan_project_name = '" . $project_name . "'");
+                                                    $getuser = $user->getallget("get_project_name = '" . $project_name . "'");
                                                     if (is_array($getuser) || is_object($getuser)) {
-                                                        foreach ($getuser as $i => $rowre) {
+                                                        foreach ($getuser as $i => $rowre)
                                                             if (isset ($rowre)) {
                                                                 // print_r($rowre);
                                                                 ?>
                                                                 <tr>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_status_name']; ?>
+                                                                        <?php echo $rowre['get_name']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_re_getstart']; ?>
+                                                                        <?php echo $rowre['getstart']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_re_getend']; ?>
+                                                                        <?php echo $rowre['getend']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_re_getname']; ?>
+                                                                        <?php echo $rowre['get_statname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_re_workstart']; ?>
+                                                                        <?php echo $rowre['get_workstart']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_re_workend']; ?>
+                                                                        <?php echo $rowre['get_workend']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_re_workname']; ?>
+                                                                        <?php echo $rowre['get_work_name2']; ?>
                                                                     </td>
                                                                     <td>
                                                                         <!-- <button type="button" class="btn btn-outline-primary"><i
@@ -113,10 +113,14 @@ $user = new User();
                                                                                 aria-hidden="true"></i></button> -->
                                                                         <button type="button" class="btn btn-outline-warning"
                                                                             data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>, '<?php echo $rowre['timeplan_status_name']; ?>');">
+                                                                            onclick="return show_edit_user(<?php echo $rowre['get_id']; ?>);">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
+                                                                        <!-- <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project(<?php echo $rowre['get_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-trash"
+                                                                                aria-hidden="true"></i></button> -->
                                                                         <div class="modal fade" id="edit_username" tabindex="-1"
                                                                             role="dialog" aria-labelledby="myModalLabel">
                                                                             <div class="modal-dialog" role="document">
@@ -147,229 +151,332 @@ $user = new User();
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+                                                                <?php
+                                                            }
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $getuser = $user->getallpro("pro_project_name = '" . $project_name . "'");
+                                                    if (is_array($getuser) || is_object($getuser)) {
+                                                        foreach ($getuser as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
                                                                 <tr>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_status_name_2']; ?>
+                                                                        <?php echo $rowre['pro_nam']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_pro_getstart']; ?>
+                                                                        <?php echo $rowre['prostart']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_pro_getend']; ?>
+                                                                        <?php echo $rowre['proend']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_pro_getname']; ?>
+                                                                        <?php echo $rowre['pro_statname']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_pro_workstart']; ?>
+                                                                        <?php echo $rowre['pro_workstart']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_pro_workend']; ?>
+                                                                        <?php echo $rowre['pro_workend']; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <?php echo $rowre['timeplan_pro_workname']; ?>
+                                                                        <?php echo $rowre['pro_work_name2']; ?>
                                                                     </td>
                                                                     <td>
                                                                         <button type="button" class="btn btn-outline-warning"
                                                                             data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
+                                                                            onclick="return show_edit_user2(<?php echo $rowre['pro_id']; ?>);">
                                                                             <i class="fas fa-fw fa-pencil-alt"
                                                                                 aria-hidden="true"></i>
                                                                         </button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_status_name_3']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sing_getstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sing_getend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sing_getname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sing_workstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sing_workend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sing_workname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
-                                                                            <i class="fas fa-fw fa-pencil-alt"
-                                                                                aria-hidden="true"></i>
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_status_name_4']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_dev_getstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_dev_getend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_dev_getname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_dev_workstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_dev_workend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_dev_workname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
-                                                                            <i class="fas fa-fw fa-pencil-alt"
-                                                                                aria-hidden="true"></i>
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_status_name_5']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sit_getstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sit_getend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sit_getname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sit_workstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sit_workend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_sit_workname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
-                                                                            <i class="fas fa-fw fa-pencil-alt"
-                                                                                aria-hidden="true"></i>
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_status_name_6']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_inter_getstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_inter_getend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_inter_getname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_inter_workstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_inter_workend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_inter_workname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
-                                                                            <i class="fas fa-fw fa-pencil-alt"
-                                                                                aria-hidden="true"></i>
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_status_name_7']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_user_getstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_user_getend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_user_getname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_user_workstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_user_workend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_user_workname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
-                                                                            <i class="fas fa-fw fa-pencil-alt"
-                                                                                aria-hidden="true"></i>
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_status_name_8']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_end_getstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_end_getend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_end_getname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_end_workstart']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_end_workend']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <?php echo $rowre['timeplan_end_workname']; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-outline-warning"
-                                                                            data-toggle="modal" data-target="#edit_username"
-                                                                            onclick="return show_edit_user(<?php echo $rowre['timeplan_id']; ?>);">
-                                                                            <i class="fas fa-fw fa-pencil-alt"
-                                                                                aria-hidden="true"></i>
-                                                                        </button>
+                                                                        <!-- <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project(<?php echo $rowre['pro_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-trash"
+                                                                                aria-hidden="true"></i></button> -->
                                                                     </td>
                                                                 </tr>
                                                                 <?php
                                                             }
-                                                        }
                                                     }
                                                     ?>
-
+                                                    <?php
+                                                    $getuser = $user->getallsign("sign_project_name = '" . $project_name . "'");
+                                                    if (is_array($getuser) || is_object($getuser)) {
+                                                        foreach ($getuser as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['sign_name']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sign_start']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sign_end']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sign_startname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sign_workname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sign_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sign_work_name2']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-warning"
+                                                                            data-toggle="modal" data-target="#edit_username"
+                                                                            onclick="return show_edit_user3(<?php echo $rowre['sign_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
+                                                                        </button>
+                                                                        <!-- <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project(<?php echo $rowre['sign_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-trash"
+                                                                                aria-hidden="true"></i></button> -->
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                            }
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $getuser = $user->getalldev("dev_project_name = '" . $project_name . "'");
+                                                    if (is_array($getuser) || is_object($getuser)) {
+                                                        foreach ($getuser as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['dev_name']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['devstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['devend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['dev_startname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['dev_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['dev_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['dev_work_name2']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-warning"
+                                                                            data-toggle="modal" data-target="#edit_username"
+                                                                            onclick="return show_edit_user4(<?php echo $rowre['dev_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
+                                                                        </button>
+                                                                        <!-- <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project(<?php echo $rowre['dev_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-trash"
+                                                                                aria-hidden="true"></i></button> -->
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                            }
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $getuser = $user->getallsit("sit_project_name = '" . $project_name . "'");
+                                                    if (is_array($getuser) || is_object($getuser)) {
+                                                        foreach ($getuser as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['sit_name']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['getstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['getend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sit_getname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sit_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sit_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['sit_work_name2']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-warning"
+                                                                            data-toggle="modal" data-target="#edit_username"
+                                                                            onclick="return show_edit_user5(<?php echo $rowre['sit_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
+                                                                        </button>
+                                                                        <!-- <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project(<?php echo $rowre['sit_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-trash"
+                                                                                aria-hidden="true"></i></button> -->
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                            }
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $getuser = $user->getallinter("internal_project_name = '" . $project_name . "'");
+                                                    if (is_array($getuser) || is_object($getuser)) {
+                                                        foreach ($getuser as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['internal_name']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['internalstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['internalend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['internal_startname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['internal_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['internal_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['internal_work_name2']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-warning"
+                                                                            data-toggle="modal" data-target="#edit_username"
+                                                                            onclick="return show_edit_user6(<?php echo $rowre['internal_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
+                                                                        </button>
+                                                                        <!-- <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project(<?php echo $rowre['internal_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-trash"
+                                                                                aria-hidden="true"></i></button> -->
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                            }
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $getuser = $user->getallusertest("usertest_project_name = '" . $project_name . "'");
+                                                    if (is_array($getuser) || is_object($getuser)) {
+                                                        foreach ($getuser as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['usertest_name']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['userteststart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['usertestend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['usertest_startname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['usertest_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['usertest_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['usertest_work_name2']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-warning"
+                                                                            data-toggle="modal" data-target="#edit_username"
+                                                                            onclick="return show_edit_user7(<?php echo $rowre['usertest_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
+                                                                        </button>
+                                                                        <!-- <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project(<?php echo $rowre['usertest_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-trash"
+                                                                                aria-hidden="true"></i></button> -->
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                            }
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $getuser = $user->getallend("end_project_name = '" . $project_name . "'");
+                                                    if (is_array($getuser) || is_object($getuser)) {
+                                                        foreach ($getuser as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $rowre['end_name']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['endstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['endend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['end_startname']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['end_workstart']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['end_workend']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $rowre['end_work_name2']; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-warning"
+                                                                            data-toggle="modal" data-target="#edit_username"
+                                                                            onclick="return show_edit_user8(<?php echo $rowre['end_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-pencil-alt"
+                                                                                aria-hidden="true"></i>
+                                                                        </button>
+                                                                        <!-- <button type="button" class="btn btn-outline-danger"
+                                                                            onclick="return delete_project(<?php echo $rowre['end_id']; ?>);">
+                                                                            <i class="fas fa-fw fa-trash"
+                                                                                aria-hidden="true"></i></button> -->
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                            }
+                                                    }
+                                                    ?>
                                                 </tbody>
                                                 <tfoot>
                                                     <!-- <tr>
@@ -384,6 +491,13 @@ $user = new User();
                                                     </tr> -->
                                                 </tfoot>
                                             </table>
+                                            <br>
+                                            <div class="d-flex justify-content-end">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    onclick="return delete_project('<?php echo $project_name; ?>');">
+                                                    ลบทั้งหมด
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -407,7 +521,7 @@ $user = new User();
                                                                     <br><br>
                                                                     <h4>1. Get Requirement</h4>
                                                                     <input type="hidden" name="timeplan_status_name"
-                                                                        id="timeplan_status_name_name"
+                                                                        id="timeplan_status_name"
                                                                         value="1.Get Requirement">
                                                                 </div>
                                                                 <div class="col-4">
@@ -433,7 +547,8 @@ $user = new User();
                                                                                         <input type="date"
                                                                                             class="form-control"
                                                                                             name="timeplan_re_getend"
-                                                                                            id="timeplan_re_getend">
+                                                                                            id="timeplan_re_getend"
+                                                                                            >
                                                                                     </div>
                                                                                     <div class="col-12">
                                                                                         ผู้รับผิดชอบ
@@ -442,10 +557,10 @@ $user = new User();
                                                                                         <select
                                                                                             name="timeplan_re_getname"
                                                                                             id="timeplan_re_getname"
-                                                                                            class="form-control me-1">
-                                                                                            <option select>
-                                                                                                รายชื่อพนักงาน
-                                                                                            </option>
+                                                                                            class="form-control me-1"
+                                                                                            required>
+                                                                                            <option selected>
+                                                                                                รายชื่อพนักงาน</option>
                                                                                             <?php
                                                                                             $getuser = $user->getalluser();
                                                                                             if (is_array($getuser) || is_object($getuser)) {
@@ -455,7 +570,7 @@ $user = new User();
                                                                                                         ?>
                                                                                                         <option
                                                                                                             value=" <?php echo $rowre['member_name']; ?>
-                                                                                                                                <?php echo $rowre['member_lastname']; ?>">
+                                                                                                            <?php echo $rowre['member_lastname']; ?>">
                                                                                                             <?php echo $rowre['member_name']; ?>
                                                                                                             <?php echo $rowre['member_lastname']; ?>
                                                                                                         </option>
@@ -543,7 +658,6 @@ $user = new User();
                                                                             class="row align-items-center justify-content-center">
                                                                             <div class="col-md-12 text-center mb-5">
                                                                                 วันกำหนดแผน
-
                                                                                 <div class="row">
                                                                                     <div class="col-6">
                                                                                         วันเริ่ม
@@ -1398,9 +1512,9 @@ $user = new User();
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!-- <input type="text" id="timeplan_project_name"
+                                                            <input type="hidden" id="timeplan_project_name"
                                                                 name="timeplan_project_name"
-                                                                value="<?php echo $project_name; ?>"> -->
+                                                                value="<?php echo $project_name; ?>">
                                                             <div class="d-flex justify-content-end">
                                                                 <button type="button" class="btn btn-primary"
                                                                     onclick="return add_user_form();">SUBMIT</button>
@@ -1443,7 +1557,7 @@ $user = new User();
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -1460,7 +1574,7 @@ $user = new User();
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -1507,13 +1621,119 @@ $user = new User();
             });
             return false;
         }
-        function show_edit_user(id, status) {
+        function delete_project(id) {
+            if (confirm("คุณต้องการลบข้อมูลหรือไม่")) {
+                $.ajax({
+                    type: "POST",
+                    url: "connect/process.php",
+                    data: {
+                        delete_all: id
+                    },
+                    success: function (data) {
+                        alert(data);
+                        location.reload();
+                    }
+                });
+            }
+            return false;
+        }
+        function show_edit_user(id) {
             $.ajax({
                 type: "POST",
                 url: "connect/process.php",
                 data: {
                     show_edit_report_id: id,
-                    show_edit_report_status: status
+                },
+                success: function (data) {
+                    $("#edit_form").html(data);
+                }
+            });
+            return false;
+        }
+        function show_edit_user2(id) {
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: {
+                    show_edit_pro_id: id,
+                },
+                success: function (data) {
+                    $("#edit_form").html(data);
+                }
+            });
+            return false;
+        }
+        function show_edit_user3(id) {
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: {
+                    show_edit_sign_id: id,
+                },
+                success: function (data) {
+                    $("#edit_form").html(data);
+                }
+            });
+            return false;
+        }
+        function show_edit_user4(id) {
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: {
+                    show_edit_dev_id: id,
+                },
+                success: function (data) {
+                    $("#edit_form").html(data);
+                }
+            });
+            return false;
+        }
+        function show_edit_user5(id) {
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: {
+                    show_edit_sit_id: id,
+                },
+                success: function (data) {
+                    $("#edit_form").html(data);
+                }
+            });
+            return false;
+        }
+        function show_edit_user6(id) {
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: {
+                    show_edit_internal_id: id,
+                },
+                success: function (data) {
+                    $("#edit_form").html(data);
+                }
+            });
+            return false;
+        }
+        function show_edit_user7(id) {
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: {
+                    show_edit_usertest_id: id,
+                },
+                success: function (data) {
+                    $("#edit_form").html(data);
+                }
+            });
+            return false;
+        }
+        function show_edit_user8(id) {
+            $.ajax({
+                type: "POST",
+                url: "connect/process.php",
+                data: {
+                    show_edit_end_id: id,
                 },
                 success: function (data) {
                     $("#edit_form").html(data);

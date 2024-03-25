@@ -16,6 +16,7 @@ if (!$objResult) {
 	$_SESSION["member_edits"] = $objResult["member_edits"];
 	$_SESSION["member_approve"] = $objResult["member_approve"];
 	$_SESSION["member_signoff"] = $objResult["member_signoff"];
+	$_SESSION["member_email"] = $objResult["member_email"];
 	session_write_close();
 	// ส่วนนี้ใช้สำหรับ redirect ไปยังหน้าที่ต้องการหลังจาก login
 	header("Location: ../menu.php");
