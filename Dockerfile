@@ -15,3 +15,9 @@ WORKDIR /var/www/html
 
 # Copy the source code in /www into the container at /var/www/html
 COPY ../www .
+
+# เปิดพอร์ต 80 หรือพอร์ตที่ต้องการ
+EXPOSE 80
+
+# คำสั่งที่จะรันเมื่อ container เริ่มต้น
+CMD ["php", "-S", "0.0.0.0:80"]
