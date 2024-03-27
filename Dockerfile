@@ -5,7 +5,7 @@ FROM php:8.2-apache
 RUN a2enmod rewrite
 
 # Install any extensions you need
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y && apt-get install -y vim \
     libcurl4-openssl-dev \
     libonig-dev \
     && docker-php-ext-install -j$(nproc) mysqli curl mbstring pdo pdo_mysql
