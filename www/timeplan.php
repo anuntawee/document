@@ -57,6 +57,11 @@ if (isset ($_GET['project_name'])) {
 include 'connect/function.php';
 $user = new User();
 ?>
+<style>
+    .invalid {
+        background-color: #ffcccc;
+    }
+</style>
 
 <body id="page-top">
 
@@ -569,8 +574,7 @@ $user = new User();
                                                                                         <input type="date"
                                                                                             class="form-control"
                                                                                             name="timeplan_re_getend"
-                                                                                            id="timeplan_re_getend"
-                                                                                            >
+                                                                                            id="timeplan_re_getend">
                                                                                     </div>
                                                                                     <div class="col-12">
                                                                                         ผู้รับผิดชอบ
@@ -1539,7 +1543,9 @@ $user = new User();
                                                                 value="<?php echo $project_name; ?>">
                                                             <div class="d-flex justify-content-end">
                                                                 <button type="button" class="btn btn-primary"
-                                                                    onclick="return add_user_form();">SUBMIT</button>
+                                                                    onclick="return checkdata();">SUBMIT</button>
+                                                                <!-- <button type="button" class="btn btn-primary"
+                                                                    onclick="return add_user_form();">SUBMIT</button> -->
                                                                 <br>
                                                             </div>
                                                         </form>
@@ -1624,7 +1630,107 @@ $user = new User();
             });
             $("#" + viewID).show();
         });
+        function checkdata() {
+
+            var inputIds = [
+                "timeplan_re_getstart", "timeplan_re_getend", "timeplan_re_getname", "timeplan_re_workstart", "timeplan_re_workend", "timeplan_re_workname",
+                "timeplan_pro_getstart", "timeplan_pro_getend", "timeplan_pro_getname", "timeplan_pro_workstart", "timeplan_pro_workend", "timeplan_pro_workname",
+                "timeplan_sing_getstart", "timeplan_sing_getend", "timeplan_sing_getname", "timeplan_sing_workstart", "timeplan_sing_workend", "timeplan_sing_workname",
+                "timeplan_dev_getstart", "timeplan_dev_getend", "timeplan_dev_getname", "timeplan_dev_workstart", "timeplan_dev_workend", "timeplan_dev_workname",
+                "timeplan_sit_getstart", "timeplan_sit_getend", "timeplan_sit_getname", "timeplan_sit_workstart", "timeplan_sit_workend", "timeplan_sit_workname",
+                "timeplan_inter_getstart", "timeplan_inter_getend", "timeplan_inter_getname", "timeplan_inter_workstart", "timeplan_inter_workend", "timeplan_inter_workname",
+                "timeplan_user_getstart", "timeplan_user_getend", "timeplan_user_getname", "timeplan_user_workstart", "timeplan_user_workend", "timeplan_user_workname",
+                "timeplan_end_getstart", "timeplan_end_getend", "timeplan_end_getname", "timeplan_end_workstart", "timeplan_end_workend", "timeplan_end_workname"
+            ];
+
+            var isAlerted = false; // เพิ่มตัวแปรเพื่อตรวจสอบว่าเคยแจ้งเตือนไปแล้วหรือยัง
+            var isValid = true; // เพิ่มตัวแปรเพื่อตรวจสอบว่าข้อมูลทั้งหมดถูกต้องหรือไม่
+
+            inputIds.forEach(function (id) {
+                var dateInput = document.getElementById(id).value;
+                if (dateInput === "") {
+                    if (!isAlerted) { // ถ้ายังไม่เคยแจ้งเตือน
+                        alert("กรุณาใส่ข้อมูลในช่อง input");
+                        isAlerted = true; // กำหนดให้เป็น true เมื่อเราได้แจ้งเตือนไปแล้ว
+                    }
+                    document.getElementById(id).classList.add('invalid');
+                    isValid = false; // กำหนดให้ข้อมูลไม่ถูกต้องเมื่อมีช่อง input ว่าง
+                } else {
+                    // เมื่อใส่ข้อมูลครบถูกต้อง
+                    document.getElementById(id).classList.remove('invalid');
+                }
+            });
+            if (isValid) {
+                alert("input success");
+                return add_user_form();
+            }
+            // var dateInput = document.getElementById("timeplan_re_getstart").value;
+            // var dateInput2 = document.getElementById("timeplan_re_getend").value;
+            // var dateInput3 = document.getElementById("timeplan_re_getname").value;
+            // var dateInput4 = document.getElementById("timeplan_re_workstart").value;
+            // var dateInput5 = document.getElementById("timeplan_re_workend").value;
+            // var dateInput6 = document.getElementById("timeplan_re_workname").value;
+
+            // var dateInput7 = document.getElementById("timeplan_pro_getstart").value;
+            // var dateInput8 = document.getElementById("timeplan_pro_getend").value;
+            // var dateInput9 = document.getElementById("timeplan_pro_getname").value;
+            // var dateInput10 = document.getElementById("timeplan_pro_workstart").value;
+            // var dateInput11 = document.getElementById("timeplan_pro_workend").value;
+            // var dateInput12 = document.getElementById("timeplan_pro_workname").value;
+
+            // var dateInput13 = document.getElementById("timeplan_sing_getstart").value;
+            // var dateInput14 = document.getElementById("timeplan_sing_getend").value;
+            // var dateInput15 = document.getElementById("timeplan_sing_getname").value;
+            // var dateInput16 = document.getElementById("timeplan_sing_workstart").value;
+            // var dateInput17 = document.getElementById("timeplan_sing_workend").value;
+            // var dateInput18 = document.getElementById("timeplan_sing_workname").value;
+
+            // var dateInput19 = document.getElementById("timeplan_dev_getstart").value;
+            // var dateInput20 = document.getElementById("timeplan_dev_getend").value;
+            // var dateInput21 = document.getElementById("timeplan_dev_getname").value;
+            // var dateInput22 = document.getElementById("timeplan_dev_workstart").value;
+            // var dateInput23 = document.getElementById("timeplan_dev_workend").value;
+            // var dateInput24 = document.getElementById("timeplan_dev_workname").value;
+
+            // var dateInput25 = document.getElementById("timeplan_sit_getstart").value;
+            // var dateInput26 = document.getElementById("timeplan_sit_getend").value;
+            // var dateInput27 = document.getElementById("timeplan_sit_getname").value;
+            // var dateInput28 = document.getElementById("timeplan_sit_workstart").value;
+            // var dateInput29 = document.getElementById("timeplan_sit_workend").value;
+            // var dateInput30 = document.getElementById("timeplan_sit_workname").value;
+
+            // var dateInput31 = document.getElementById("timeplan_inter_getstart").value;
+            // var dateInput32 = document.getElementById("timeplan_inter_getend").value;
+            // var dateInput33 = document.getElementById("timeplan_inter_getname").value;
+            // var dateInput34 = document.getElementById("timeplan_inter_workstart").value;
+            // var dateInput35 = document.getElementById("timeplan_inter_workend").value;
+            // var dateInput36 = document.getElementById("timeplan_inter_workname").value;
+
+
+            // var dateInput37 = document.getElementById("timeplan_user_getstart").value;
+            // var dateInput38 = document.getElementById("timeplan_user_getend").value;
+            // var dateInput39 = document.getElementById("timeplan_user_getname").value;
+            // var dateInput40 = document.getElementById("timeplan_user_workstart").value;
+            // var dateInput41 = document.getElementById("timeplan_user_workend").value;
+            // var dateInput42 = document.getElementById("timeplan_user_workname").value;
+
+
+            // var dateInput43 = document.getElementById("timeplan_end_getstart").value;
+            // var dateInput44 = document.getElementById("timeplan_end_getend").value;
+            // var dateInput45 = document.getElementById("timeplan_end_getname").value;
+            // var dateInput46 = document.getElementById("timeplan_end_workstart").value;
+            // var dateInput47 = document.getElementById("timeplan_end_workend").value;
+            // var dateInput48 = document.getElementById("timeplan_end_workname").value;
+
+            // if (dateInput === "") {
+            //     alert("กรุณาใส่ข้อมูลในช่อง input");
+            // } else {
+            //     // alert("ใส่ข้อมูลแล้วinput");
+            //     return add_user_form();
+            // }
+        }
         function add_user_form() {
+
             var formData = new FormData($("#add_user_form")[0]); // Use the actual form element
             $.ajax({
                 type: "POST",

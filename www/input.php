@@ -146,21 +146,30 @@ $user = new User();
                                                 <?php
                                                 $getversion = $user->getdraftdoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
-                                                    foreach ($getversion as $i => $rowre)
-                                                        if (isset ($rowre)) {
-                                                            // print_r($rowre);
-                                                            ?>
-                                                            <input type="hidden" id="doc_version_draft" name="doc_version"
-                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
-                                                            <?php
-                                                        }
+                                                    if (empty ($getversion)) {
+                                                        echo '<input type="hidden" id="doc_version_draft" name="doc_version"
+                                                        value="0';
+                                                    } else {
+                                                        foreach ($getversion as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <input type="hidden" id="doc_version_draft" name="doc_version"
+                                                                    value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                                <!-- <input type="text" id="doc_version_draft" name="doc_version"
+                                                                    value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>"> -->
+                                                                <?php
+                                                            }
+                                                    }
                                                 }
                                                 ?>
                                                 <br>
                                                 <input type="hidden" id="doc_project_name_draft" name="doc_project_name"
                                                     value="<?php echo $project_name ?>">
+
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="return add_user_form('Draft', '<?php echo $template_name; ?>');">SUBMIT</button>
+
                                             </form>
                                             <br>
                                         </div>
@@ -177,19 +186,24 @@ $user = new User();
                                                 <?php
                                                 $getversion = $user->getreviewdoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
-                                                    foreach ($getversion as $i => $rowre)
-                                                        if (isset ($rowre)) {
-                                                            // print_r($rowre);
-                                                            ?>
-                                                            <input type="hidden" id="doc_version_review" name="doc_version"
-                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
-                                                            <?php
-                                                        }
+                                                    if (empty ($getversion)) {
+                                                        echo '<input type="hidden" id="doc_version_review" name="doc_version"
+                                                        value="0';
+                                                    } else {
+                                                        foreach ($getversion as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <input type="hidden" id="doc_version_review" name="doc_version"
+                                                                    value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                                <?php
+                                                            }
+                                                    }
                                                 }
                                                 ?>
                                                 <br>
-                                                <input type="hidden" id="doc_project_name_review" name="doc_project_name"
-                                                    value="<?php echo $project_name ?>">
+                                                <input type="hidden" id="doc_project_name_review"
+                                                    name="doc_project_name" value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="return add_user_form('Review', '<?php echo $template_name; ?>');">SUBMIT</button>
                                             </form>
@@ -208,14 +222,19 @@ $user = new User();
                                                 <?php
                                                 $getversion = $user->getfinaldoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
-                                                    foreach ($getversion as $i => $rowre)
-                                                        if (isset ($rowre)) {
-                                                            // print_r($rowre);
-                                                            ?>
-                                                            <input type="hidden" id="doc_version_final" name="doc_version"
-                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
-                                                            <?php
-                                                        }
+                                                    if (empty ($getversion)) {
+                                                        echo '<input type="hidden" id="doc_version_final" name="doc_version"
+                                                        value="0';
+                                                    } else {
+                                                        foreach ($getversion as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <input type="hidden" id="doc_version_final" name="doc_version"
+                                                                    value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                                <?php
+                                                            }
+                                                    }
                                                 }
                                                 ?>
                                                 <br>
@@ -239,14 +258,19 @@ $user = new User();
                                                 <?php
                                                 $getversion = $user->getintelnaldoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
-                                                    foreach ($getversion as $i => $rowre)
-                                                        if (isset ($rowre)) {
-                                                            // print_r($rowre);
-                                                            ?>
-                                                            <input type="hidden" id="doc_version_internalsign" name="doc_version"
-                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
-                                                            <?php
-                                                        }
+                                                    if (empty ($getversion)) {
+                                                        echo '<input type="hidden" id="doc_version_internalsign" name="doc_version"
+                                                        value="0';
+                                                    } else {
+                                                        foreach ($getversion as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <input type="hidden" id="doc_version_internalsign" name="doc_version"
+                                                                    value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                                <?php
+                                                            }
+                                                    }
                                                 }
                                                 ?>
                                                 <br>
@@ -270,14 +294,19 @@ $user = new User();
                                                 <?php
                                                 $getversion = $user->getextelnaldoc_version("doc_project_name = '{$project_name}' AND doc_template = '{$template_name}'");
                                                 if (is_array($getversion) || is_object($getversion)) {
-                                                    foreach ($getversion as $i => $rowre)
-                                                        if (isset ($rowre)) {
-                                                            // print_r($rowre);
-                                                            ?>
-                                                            <input type="hidden" id="doc_version_externalsign" name="doc_version"
-                                                                value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
-                                                            <?php
-                                                        }
+                                                    if (empty ($getversion)) {
+                                                        echo '<input type="hidden" id="doc_version_externalsign" name="doc_version"
+                                                        value="0';
+                                                    } else {
+                                                        foreach ($getversion as $i => $rowre)
+                                                            if (isset ($rowre)) {
+                                                                // print_r($rowre);
+                                                                ?>
+                                                                <input type="hidden" id="doc_version_externalsign" name="doc_version"
+                                                                    value="<?php echo isset ($rowre['doc_version']) ? $rowre['doc_version'] : 1; ?>">
+                                                                <?php
+                                                            }
+                                                    }
                                                 }
                                                 ?>
                                                 <br>
