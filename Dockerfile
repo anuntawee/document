@@ -7,7 +7,7 @@ RUN a2enmod rewrite
 # Install any extensions you need
 RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
-    && docker-php-ext-install mysqli curl mbstring pdo pdo_mysql
+    && docker-php-ext-install -j$(nproc) mysqli curl mbstring pdo pdo_mysql
 
 # Set the working directory to /var/www/html
 WORKDIR /var/www/html
