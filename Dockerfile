@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y && apt-get install -y vim \
 WORKDIR /var/www/html
 
 # Copy the source code in /www into the container at /var/www/html
-COPY ../www .
+COPY www .
 
 # เปิดพอร์ต 80 หรือพอร์ตที่ต้องการ
 EXPOSE 80
