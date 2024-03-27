@@ -62,7 +62,7 @@ if (isset ($_GET['project_name']) && isset ($_GET['template_name'])) {
     echo "ไม่พบข้อมูลที่ส่งมา";
 }
 
-include 'connect\function.php';
+include 'connect/function.php';
 $user = new User();
 ?>
 

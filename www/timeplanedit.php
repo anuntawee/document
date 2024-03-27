@@ -54,7 +54,7 @@ if (isset ($_GET['project_name'])) {
     $project_name = $_GET['project_name'];
     // var_dump($project_name);
 }
-include 'connect\function.php';
+include 'connect/function.php';
 $user = new User();
 ?>
 
