@@ -201,7 +201,7 @@ class User extends dbh
 	}
 	public function getdraftdoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Draft'";
+		$sql = "SELECT doc_version, DATE_FORMAT(doc_time, '%Y-%m-%d %H:%i:%s') AS formatted_doc_time FROM tb_doc WHERE doc_status = 'Draft'";
 		// เพิ่มเงื่อนไขการค้นหาที่ถูกส่งมาในพารามิเตอร์
 		if (!empty ($condition1)) {
 			$sql .= " AND " . $condition1;
@@ -209,7 +209,7 @@ class User extends dbh
 		if (!empty ($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
-		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql .= " ORDER BY doc_time DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
 		$data = array();
 		if ($result->num_rows > 0) {
@@ -221,14 +221,14 @@ class User extends dbh
 	}
 	public function getreviewdoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Review'";
+		$sql = "SELECT doc_version, DATE_FORMAT(doc_time, '%Y-%m-%d %H:%i:%s') AS formatted_doc_time FROM tb_doc WHERE doc_status = 'Review'";
 		if (!empty ($condition1)) {
 			$sql .= " AND " . $condition1;
 		}
 		if (!empty ($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
-		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql .= " ORDER BY doc_time DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
 		$data = array();
 		if ($result->num_rows > 0) {
@@ -240,14 +240,14 @@ class User extends dbh
 	}
 	public function getfinaldoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Final'";
+		$sql = "SELECT doc_version, DATE_FORMAT(doc_time, '%Y-%m-%d %H:%i:%s') AS formatted_doc_time FROM tb_doc WHERE doc_status = 'Final'";
 		if (!empty ($condition1)) {
 			$sql .= " AND " . $condition1;
 		}
 		if (!empty ($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
-		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql .= " ORDER BY doc_time DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
 		$data = array();
 		if ($result->num_rows > 0) {
@@ -259,14 +259,14 @@ class User extends dbh
 	}
 	public function getintelnaldoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'InternalSign'";
+		$sql = "SELECT doc_version, DATE_FORMAT(doc_time, '%Y-%m-%d %H:%i:%s') AS formatted_doc_time FROM tb_doc WHERE doc_status = 'InternalSign'";
 		if (!empty ($condition1)) {
 			$sql .= " AND " . $condition1;
 		}
 		if (!empty ($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
-		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql .= " ORDER BY doc_time DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
 		$data = array();
 		if ($result->num_rows > 0) {
@@ -278,14 +278,14 @@ class User extends dbh
 	}
 	public function getextelnaldoc_version($condition1 = "", $condition2 = "")
 	{
-		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'ExternaSign'";
+		$sql = "SELECT doc_version, DATE_FORMAT(doc_time, '%Y-%m-%d %H:%i:%s') AS formatted_doc_time FROM tb_doc WHERE doc_status = 'ExternaSign'";
 		if (!empty ($condition1)) {
 			$sql .= " AND " . $condition1;
 		}
 		if (!empty ($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
-		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
+		$sql .= " ORDER BY doc_time DESC LIMIT 1;";
 		$result = $this->connect()->query($sql);
 		$data = array();
 		if ($result->num_rows > 0) {
@@ -312,7 +312,7 @@ class report extends dbh
 {
 	public function getallproject_id($id)
 	{
-		$sql = "SELECT * FROM `tb_project` WHERE `project_id` = $id;";
+		$sql = "SELECT * FROM tb_project WHERE project_id = $id;";
 		$result = $this->connect()->query($sql);
 		$numROW = $result->num_rows;
 		if ($numROW > 0) {
@@ -324,7 +324,7 @@ class report extends dbh
 	}
 	public function getallget($id)
 	{
-		$sql = "SELECT * FROM `tb_get` WHERE `get_id` = '$id'";
+		$sql = "SELECT * FROM tb_get WHERE get_id = '$id'";
 		$result = $this->connect()->query($sql);
 		$numROW = $result->num_rows;
 		if ($numROW > 0) {
@@ -336,7 +336,7 @@ class report extends dbh
 	}
 	public function getallpro($id)
 	{
-		$sql = "SELECT * FROM tb_pro WHERE `pro_id` = '$id'";
+		$sql = "SELECT * FROM tb_pro WHERE pro_id = '$id'";
 		$result = $this->connect()->query($sql);
 		$numROW = $result->num_rows;
 		if ($numROW > 0) {
@@ -348,7 +348,7 @@ class report extends dbh
 	}
 	public function getallsign($id)
 	{
-		$sql = "SELECT * FROM tb_sign WHERE `sign_id` = '$id'";
+		$sql = "SELECT * FROM tb_sign WHERE sign_id = '$id'";
 		$result = $this->connect()->query($sql);
 		$numROW = $result->num_rows;
 		if ($numROW > 0) {
@@ -360,7 +360,7 @@ class report extends dbh
 	}
 	public function getalldev($id)
 	{
-		$sql = "SELECT * FROM tb_dev WHERE `dev_id` = '$id'";
+		$sql = "SELECT * FROM tb_dev WHERE dev_id = '$id'";
 		$result = $this->connect()->query($sql);
 		$numROW = $result->num_rows;
 		if ($numROW > 0) {
@@ -372,7 +372,7 @@ class report extends dbh
 	}
 	public function getallsit($id)
 	{
-		$sql = "SELECT * FROM tb_sit WHERE `sit_id` = '$id'";
+		$sql = "SELECT * FROM tb_sit WHERE sit_id = '$id'";
 		$result = $this->connect()->query($sql);
 		$numROW = $result->num_rows;
 		if ($numROW > 0) {
@@ -384,7 +384,7 @@ class report extends dbh
 	}
 	public function getallinter($id)
 	{
-		$sql = "SELECT * FROM tb_internal WHERE `internal_id` = '$id'";
+		$sql = "SELECT * FROM tb_internal WHERE internal_id = '$id'";
 		$result = $this->connect()->query($sql);
 		$numROW = $result->num_rows;
 		if ($numROW > 0) {
@@ -396,7 +396,7 @@ class report extends dbh
 	}
 	public function getallusertest($id)
 	{
-		$sql = "SELECT * FROM tb_usertest WHERE `usertest_id` = '$id'";
+		$sql = "SELECT * FROM tb_usertest WHERE usertest_id = '$id'";
 		$result = $this->connect()->query($sql);
 		$numROW = $result->num_rows;
 		if ($numROW > 0) {
@@ -408,7 +408,7 @@ class report extends dbh
 	}
 	public function getallend($id)
 	{
-		$sql = "SELECT * FROM tb_end WHERE `end_id` = '$id'";
+		$sql = "SELECT * FROM tb_end WHERE end_id = '$id'";
 		$result = $this->connect()->query($sql);
 		$numROW = $result->num_rows;
 		if ($numROW > 0) {
@@ -469,21 +469,21 @@ class update extends dbh
 	{
 		$db = $this->connect();
 		if ($data['checkname'] === '1') {
-			$edit_user = $db->prepare("UPDATE `tb_get` SET `getstart` = ?, `getend` = ?, `get_statname` = ?, `get_workstart` = ?, `get_workend` =?,`get_work_name2` =? WHERE `tb_get`.`get_id` = ?;");
+			$edit_user = $db->prepare("UPDATE tb_get SET getstart = ?, getend = ?, get_statname = ?, get_workstart = ?, get_workend =?,get_work_name2 =? WHERE tb_get.get_id = ?;");
 		} else if ($data['checkname'] === '2') {
-			$edit_user = $db->prepare("UPDATE `tb_pro` SET `prostart` = ?, `proend` = ?, `pro_statname` = ?, `pro_workstart` = ?, `pro_workend` =?,`pro_work_name2` =? WHERE `tb_pro`.`pro_id` = ?;");
+			$edit_user = $db->prepare("UPDATE tb_pro SET prostart = ?, proend = ?, pro_statname = ?, pro_workstart = ?, pro_workend =?,pro_work_name2 =? WHERE tb_pro.pro_id = ?;");
 		} else if ($data['checkname'] === '3') {
-			$edit_user = $db->prepare("UPDATE `tb_sign` SET `sign_start` = ?, `sign_end` = ?, `sign_startname` = ?, `sign_workname` = ?, `sign_workend` =?, `sign_work_name2` =? WHERE `tb_sign`.`sign_id` = ?;");
+			$edit_user = $db->prepare("UPDATE tb_sign SET sign_start = ?, sign_end = ?, sign_startname = ?, sign_workname = ?, sign_workend =?, sign_work_name2 =? WHERE tb_sign.sign_id = ?;");
 		} else if ($data['checkname'] === '4') {
-			$edit_user = $db->prepare("UPDATE `tb_dev` SET `devstart` = ?, `devend` = ?, `dev_startname` = ?, `dev_workstart` = ?, `dev_workend` =?, `dev_work_name2` =? WHERE `tb_dev`.`dev_id` = ?;");
+			$edit_user = $db->prepare("UPDATE tb_dev SET devstart = ?, devend = ?, dev_startname = ?, dev_workstart = ?, dev_workend =?, dev_work_name2 =? WHERE tb_dev.dev_id = ?;");
 		} else if ($data['checkname'] === '5') {
-			$edit_user = $db->prepare("UPDATE `tb_sit` SET `getstart` = ?, `getend` = ?, `sit_getname` = ?, `sit_workstart` = ?, `sit_workend` =?, `sit_work_name2` =? WHERE `tb_sit`.`sit_id` = ?;");
+			$edit_user = $db->prepare("UPDATE tb_sit SET getstart = ?, getend = ?, sit_getname = ?, sit_workstart = ?, sit_workend =?, sit_work_name2 =? WHERE tb_sit.sit_id = ?;");
 		} else if ($data['checkname'] === '6') {
-			$edit_user = $db->prepare("UPDATE `tb_internal` SET `internalstart` = ?, `internalend` = ?, `internal_startname` = ?, `internal_workstart` = ?, `internal_workend` =?,`internal_work_name2` =? WHERE `tb_internal`.`internal_id` = ?;");
+			$edit_user = $db->prepare("UPDATE tb_internal SET internalstart = ?, internalend = ?, internal_startname = ?, internal_workstart = ?, internal_workend =?,internal_work_name2 =? WHERE tb_internal.internal_id = ?;");
 		} else if ($data['checkname'] === '7') {
-			$edit_user = $db->prepare("UPDATE `tb_usertest` SET `userteststart` = ?, `usertestend` = ?, `usertest_startname` = ?, `usertest_workstart` = ?, `usertest_workend` =?,`usertest_work_name2` =? WHERE `tb_usertest`.`usertest_id` = ?;");
+			$edit_user = $db->prepare("UPDATE tb_usertest SET userteststart = ?, usertestend = ?, usertest_startname = ?, usertest_workstart = ?, usertest_workend =?,usertest_work_name2 =? WHERE tb_usertest.usertest_id = ?;");
 		} else if ($data['checkname'] === '8') {
-			$edit_user = $db->prepare("UPDATE `tb_end` SET `endstart` = ?, `endend` = ?, `end_startname` = ?, `end_workstart` = ?, `end_workend` =?, `end_work_name2` =? WHERE `tb_end`.`end_id` = ?;");
+			$edit_user = $db->prepare("UPDATE tb_end SET endstart = ?, endend = ?, end_startname = ?, end_workstart = ?, end_workend =?, end_work_name2 =? WHERE tb_end.end_id = ?;");
 		}
 		$edit_user->bind_param(
 			"ssssssi",
@@ -508,19 +508,19 @@ class update extends dbh
 		$db = $this->connect();
 		$member_id = $data['member_id'];
 		if (isset ($data['view'])) {
-			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_view` = ? WHERE `tb_member`.`member_id` = ?");
+			$edit_user = $db->prepare("UPDATE tb_member SET member_view = ? WHERE tb_member.member_id = ?");
 			$edit_user->bind_param("si", $data['view'], $member_id);
 		} elseif (isset ($data['comment'])) {
-			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_comment` = ? WHERE `tb_member`.`member_id` = ?");
+			$edit_user = $db->prepare("UPDATE tb_member SET member_comment = ? WHERE tb_member.member_id = ?");
 			$edit_user->bind_param("si", $data['comment'], $member_id);
 		} elseif (isset ($data['edits'])) {
-			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_edits` = ? WHERE `tb_member`.`member_id` = ?");
+			$edit_user = $db->prepare("UPDATE tb_member SET member_edits = ? WHERE tb_member.member_id = ?");
 			$edit_user->bind_param("si", $data['edits'], $member_id);
 		} elseif (isset ($data['approve'])) {
-			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_approve` = ? WHERE `tb_member`.`member_id` = ?");
+			$edit_user = $db->prepare("UPDATE tb_member SET member_approve = ? WHERE tb_member.member_id = ?");
 			$edit_user->bind_param("si", $data['approve'], $member_id);
 		} elseif (isset ($data['signoff'])) {
-			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_signoff` = ? WHERE `tb_member`.`member_id` = ?");
+			$edit_user = $db->prepare("UPDATE tb_member SET member_signoff = ? WHERE tb_member.member_id = ?");
 			$edit_user->bind_param("si", $data['signoff'], $member_id);
 		}
 		if ($edit_user->execute()) {
@@ -534,7 +534,7 @@ class update extends dbh
 	// public function edit_report($data)
 	// {
 	// 	$db = $this->connect();
-	// 	$edit_user = $db->prepare("UPDATE `tb_report` SET `report_name` = ?, `report_detail` = ?, `report_time` = ?, `report_location` = ?, `report_img_name` = ?, `report_type` = ? WHERE `tb_report`.`report_id` = ?;");
+	// 	$edit_user = $db->prepare("UPDATE tb_report SET report_name = ?, report_detail = ?, report_time = ?, report_location = ?, report_img_name = ?, report_type = ? WHERE tb_report.report_id = ?;");
 
 	// 	// Check if a new image is being uploaded
 	// 	if (!empty ($_FILES["editfileUpload"]["name"])) {
@@ -583,7 +583,7 @@ class insert extends dbh
 	public function add_user($data)
 	{
 		$db = $this->connect();
-		$add_user = $db->prepare("INSERT INTO `tb_member` (`memer_id`, `member_name`, `member_lastname`, `member_email`, `member_pass`, `member_role`, `member_view`, `member_comment`, `member_edits`, `member_approve`, `member_signoff`) VALUES (NULL,?,?,?,?,NULL, NULL, NULL, NULL, NULL);");
+		$add_user = $db->prepare("INSERT INTO tb_member (memer_id, member_name, member_lastname, member_email, member_pass, member_role, member_view, member_comment, member_edits, member_approve, member_signoff) VALUES (NULL,?,?,?,?,NULL, NULL, NULL, NULL, NULL);");
 		$add_user->bind_param("sssss", $data['member_name'], $data['member_lastname'], $data['member_email'], $data['member_pass'], $data['member_role']);
 		if (!$add_user->execute()) {
 			echo $db->error;
@@ -595,7 +595,7 @@ class insert extends dbh
 	{
 		$db = $this->connect();
 		if (isset ($data['timeplan_status_name'])) {
-			$add_user_get = $db->prepare("INSERT INTO `tb_get` (`get_id`, `get_name`, `getstart`, `getend`, `get_statname`, `get_workstart`, `get_workend`, `get_work_name2`, `get_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
+			$add_user_get = $db->prepare("INSERT INTO tb_get (get_id, get_name, getstart, getend, get_statname, get_workstart, get_workend, get_work_name2, get_project_name) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_get->bind_param(
 				"ssssssss",
 				$data['timeplan_status_name'],
@@ -609,7 +609,7 @@ class insert extends dbh
 			);
 		}
 		if (isset ($data['timeplan_status_name_2'])) {
-			$add_user_pro = $db->prepare("INSERT INTO `tb_pro` (`pro_id`, `pro_nam`, `prostart`, `proend`, `pro_statname`, `pro_workstart`, `pro_workend`, `pro_work_name2`, `pro_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
+			$add_user_pro = $db->prepare("INSERT INTO tb_pro (pro_id, pro_nam, prostart, proend, pro_statname, pro_workstart, pro_workend, pro_work_name2, pro_project_name) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_pro->bind_param(
 				"ssssssss",
 				$data['timeplan_status_name_2'],
@@ -623,7 +623,7 @@ class insert extends dbh
 			);
 		}
 		if (isset ($data['timeplan_status_name_3'])) {
-			$add_user_sign = $db->prepare("INSERT INTO `tb_sign` (`sign_id`, `sign_name`, `sign_start`, `sign_end`, `sign_startname`, `sign_workname`, `sign_workend`, `sign_work_name2`, `sign_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
+			$add_user_sign = $db->prepare("INSERT INTO tb_sign (sign_id, sign_name, sign_start, sign_end, sign_startname, sign_workname, sign_workend, sign_work_name2, sign_project_name) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_sign->bind_param(
 				"ssssssss",
 				$data['timeplan_status_name_3'],
@@ -637,7 +637,7 @@ class insert extends dbh
 			);
 		}
 		if (isset ($data['timeplan_status_name_4'])) {
-			$add_user_dev = $db->prepare("INSERT INTO `tb_dev` (`dev_id`, `dev_name`, `devstart`, `devend`, `dev_startname`, `dev_workstart`, `dev_workend`, `dev_work_name2`, `dev_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
+			$add_user_dev = $db->prepare("INSERT INTO tb_dev (dev_id, dev_name, devstart, devend, dev_startname, dev_workstart, dev_workend, dev_work_name2, dev_project_name) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_dev->bind_param(
 				"ssssssss",
 				$data['timeplan_status_name_4'],
@@ -651,7 +651,7 @@ class insert extends dbh
 			);
 		}
 		if (isset ($data['timeplan_status_name_5'])) {
-			$add_user_sit = $db->prepare("INSERT INTO `tb_sit` (`sit_id`, `sit_name`, `getstart`, `getend`, `sit_getname`, `sit_workstart`, `sit_workend`, `sit_work_name2`, `sit_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
+			$add_user_sit = $db->prepare("INSERT INTO tb_sit (sit_id, sit_name, getstart, getend, sit_getname, sit_workstart, sit_workend, sit_work_name2, sit_project_name) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_sit->bind_param(
 				"ssssssss",
 				$data['timeplan_status_name_5'],
@@ -665,7 +665,7 @@ class insert extends dbh
 			);
 		}
 		if (isset ($data['timeplan_status_name_6'])) {
-			$add_user_interlnal = $db->prepare("INSERT INTO `tb_internal` (`internal_id`, `internal_name`, `internalstart`, `internalend`, `internal_startname`, `internal_workstart`, `internal_workend`, `internal_work_name2`, `internal_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
+			$add_user_interlnal = $db->prepare("INSERT INTO tb_internal (internal_id, internal_name, internalstart, internalend, internal_startname, internal_workstart, internal_workend, internal_work_name2, internal_project_name) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_interlnal->bind_param(
 				"ssssssss",
 				$data['timeplan_status_name_6'],
@@ -679,7 +679,7 @@ class insert extends dbh
 			);
 		}
 		if (isset ($data['timeplan_status_name_7'])) {
-			$add_user_user = $db->prepare("INSERT INTO `tb_usertest` (`usertest_id`, `usertest_name`, `userteststart`, `usertestend`, `usertest_startname`, `usertest_workstart`, `usertest_workend`, `usertest_work_name2`, `usertest_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
+			$add_user_user = $db->prepare("INSERT INTO tb_usertest (usertest_id, usertest_name, userteststart, usertestend, usertest_startname, usertest_workstart, usertest_workend, usertest_work_name2, usertest_project_name) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_user->bind_param(
 				"ssssssss",
 				$data['timeplan_status_name_7'],
@@ -693,7 +693,7 @@ class insert extends dbh
 			);
 		}
 		if (isset ($data['timeplan_status_name_8'])) {
-			$add_user_end = $db->prepare("INSERT INTO `tb_end` (`end_id`, `end_name`, `endstart`, `endend`, `end_startname`, `end_workstart`, `end_workend`, `end_work_name2`, `end_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
+			$add_user_end = $db->prepare("INSERT INTO tb_end (end_id, end_name, endstart, endend, end_startname, end_workstart, end_workend, end_work_name2, end_project_name) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_end->bind_param(
 				"ssssssss",
 				$data['timeplan_status_name_8'],
@@ -748,16 +748,16 @@ class insert extends dbh
 		$add_user_user->close();
 		$add_user_end->close();
 
-		// $add_user = $db->prepare("INSERT INTO `tb_timeplan` (`timeplan_id`, `timeplan_project_name`, `timeplan_status_name`, `timeplan_re_getstart`, 
-		// `timeplan_re_getend`, `timeplan_re_getname`, `timeplan_re_workstart`, `timeplan_re_workend`, `timeplan_re_workname`, `timeplan_status_name_2`, 
-		// `timeplan_pro_getstart`, `timeplan_pro_getend`, `timeplan_pro_getname`, `timeplan_pro_workstart`, `timeplan_pro_workend`, `timeplan_pro_workname`, 
-		// `timeplan_status_name_3`, `timeplan_sing_getstart`, `timeplan_sing_getend`, `timeplan_sing_getname`, `timeplan_sing_workstart`, `timeplan_sing_workend`, 
-		// `timeplan_sing_workname`, `timeplan_status_name_4`, `timeplan_dev_getstart`, `timeplan_dev_getend`, `timeplan_dev_getname`, `timeplan_dev_workstart`, 
-		// `timeplan_dev_workend`, `timeplan_dev_workname`, `timeplan_status_name_5`, `timeplan_sit_getstart`, `timeplan_sit_getend`, `timeplan_sit_getname`, 
-		// `timeplan_sit_workstart`, `timeplan_sit_workend`, `timeplan_sit_workname`, `timeplan_status_name_6`, `timeplan_inter_getstart`, `timeplan_inter_getend`, 
-		// `timeplan_inter_getname`, `timeplan_inter_workstart`, `timeplan_inter_workend`, `timeplan_inter_workname`, `timeplan_status_name_7`, `timeplan_user_getstart`, 
-		// `timeplan_user_getend`, `timeplan_user_getname`, `timeplan_user_workstart`, `timeplan_user_workend`, `timeplan_user_workname`, `timeplan_status_name_8`, 
-		// `timeplan_end_getstart`, `timeplan_end_getend`, `timeplan_end_getname`, `timeplan_end_workstart`, `timeplan_end_workend`, `timeplan_end_workname`) 
+		// $add_user = $db->prepare("INSERT INTO tb_timeplan (timeplan_id, timeplan_project_name, timeplan_status_name, timeplan_re_getstart, 
+		// timeplan_re_getend, timeplan_re_getname, timeplan_re_workstart, timeplan_re_workend, timeplan_re_workname, timeplan_status_name_2, 
+		// timeplan_pro_getstart, timeplan_pro_getend, timeplan_pro_getname, timeplan_pro_workstart, timeplan_pro_workend, timeplan_pro_workname, 
+		// timeplan_status_name_3, timeplan_sing_getstart, timeplan_sing_getend, timeplan_sing_getname, timeplan_sing_workstart, timeplan_sing_workend, 
+		// timeplan_sing_workname, timeplan_status_name_4, timeplan_dev_getstart, timeplan_dev_getend, timeplan_dev_getname, timeplan_dev_workstart, 
+		// timeplan_dev_workend, timeplan_dev_workname, timeplan_status_name_5, timeplan_sit_getstart, timeplan_sit_getend, timeplan_sit_getname, 
+		// timeplan_sit_workstart, timeplan_sit_workend, timeplan_sit_workname, timeplan_status_name_6, timeplan_inter_getstart, timeplan_inter_getend, 
+		// timeplan_inter_getname, timeplan_inter_workstart, timeplan_inter_workend, timeplan_inter_workname, timeplan_status_name_7, timeplan_user_getstart, 
+		// timeplan_user_getend, timeplan_user_getname, timeplan_user_workstart, timeplan_user_workend, timeplan_user_workname, timeplan_status_name_8, 
+		// timeplan_end_getstart, timeplan_end_getend, timeplan_end_getname, timeplan_end_workstart, timeplan_end_workend, timeplan_end_workname) 
 		// VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
 		// ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 		// $add_user->bind_param(
@@ -783,7 +783,7 @@ class insert extends dbh
 			return;
 		}
 		$db = $this->connect();
-		$add_user = $db->prepare("INSERT INTO `tb_doc` (`doc_id`, `doc_name`, `doc_path`, `doc_status`, `doc_version`, `doc_project_name`, `doc_template`, `doc_time`) 
+		$add_user = $db->prepare("INSERT INTO tb_doc (doc_id, doc_name, doc_path, doc_status, doc_version, doc_project_name, doc_template, doc_time) 
 		VALUES (NULL,?,?,?,?,?,?,NOW());");
 		$add_user->bind_param(
 			"ssssss",

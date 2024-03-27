@@ -113,6 +113,7 @@ $user = new User();
                                                                     placeholder="นามสกุล" name="member_lastname"
                                                                     id="member_lastname">
                                                             </div>
+                                                            <br>
                                                             <div class="col-12">
                                                                 <br>
                                                                 <input type="text" class="form-control"
