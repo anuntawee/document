@@ -48,7 +48,7 @@ if ($_SESSION['member_id'] == "") {
 
 </head>
 <?php
-include 'connect\function.php';
+include 'connect/function.php';
 $user = new User();
 ?>
 
