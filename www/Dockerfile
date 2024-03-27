@@ -8,4 +8,4 @@ RUN apt-get update && apt-get install -y vim \
 # Set the working directory to /var/www/html
 WORKDIR /var/www/html
 # Copy the source code in /www into the container at /var/www/html
-COPY . .
+COPY ../www .
