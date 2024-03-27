@@ -3,8 +3,8 @@ FROM php:8.2-apache
 # Enable Apache modules
 RUN a2enmod rewrite
 # Install any extensions you need
-RUN apt-get update \
-    && apt-get install -y vim
+RUN apt-get update && apt-get install -y libcurl4-openssl-dev
+
 
 RUN apt-get install libcurl-dev
 
