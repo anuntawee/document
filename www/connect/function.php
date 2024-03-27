@@ -583,7 +583,7 @@ class insert extends dbh
 	public function add_user($data)
 	{
 		$db = $this->connect();
-		$add_user = $db->prepare("INSERT INTO tb_member (memer_id, member_name, member_lastname, member_email, member_pass, member_role, member_view, member_comment, member_edits, member_approve, member_signoff) VALUES (NULL,?,?,?,?,NULL, NULL, NULL, NULL, NULL);");
+		$add_user = $db->prepare("INSERT INTO tb_member (memer_id, member_name, member_lastname, member_email, member_pass, member_role, member_view, member_comment, member_edits, member_approve, member_signoff) VALUES (NULL,?,?,?,?,'0', '0', '0', '0', '0');");
 		$add_user->bind_param("sssss", $data['member_name'], $data['member_lastname'], $data['member_email'], $data['member_pass'], $data['member_role']);
 		if (!$add_user->execute()) {
 			echo $db->error;
