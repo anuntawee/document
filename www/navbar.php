@@ -1,16 +1,16 @@
 <?php
-session_start();
-if ($_SESSION['member_id'] == "") {
-    echo "Please Login!";
-    exit();
-} else {
-    $member_id = $_SESSION["member_id"];
-    $member_email = $_SESSION["member_email"];
-    $member_view = $_SESSION["member_view"];
-    $member_comment = $_SESSION["member_comment"];
-    $member_edits = $_SESSION["member_edits"];
-    $member_approve = $_SESSION["member_approve"];
-    $member_signoff = $_SESSION["member_signoff"];
+// session_start();
+// if ($_SESSION['member_id'] == "") {
+//     echo "Please Login!";
+//     exit();
+// } else {
+//     $member_id = $_SESSION["member_id"];
+//     $member_email = $_SESSION["member_email"];
+//     $member_view = $_SESSION["member_view"];
+//     $member_comment = $_SESSION["member_comment"];
+//     $member_edits = $_SESSION["member_edits"];
+//     $member_approve = $_SESSION["member_approve"];
+//     $member_signoff = $_SESSION["member_signoff"];
     // echo "Welcome, User ID: $member_id";
     // echo "$member_view";
     // echo "$member_comment";
@@ -18,8 +18,8 @@ if ($_SESSION['member_id'] == "") {
     // echo "$member_approve";
     // echo "$member_signoff";
     // var_dump($_SESSION);
-}
-?>
+// }
+// ?>
 
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
