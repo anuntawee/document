@@ -22,9 +22,7 @@ if ($_SESSION['member_id'] == "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -50,7 +48,7 @@ if ($_SESSION['member_id'] == "") {
 
 </head>
 <?php
-include 'connect/function.php';
+include 'connect\function.php';
 $user = new User();
 ?>
 
@@ -113,11 +111,11 @@ $user = new User();
                                                                     placeholder="นามสกุล" name="member_lastname"
                                                                     id="member_lastname">
                                                             </div>
-                                                            <br>
                                                             <div class="col-12">
                                                                 <br>
                                                                 <input type="text" class="form-control"
                                                                     placeholder="E-Mail" name="member_email">
+                                                                    <br>
                                                                     <input type="text" class="form-control"
                                                                     placeholder="Password" name="member_pass">
                                                                 <br>
@@ -161,7 +159,7 @@ $user = new User();
                                                                     <option value="ADMIN">ADMIN</option>
                                                                 </select>
                                                                 <br>
-                                                                <h4>กำหนด Role-Permission</h4>
+                                                                <!-- <h4>กำหนด Role-Permission</h4> -->
                                                             </div>
                                                         </div>
                                                 </div>
@@ -357,7 +355,7 @@ $user = new User();
                     type: "POST",
                     url: "connect/process.php",
                     data: {
-                        delete_project: id
+                        delete_member: id
                     },
                     success: function (data) {
                         alert(data);
@@ -398,7 +396,7 @@ $user = new User();
                 success: function (data) {
                     //close modal
                     $(".close").trigger("click");
-                    // alert(data);
+                    alert(data);
                     location.reload();
                 }
             });

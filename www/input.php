@@ -157,11 +157,12 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
-                                                <input type="text" id="doc_project_name_draft" name="doc_project_name"
+                                                <input type="hidden" id="doc_project_name_draft" name="doc_project_name"
                                                     value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="return add_user_form('Draft', '<?php echo $template_name; ?>');">SUBMIT</button>
                                             </form>
+                                            <br>
                                         </div>
                                         <div id="2" style="display:none">
                                             <form id="add_user_form_review" method="POST" name="upload_doc"
@@ -187,7 +188,7 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
-                                                <input type="text" id="doc_project_name_review" name="doc_project_name"
+                                                <input type="hidden" id="doc_project_name_review" name="doc_project_name"
                                                     value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="return add_user_form('Review', '<?php echo $template_name; ?>');">SUBMIT</button>
@@ -218,7 +219,7 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
-                                                <input type="text" id="doc_project_name_final" name="doc_project_name"
+                                                <input type="hidden" id="doc_project_name_final" name="doc_project_name"
                                                     value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="return add_user_form('Final', '<?php echo $template_name; ?>');">SUBMIT</button>
@@ -249,7 +250,7 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
-                                                <input type="text" id="doc_project_name_internalsign"
+                                                <input type="hidden" id="doc_project_name_internalsign"
                                                     name="doc_project_name" value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="return add_user_form('InternalSign', '<?php echo $template_name; ?>');">SUBMIT</button>
@@ -280,7 +281,7 @@ $user = new User();
                                                 }
                                                 ?>
                                                 <br>
-                                                <input type="text" id="doc_project_name_externalsign"
+                                                <input type="hidden" id="doc_project_name_externalsign"
                                                     name="doc_project_name" value="<?php echo $project_name ?>">
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="return add_user_form('ExternaSign', '<?php echo $template_name; ?>');">SUBMIT</button>

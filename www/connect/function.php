@@ -461,6 +461,18 @@ class delete extends dbh
 			echo "ลบข้อมูลเรียบร้อย";
 		}
 	}
+	public function delete_member($id)
+	{
+		$db = $this->connect();
+		var_dump($id);
+		$del_user = $db->prepare("DELETE FROM tb_member WHERE member_id = ?;");
+		$del_user->bind_param("i", $id);
+		if (!$del_user->execute()) {
+			echo $db->error;
+		} else {
+			echo "ลบข้อมูลเรียบร้อย";
+		}
+	}
 }
 
 class update extends dbh
@@ -503,7 +515,7 @@ class update extends dbh
 			echo "แก้ไขข้อมูลเรียบร้อย";
 		}
 	}
-	public function edit_user($data)
+	public function edit_member($data)
 	{
 		$db = $this->connect();
 		$member_id = $data['member_id'];
@@ -583,7 +595,7 @@ class insert extends dbh
 	public function add_user($data)
 	{
 		$db = $this->connect();
-		$add_user = $db->prepare("INSERT INTO tb_member (memer_id, member_name`, `member_lastname`, `member_email`, `member_pass`, `member_role`, `member_view`, `member_comment`, `member_edits`, `member_approve`, `member_signoff`) VALUES (NULL,?,?,?,?,NULL, NULL, NULL, NULL, NULL);");
+		$add_user = $db->prepare("INSERT INTO `tb_member` (`member_id`, `member_name`, `member_lastname`, `member_email`, `member_pass`, `member_role`, `member_view`, `member_comment`, `member_edits`, `member_approve`, `member_signoff`) VALUES (NULL, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, NULL);");
 		$add_user->bind_param("sssss", $data['member_name'], $data['member_lastname'], $data['member_email'], $data['member_pass'], $data['member_role']);
 		if (!$add_user->execute()) {
 			echo $db->error;

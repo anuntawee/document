@@ -399,11 +399,17 @@ if (isset ($_POST['show_edit_user_id'])) {
 if (isset ($_POST['edit_get_id'])) {
   $getupdate->edit_get($_POST);
 }
+else if(isset($_POST['member_id'])) {
+  $getupdate->edit_member($_POST);
+}
 // var_dump($_POST);
 if (isset ($_POST['delete_project'])) {
   $delete->delete_project($_POST['delete_project']);
 } 
 else if (isset ($_POST['delete_all'])) {
   $delete->delete_all($_POST['delete_all']);
+}
+else if (isset ($_POST['delete_member'])) {
+  $delete->delete_member($_POST['delete_member']);
 }
 ?>
