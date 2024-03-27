@@ -8,11 +8,11 @@ class dbh
 
 	protected function connect()
 	{
-		$this->host = "10.1.1.127:3306";
+		$this->host = "localhost";
 		$this->Username = "root";
 		$this->password = "";
 		$this->db = "projectscg";
-		$con = new mysqli($this->host = "10.1.1.127:3306", $this->Username = "root", $this->password = "", $this->db = "projectscg");
+		$con = new mysqli($this->host = "localhost", $this->Username = "root", $this->password = "", $this->db = "projectscg");
 		$con->set_charset("utf8");
 		date_default_timezone_set('Asia/Bangkok');
 		return $con;
