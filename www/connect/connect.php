@@ -1,5 +1,5 @@
 <?php
-$servername = "10.1.1.127:3306";  // Change to your server name
+$servername = "localhost";  // Change to your server name
 $username = "root"; // Change to your MySQL username
 $password = ""; // Change to your MySQL password
 $dbname = "projectscg";   // Change to your database name
@@ -11,5 +11,4 @@ $con->set_charset("utf8");
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 } 
-
 ?>
