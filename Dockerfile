@@ -6,6 +6,8 @@ RUN a2enmod rewrite
 RUN apt-get update \
     && apt-get install -y vim
 
+RUN apt-get install libcurl-dev
+
 RUN docker-php-ext-install mysqli curl mbstring pdo pdo_mysql
 
 # Set the working directory to /var/www/html
