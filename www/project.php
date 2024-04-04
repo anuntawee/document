@@ -200,14 +200,16 @@ $user = new User();
                                                             if (is_array($getalluser) || is_object($getalluser)) {
                                                                 $displayedRoles = array(); // สร้างตัวแปรเพื่อเก็บค่าชื่อที่เคยแสดงแล้ว
                                                                 foreach ($getalluser as $i => $rowree) {
-                                                                    if (isset ($rowree)) {
-                                                                        $memberRole = $rowree['member_role'];
+                                                                    if (isset($rowree)) {
+                                                                        $memberRole = $rowree['member_name'];
                                                                         // ตรวจสอบว่าชื่อนี้มีอยู่ในรายการที่เคยแสดงแล้วหรือไม่
                                                                         if (!in_array($memberRole, $displayedRoles)) {
                                                                             // ถ้ายังไม่มีก็แสดงชื่อนี้
                                                                             ?>
-                                                                            <option value="<?php echo $rowree['member_role']; ?>">
-                                                                                <?php echo $rowree['member_role']; ?>
+                                                                            <option
+                                                                                value="<?php echo $rowree['member_name']; ?> <?php echo $rowree['member_lastname']; ?>">
+                                                                                <?php echo $rowree['member_name']; ?>
+                                                                                <?php echo $rowree['member_lastname']; ?>
                                                                             </option>
                                                                             <?php
                                                                             // เพิ่มชื่อนี้เข้าไปในรายการที่เคยแสดงแล้ว
@@ -252,8 +254,12 @@ $user = new User();
                                             $getuser = $user->getallproject();
                                             if (is_array($getuser) || is_object($getuser)) {
                                                 foreach ($getuser as $i => $rowre)
-                                                    if (isset ($rowre)) {
-                                                        //print_r($rowre);
+                                                    if (isset($rowre)) {
+                                                        // print_r($rowre['project_person']);
+                                                        $names = $rowre['project_person'];
+                                                        // print_r($names);
+                                                        // $name_array = explode(",", $names);
+                                                        // print_r($name_array);
                                                         ?>
                                                         <tr>
                                                             <td width="5%">
@@ -262,9 +268,28 @@ $user = new User();
                                                             <td width="10%">
                                                                 <?php echo $rowre['project_name']; ?>
                                                             </td>
-                                                            <td >
+                                                            <td>
                                                                 <!-- <?php echo str_replace('"', "\n", $rowre['project_person']); ?> -->
-                                                                <?php echo str_replace(['[', ']', '"'], '', $rowre['project_person']); ?>
+                                                                <?php
+                                                                if (isset($rowre['project_person'])) {
+
+                                                                    $string = $rowre['project_person'];
+                                                                    $array = json_decode($string, true);
+                                                                    $value = $array['Sergio Rattanakapong'];
+                                                                    echo $value;
+                                                                    $desired_names = ["Kanyaporn Makonkhan", "Sergio Rattanakapong", "Sasichom Ritbanrueng", "Karachakay Intarasuwan", "Sukrit Anu", "Kanokwan Rueanthai", "Pramisa Aiemanan"];
+                                                                    // var_dump($desired_names[1]);
+                                                                    if (($value == $desired_names[1])) {
+                                                                        // หากเป็นจริง แสดงผลลัพธ์
+                                                                        echo $array[4] . "<br>";
+                                                                        echo $array[5];
+                                                                    } else {
+                                                                        echo 'ไม่ได้กรอกข้อมูล PM , PO';
+                                                                    }
+                                                                }
+
+                                                                ?>
+                                                                <!-- <?php echo str_replace(['[', ']', '"'], '', $rowre['project_person']); ?> -->
                                                             </td>
                                                             <td>
                                                                 <!-- <button type="button" class="btn btn-outline-primary"><i
@@ -279,6 +304,7 @@ $user = new User();
                                                             </td>
                                                         </tr>
                                                         <?php
+
                                                     }
                                             } else {
                                                 // echo "ยังไม่ได้กรอกข้อมูล";

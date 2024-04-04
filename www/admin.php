@@ -77,7 +77,7 @@ $user = new User();
                         <div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h1>กำหนด Role-Permission</h1>
+                                    <h1>Role-Permission</h1>
                                     <!-- Button to Open the Modal -->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#myModal">

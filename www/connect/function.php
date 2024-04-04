@@ -789,21 +789,24 @@ class insert extends dbh
 		$uploadOk = move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $targetFilePath);
 		$filename = basename($_FILES["fileUpload"]["name"]);
 		if (!$uploadOk) {
-			echo json_encode(["success" => false, "message" => "Error uploading file."]);
-			var_dump($data);
-			var_dump($_FILES);
+			// echo json_encode(["success" => false, "message" => "Error uploading file."]);
+			echo 'กรุณาแนบไฟล์ก่อนที่จะส่งข้อมูล';
+			// echo json_encode(["success" => false, "message" => "Error uploading file."]);
+			// var_dump($data);
+			// var_dump($_FILES);
 			return;
 		}
 		$db = $this->connect();
-		$add_user = $db->prepare("INSERT INTO `tb_doc` (`doc_id`, `doc_name`, `doc_path`, `doc_status`, `doc_version`, `doc_project_name`, `doc_template`, `doc_time`) 
-		VALUES (NULL,?,?,?,?,?,?,NOW());");
+		$add_user = $db->prepare("INSERT INTO `tb_doc` (`doc_id`, `doc_name`, `doc_path`, `doc_status`, `doc_version`, `doc_project_name`, `doc_upload_by`, `doc_template`, `doc_time`) 
+		VALUES (NULL,?,?,?,?,?,?,?,NOW());");
 		$add_user->bind_param(
-			"ssssss",
+			"sssssss",
 			$filename,
 			$targetFilePath,
 			$data['doc_status'],
 			$data['doc_version'],
 			$data['doc_project_name'],
+			$data['doc_upload_by'],
 			$data['template_name'],
 		);
 		if (!$add_user->execute()) {
