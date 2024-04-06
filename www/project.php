@@ -205,9 +205,9 @@ $user = new User();
                                                                         // ตรวจสอบว่าชื่อนี้มีอยู่ในรายการที่เคยแสดงแล้วหรือไม่
                                                                         if (!in_array($memberRole, $displayedRoles)) {
                                                                             // ถ้ายังไม่มีก็แสดงชื่อนี้
+                                                                            $value = $rowree['member_name'] . ' ' . $rowree['member_lastname'] . ',' . $rowree['member_role'];
                                                                             ?>
-                                                                            <option
-                                                                                value="<?php echo $rowree['member_name']; ?> <?php echo $rowree['member_lastname']; ?>">
+                                                                            <option value="<?php echo $value; ?>">
                                                                                 <?php echo $rowree['member_name']; ?>
                                                                                 <?php echo $rowree['member_lastname']; ?>
                                                                             </option>
@@ -253,59 +253,58 @@ $user = new User();
                                             <?php
                                             $getuser = $user->getallproject();
                                             if (is_array($getuser) || is_object($getuser)) {
-                                                foreach ($getuser as $i => $rowre)
-                                                    if (isset($rowre)) {
-                                                        // print_r($rowre['project_person']);
-                                                        $names = $rowre['project_person'];
-                                                        // print_r($names);
-                                                        // $name_array = explode(",", $names);
-                                                        // print_r($name_array);
-                                                        ?>
-                                                        <tr>
-                                                            <td width="5%">
-                                                                <?php echo "" . ($i + 1); ?>
-                                                            </td>
-                                                            <td width="10%">
-                                                                <?php echo $rowre['project_name']; ?>
-                                                            </td>
-                                                            <td>
-                                                                <!-- <?php echo str_replace('"', "\n", $rowre['project_person']); ?> -->
-                                                                <?php
-                                                                if (isset($rowre['project_person'])) {
-
-                                                                    $string = $rowre['project_person'];
-                                                                    $array = json_decode($string, true);
-                                                                    $value = $array['Sergio Rattanakapong'];
-                                                                    echo $value;
-                                                                    $desired_names = ["Kanyaporn Makonkhan", "Sergio Rattanakapong", "Sasichom Ritbanrueng", "Karachakay Intarasuwan", "Sukrit Anu", "Kanokwan Rueanthai", "Pramisa Aiemanan"];
-                                                                    // var_dump($desired_names[1]);
-                                                                    if (($value == $desired_names[1])) {
-                                                                        // หากเป็นจริง แสดงผลลัพธ์
-                                                                        echo $array[4] . "<br>";
-                                                                        echo $array[5];
-                                                                    } else {
-                                                                        echo 'ไม่ได้กรอกข้อมูล PM , PO';
-                                                                    }
+                                                foreach ($getuser as $i => $rowre) {
+                                                    if (isset($rowre['project_person'])) {
+                                                        $items = $rowre['project_person'];
+                                                        // $items = str_replace([' ', '[', ']', ], '', $items);
+                                                        $items = str_replace([' ', '[', ']',], ',', $items);
+                                                        // $array = explode(',', $items);
+                                                        // $count = count($array);
+                                            
+                                                    }
+                                                    ?>
+                                                    <tr>
+                                                        <td width="5%">
+                                                            <?php echo "" . ($i + 1); ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $rowre['project_name']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            $sections = explode('","', substr($items, 2, -1)); // แยกสตริงเป็นส่วนย่อยๆ
+                                                            foreach ($sections as $section) {
+                                                                if (strpos($section, 'Project') !== false || strpos($section, 'Manager') !== false || strpos($section, 'Coordinator') !== false) { // ตรวจสอบว่าพบคำว่า 'Manager' หรือ 'Coordinator' ในส่วนไหน
+                                                                    $parts = explode(',', $section); // แยกส่วนย่อยๆ ด้วยเครื่องหมาย ,
+                                                                    echo $parts[0] . ' ' . $parts[1] . ','; 
                                                                 }
-
-                                                                ?>
-                                                                <!-- <?php echo str_replace(['[', ']', '"'], '', $rowre['project_person']); ?> -->
-                                                            </td>
-                                                            <td>
-                                                                <!-- <button type="button" class="btn btn-outline-primary"><i
+                                                            }
+                                                            // for ($i = 0; $i < count($array); $i += 2) {
+                                                            //     // ตรวจสอบว่าสมาชิกปัจจุบันมีคำว่า "Manager" หรือ "Coordinator" หรือไม่
+                                                            //     if (strpos($array[$i + 1], 'Project') !== false) {
+                                                            //         // $result = implode($array[$i]);
+                                                            //         // echo $array[$i] . " " . $array[$i + 1] . "<br>";
+                                                            //         echo $array[$i];
+                                                            //     }
+                                                            // }
+                                                            ?>
+                                                            <!-- <?php echo str_replace(['[', ']', '"'], '', $rowre['project_person']); ?> -->
+                                                        </td>
+                                                        <td>
+                                                            <!-- <button type="button" class="btn btn-outline-primary"><i
                                                                         class="fas fa-fw fa-pencil-alt"
                                                                         aria-hidden="true"></i></button>
                                                                 <button type="button" class="btn btn-outline-warning"> <i
                                                                         class="fas fa-fw fa-calendar"
                                                                         aria-hidden="true"></i></button> -->
-                                                                <button type="button" class="btn btn-outline-danger"
-                                                                    onclick="return delete_project(<?php echo $rowre['project_id']; ?>);">
-                                                                    <i class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
+                                                            <button type="button" class="btn btn-outline-danger"
+                                                                onclick="return delete_project(<?php echo $rowre['project_id']; ?>);">
+                                                                <i class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
 
-                                                    }
+                                                }
                                             } else {
                                                 // echo "ยังไม่ได้กรอกข้อมูล";
                                             }
@@ -450,8 +449,7 @@ $user = new User();
 
         function removeOption(index) {
             selectedOptions.splice(index, 1);
-            renderSelectedOptions();
-        }
+            renderSelectedOptions(); }
 
     </script>
 

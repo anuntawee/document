@@ -424,7 +424,7 @@ class delete extends dbh
 	public function delete_project($id)
 	{
 		$db = $this->connect();
-		var_dump($id);
+		// var_dump($id);
 		$del_user = $db->prepare("DELETE FROM tb_project WHERE project_id = ?;");
 		$del_user->bind_param("i", $id);
 		if (!$del_user->execute()) {
@@ -584,6 +584,13 @@ class insert extends dbh
 		$db = $this->connect();
 		$jsonData = json_encode($data['project_person']);
 		$jsonData = json_encode($data['selectedOptions']);
+
+		// var_dump($jsonData);
+		$parts = explode(',', $jsonData);
+	// $member_name = $parts[0];
+	// $member_lastname = $parts[1];
+	// $member_role = $parts[2];
+		// var_dump($parts);
 		$add_user = $db->prepare("INSERT INTO tb_project(project_id,project_name,project_person) VALUES(NULL,?,?) ");
 		$add_user->bind_param("ss", $data['project_name'], $jsonData);
 		if (!$add_user->execute()) {
