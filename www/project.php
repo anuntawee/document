@@ -267,7 +267,7 @@ $user = new User();
                                                         <td width="5%">
                                                             <?php echo "" . ($i + 1); ?>
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center" width="20%">
                                                             <?php echo $rowre['project_name']; ?>
                                                         </td>
                                                         <td>
@@ -276,7 +276,7 @@ $user = new User();
                                                             foreach ($sections as $section) {
                                                                 if (strpos($section, 'Project') !== false || strpos($section, 'Manager') !== false || strpos($section, 'Coordinator') !== false) { // ตรวจสอบว่าพบคำว่า 'Manager' หรือ 'Coordinator' ในส่วนไหน
                                                                     $parts = explode(',', $section); // แยกส่วนย่อยๆ ด้วยเครื่องหมาย ,
-                                                                    echo $parts[0] . ' ' . $parts[1] . ','; 
+                                                                    echo $parts[0] . ' ' . $parts[1] . '<br>'; 
                                                                 }
                                                             }
                                                             // for ($i = 0; $i < count($array); $i += 2) {
