@@ -843,7 +843,7 @@ class insert extends dbh
 			$mail->Host = 'smtp.gmail.com';  // เซิร์ฟเวอร์ SMTP ของ Gmail
 			$mail->SMTPAuth = true;
 			$mail->Username = 'anuntaweett@gmail.com'; // ที่อยู่อีเมล Gmail ของคุณ
-			$mail->Password = 'Anuntaweett2537'; // รหัสผ่าน Gmail ของคุณ
+			$mail->Password = '#'; // รหัสผ่าน Gmail ของคุณ
 			$mail->SMTPSecure = 'tls'; // เลือก 'tls' หรือ 'ssl' (ถ้ามี)
 			$mail->Port = 587; // หรือ 465 (เพื่อ 'ssl')
 
