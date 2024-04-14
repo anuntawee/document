@@ -848,8 +848,8 @@ class insert extends dbh
 			$mail->Port = 587; // หรือ 465 (เพื่อ 'ssl')
 
 			// ตั้งค่าผู้รับและหัวข้อ
-			$mail->setFrom('anuntawee.o@gmail.com', 'Your Name');
-			$mail->addAddress('anuntaweett@gmail.com', 'Recipient Name');
+			$mail->setFrom('anuntaweett@gmail.com', 'Your Name');
+			$mail->addAddress('anuntawee.o@gmail.comm', 'Recipient Name');
 			$mail->Subject = 'แจ้งเตือนสถานะเอกสาร: ' . $docName;
 
 			// เนื้อหาของอีเมล
