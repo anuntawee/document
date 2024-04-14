@@ -840,29 +840,32 @@ class insert extends dbh
 
 			// ตั้งค่าการส่งอีเมล
 			$mail->isSMTP();
-			$mail->Host = 'smtp.gmail.com';  // เซิร์ฟเวอร์ SMTP ของ Gmail
+			$mail->Host = 'smtp.office365.com';  // เซิร์ฟเวอร์ SMTP ของ Gmail
 			$mail->SMTPAuth = true;
-			$mail->Username = 'anuntaweett@gmail.com'; // ที่อยู่อีเมล Gmail ของคุณ
-			$mail->Password = '#'; // รหัสผ่าน Gmail ของคุณ
+			$mail->Username = 'anuntaweett@gmail.com';
+			$mail->Password = '#';
 			$mail->SMTPSecure = 'tls'; // เลือก 'tls' หรือ 'ssl' (ถ้ามี)
 			$mail->Port = 587; // หรือ 465 (เพื่อ 'ssl')
 
 			// ตั้งค่าผู้รับและหัวข้อ
-			$mail->setFrom('anuntaweett@gmail.com', 'Your Name');
-			$mail->addAddress('anuntawee.o@gmail.comm', 'Recipient Name');
-			$mail->Subject = 'แจ้งเตือนสถานะเอกสาร: ' . $docName;
+			$mail->setFrom('anuntaweett@gmail.com', 'Report');
+			$mail->addAddress('ditthita.t@merudy.com', 'ditthita.t@merudy.com');
+			$mail->Subject = '=?UTF-8?B?' . base64_encode('แจ้งเตือนสถานะเอกสาร: ' . $docName) . '?=';
 
 			// เนื้อหาของอีเมล
 			$mail->isHTML(true);
-			$mail->Body = "สถานะล่าสุดของเอกสาร $docName คือ $latestStatus";
+			$mail->CharSet = 'UTF-8';
+			$body = "มีการติดตามเอกสารโครงการ $docName สถานะล่าสุดของเอกสารคือ $latestStatus <br> กรุณาตรวจสอบ";
+			$mail->Body = $body;
 
 			// ส่งอีเมล
 			$mail->send();
 			echo 'อีเมลถูกส่งเรียบร้อยแล้ว!';
 		} catch (Exception $e) {
-			echo "เกิดข้อผิดพลาดในการส่งอีเมล: {$mail->ErrorInfo}";
+			echo "เกิดข้อผิดพลาดในการส่งอีเมล: {$mail->ErrorInfo} (รหัสข้อผิดพลาด: {$e->getCode()})";
 		}
+
 	}
-	
+
 }
 ?>
