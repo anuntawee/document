@@ -1,4 +1,6 @@
 <?php
+
+
 class dbh
 {
 	private $host;
@@ -47,7 +49,7 @@ class User extends dbh
 	public function getdocstatus($condition = "")
 	{
 		$sql = "SELECT * FROM tb_doc";
-		if (!empty ($condition)) {
+		if (!empty($condition)) {
 			$sql .= " WHERE " . $condition;
 		}
 		$result = $this->connect()->query($sql);
@@ -62,7 +64,7 @@ class User extends dbh
 	public function getallget($condition = "")
 	{
 		$sql = "SELECT * FROM tb_get";
-		if (!empty ($condition)) {
+		if (!empty($condition)) {
 			$sql .= " WHERE " . $condition;
 		}
 		$result = $this->connect()->query($sql);
@@ -77,7 +79,7 @@ class User extends dbh
 	public function getallpro($condition = "")
 	{
 		$sql = "SELECT * FROM tb_pro";
-		if (!empty ($condition)) {
+		if (!empty($condition)) {
 			$sql .= " WHERE " . $condition;
 		}
 		$result = $this->connect()->query($sql);
@@ -92,7 +94,7 @@ class User extends dbh
 	public function getallsign($condition = "")
 	{
 		$sql = "SELECT * FROM tb_sign";
-		if (!empty ($condition)) {
+		if (!empty($condition)) {
 			$sql .= " WHERE " . $condition;
 		}
 		$result = $this->connect()->query($sql);
@@ -107,7 +109,7 @@ class User extends dbh
 	public function getalldev($condition = "")
 	{
 		$sql = "SELECT * FROM tb_dev";
-		if (!empty ($condition)) {
+		if (!empty($condition)) {
 			$sql .= " WHERE " . $condition;
 		}
 		$result = $this->connect()->query($sql);
@@ -122,7 +124,7 @@ class User extends dbh
 	public function getallsit($condition = "")
 	{
 		$sql = "SELECT * FROM tb_sit";
-		if (!empty ($condition)) {
+		if (!empty($condition)) {
 			$sql .= " WHERE " . $condition;
 		}
 		$result = $this->connect()->query($sql);
@@ -137,7 +139,7 @@ class User extends dbh
 	public function getallinter($condition = "")
 	{
 		$sql = "SELECT * FROM tb_internal";
-		if (!empty ($condition)) {
+		if (!empty($condition)) {
 			$sql .= " WHERE " . $condition;
 		}
 		$result = $this->connect()->query($sql);
@@ -152,7 +154,7 @@ class User extends dbh
 	public function getallusertest($condition = "")
 	{
 		$sql = "SELECT * FROM tb_usertest";
-		if (!empty ($condition)) {
+		if (!empty($condition)) {
 			$sql .= " WHERE " . $condition;
 		}
 		$result = $this->connect()->query($sql);
@@ -167,7 +169,7 @@ class User extends dbh
 	public function getallend($condition = "")
 	{
 		$sql = "SELECT * FROM tb_end";
-		if (!empty ($condition)) {
+		if (!empty($condition)) {
 			$sql .= " WHERE " . $condition;
 		}
 		$result = $this->connect()->query($sql);
@@ -183,11 +185,11 @@ class User extends dbh
 	public function getwheredoc($condition1 = "", $condition2 = "")
 	{
 		$sql = "SELECT * FROM tb_doc";
-		if (!empty ($condition1) && !empty ($condition2)) {
+		if (!empty($condition1) && !empty($condition2)) {
 			$sql .= " WHERE " . $condition1 . " AND " . $condition2;
-		} elseif (!empty ($condition1)) {
+		} elseif (!empty($condition1)) {
 			$sql .= " WHERE " . $condition1;
-		} elseif (!empty ($condition2)) {
+		} elseif (!empty($condition2)) {
 			$sql .= " WHERE " . $condition2;
 		}
 		$result = $this->connect()->query($sql);
@@ -203,10 +205,10 @@ class User extends dbh
 	{
 		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Draft'";
 		// เพิ่มเงื่อนไขการค้นหาที่ถูกส่งมาในพารามิเตอร์
-		if (!empty ($condition1)) {
+		if (!empty($condition1)) {
 			$sql .= " AND " . $condition1;
 		}
-		if (!empty ($condition2)) {
+		if (!empty($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
 		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
@@ -222,10 +224,10 @@ class User extends dbh
 	public function getreviewdoc_version($condition1 = "", $condition2 = "")
 	{
 		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Review'";
-		if (!empty ($condition1)) {
+		if (!empty($condition1)) {
 			$sql .= " AND " . $condition1;
 		}
-		if (!empty ($condition2)) {
+		if (!empty($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
 		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
@@ -241,10 +243,10 @@ class User extends dbh
 	public function getfinaldoc_version($condition1 = "", $condition2 = "")
 	{
 		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'Final'";
-		if (!empty ($condition1)) {
+		if (!empty($condition1)) {
 			$sql .= " AND " . $condition1;
 		}
-		if (!empty ($condition2)) {
+		if (!empty($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
 		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
@@ -260,10 +262,10 @@ class User extends dbh
 	public function getintelnaldoc_version($condition1 = "", $condition2 = "")
 	{
 		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'InternalSign'";
-		if (!empty ($condition1)) {
+		if (!empty($condition1)) {
 			$sql .= " AND " . $condition1;
 		}
-		if (!empty ($condition2)) {
+		if (!empty($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
 		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
@@ -279,10 +281,10 @@ class User extends dbh
 	public function getextelnaldoc_version($condition1 = "", $condition2 = "")
 	{
 		$sql = "SELECT `doc_version`, DATE_FORMAT(`doc_time`, '%Y-%m-%d %H:%i:%s') AS `formatted_doc_time` FROM `tb_doc` WHERE `doc_status` = 'ExternaSign'";
-		if (!empty ($condition1)) {
+		if (!empty($condition1)) {
 			$sql .= " AND " . $condition1;
 		}
-		if (!empty ($condition2)) {
+		if (!empty($condition2)) {
 			$sql .= " AND " . $condition2;
 		}
 		$sql .= " ORDER BY `doc_time` DESC LIMIT 1;";
@@ -519,19 +521,19 @@ class update extends dbh
 	{
 		$db = $this->connect();
 		$member_id = $data['member_id'];
-		if (isset ($data['view'])) {
+		if (isset($data['view'])) {
 			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_view` = ? WHERE `tb_member`.`member_id` = ?");
 			$edit_user->bind_param("si", $data['view'], $member_id);
-		} elseif (isset ($data['comment'])) {
+		} elseif (isset($data['comment'])) {
 			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_comment` = ? WHERE `tb_member`.`member_id` = ?");
 			$edit_user->bind_param("si", $data['comment'], $member_id);
-		} elseif (isset ($data['edits'])) {
+		} elseif (isset($data['edits'])) {
 			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_edits` = ? WHERE `tb_member`.`member_id` = ?");
 			$edit_user->bind_param("si", $data['edits'], $member_id);
-		} elseif (isset ($data['approve'])) {
+		} elseif (isset($data['approve'])) {
 			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_approve` = ? WHERE `tb_member`.`member_id` = ?");
 			$edit_user->bind_param("si", $data['approve'], $member_id);
-		} elseif (isset ($data['signoff'])) {
+		} elseif (isset($data['signoff'])) {
 			$edit_user = $db->prepare("UPDATE `tb_member` SET `member_signoff` = ? WHERE `tb_member`.`member_id` = ?");
 			$edit_user->bind_param("si", $data['signoff'], $member_id);
 		}
@@ -577,6 +579,9 @@ class update extends dbh
 
 
 }
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class insert extends dbh
 {
 	public function add_project($data)
@@ -587,9 +592,9 @@ class insert extends dbh
 
 		// var_dump($jsonData);
 		$parts = explode(',', $jsonData);
-	// $member_name = $parts[0];
-	// $member_lastname = $parts[1];
-	// $member_role = $parts[2];
+		// $member_name = $parts[0];
+		// $member_lastname = $parts[1];
+		// $member_role = $parts[2];
 		// var_dump($parts);
 		$add_user = $db->prepare("INSERT INTO tb_project(project_id,project_name,project_person) VALUES(NULL,?,?) ");
 		$add_user->bind_param("ss", $data['project_name'], $jsonData);
@@ -613,7 +618,7 @@ class insert extends dbh
 	public function add_timeplan($data)
 	{
 		$db = $this->connect();
-		if (isset ($data['timeplan_status_name'])) {
+		if (isset($data['timeplan_status_name'])) {
 			$add_user_get = $db->prepare("INSERT INTO `tb_get` (`get_id`, `get_name`, `getstart`, `getend`, `get_statname`, `get_workstart`, `get_workend`, `get_work_name2`, `get_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_get->bind_param(
 				"ssssssss",
@@ -627,7 +632,7 @@ class insert extends dbh
 				$data['timeplan_project_name'],
 			);
 		}
-		if (isset ($data['timeplan_status_name_2'])) {
+		if (isset($data['timeplan_status_name_2'])) {
 			$add_user_pro = $db->prepare("INSERT INTO `tb_pro` (`pro_id`, `pro_nam`, `prostart`, `proend`, `pro_statname`, `pro_workstart`, `pro_workend`, `pro_work_name2`, `pro_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_pro->bind_param(
 				"ssssssss",
@@ -641,7 +646,7 @@ class insert extends dbh
 				$data['timeplan_project_name'],
 			);
 		}
-		if (isset ($data['timeplan_status_name_3'])) {
+		if (isset($data['timeplan_status_name_3'])) {
 			$add_user_sign = $db->prepare("INSERT INTO `tb_sign` (`sign_id`, `sign_name`, `sign_start`, `sign_end`, `sign_startname`, `sign_workname`, `sign_workend`, `sign_work_name2`, `sign_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_sign->bind_param(
 				"ssssssss",
@@ -655,7 +660,7 @@ class insert extends dbh
 				$data['timeplan_project_name'],
 			);
 		}
-		if (isset ($data['timeplan_status_name_4'])) {
+		if (isset($data['timeplan_status_name_4'])) {
 			$add_user_dev = $db->prepare("INSERT INTO `tb_dev` (`dev_id`, `dev_name`, `devstart`, `devend`, `dev_startname`, `dev_workstart`, `dev_workend`, `dev_work_name2`, `dev_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_dev->bind_param(
 				"ssssssss",
@@ -669,7 +674,7 @@ class insert extends dbh
 				$data['timeplan_project_name'],
 			);
 		}
-		if (isset ($data['timeplan_status_name_5'])) {
+		if (isset($data['timeplan_status_name_5'])) {
 			$add_user_sit = $db->prepare("INSERT INTO `tb_sit` (`sit_id`, `sit_name`, `getstart`, `getend`, `sit_getname`, `sit_workstart`, `sit_workend`, `sit_work_name2`, `sit_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_sit->bind_param(
 				"ssssssss",
@@ -683,7 +688,7 @@ class insert extends dbh
 				$data['timeplan_project_name'],
 			);
 		}
-		if (isset ($data['timeplan_status_name_6'])) {
+		if (isset($data['timeplan_status_name_6'])) {
 			$add_user_interlnal = $db->prepare("INSERT INTO `tb_internal` (`internal_id`, `internal_name`, `internalstart`, `internalend`, `internal_startname`, `internal_workstart`, `internal_workend`, `internal_work_name2`, `internal_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_interlnal->bind_param(
 				"ssssssss",
@@ -697,7 +702,7 @@ class insert extends dbh
 				$data['timeplan_project_name'],
 			);
 		}
-		if (isset ($data['timeplan_status_name_7'])) {
+		if (isset($data['timeplan_status_name_7'])) {
 			$add_user_user = $db->prepare("INSERT INTO `tb_usertest` (`usertest_id`, `usertest_name`, `userteststart`, `usertestend`, `usertest_startname`, `usertest_workstart`, `usertest_workend`, `usertest_work_name2`, `usertest_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_user->bind_param(
 				"ssssssss",
@@ -711,7 +716,7 @@ class insert extends dbh
 				$data['timeplan_project_name'],
 			);
 		}
-		if (isset ($data['timeplan_status_name_8'])) {
+		if (isset($data['timeplan_status_name_8'])) {
 			$add_user_end = $db->prepare("INSERT INTO `tb_end` (`end_id`, `end_name`, `endstart`, `endend`, `end_startname`, `end_workstart`, `end_workend`, `end_work_name2`, `end_project_name`) VALUES (NULL,?,?,?,?,?,?,?,?);");
 			$add_user_end->bind_param(
 				"ssssssss",
@@ -822,5 +827,42 @@ class insert extends dbh
 			echo "บันทึกข้อมูลเรียบร้อย";
 		}
 	}
+
+	public function send_email($data)
+	{
+		// รับค่าจาก POST request
+		$docName = $data['docName'];
+		$latestStatus = $data['latestStatus'];
+
+		try {
+			// สร้างอ็อบเจ็กต์ PHPMailer
+			$mail = new PHPMailer(true);
+
+			// ตั้งค่าการส่งอีเมล
+			$mail->isSMTP();
+			$mail->Host = 'smtp.gmail.com';  // เซิร์ฟเวอร์ SMTP ของ Gmail
+			$mail->SMTPAuth = true;
+			$mail->Username = 'anuntaweett@gmail.com'; // ที่อยู่อีเมล Gmail ของคุณ
+			$mail->Password = 'Anuntaweett2537'; // รหัสผ่าน Gmail ของคุณ
+			$mail->SMTPSecure = 'tls'; // เลือก 'tls' หรือ 'ssl' (ถ้ามี)
+			$mail->Port = 587; // หรือ 465 (เพื่อ 'ssl')
+
+			// ตั้งค่าผู้รับและหัวข้อ
+			$mail->setFrom('anuntawee.o@gmail.com', 'Your name');
+			$mail->addAddress('anuntaweett@gmail.com', 'Recipient Name');
+			$mail->Subject = 'แจ้งเตือนสถานะเอกสาร: ' . $docName;
+
+			// เนื้อหาของอีเมล
+			$mail->isHTML(true);
+			$mail->Body = "สถานะล่าสุดของเอกสาร $docName คือ $latestStatus";
+
+			// ส่งอีเมล
+			$mail->send();
+			echo 'อีเมลถูกส่งเรียบร้อยแล้ว!';
+		} catch (Exception $e) {
+			echo "เกิดข้อผิดพลาดในการส่งอีเมล: {$mail->ErrorInfo}";
+		}
+	}
+	
 }
 ?>

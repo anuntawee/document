@@ -1,6 +1,9 @@
 <?php
 include "function.php";
 
+
+include '../vendor/autoload.php';
+
 $delete = new delete();
 $report = new report();
 $getupdate = new update();
@@ -16,6 +19,8 @@ if (isset ($_POST['project_name'])) {
   $insert->add_timeplan($_POST);
 } else if (isset ($_POST['doc_status'])) {
   $insert->add_doc($_POST);
+} else if (isset ($_POST['docName'])) {
+  $insert->send_email($_POST);
 }
 // var_dump($_POST);
 // var_dump($_FILES);
