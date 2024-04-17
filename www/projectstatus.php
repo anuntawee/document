@@ -137,16 +137,18 @@ $user = new User();
                                                         </td>
                                                         <td>
                                                             <?php echo $docName; ?>
+                                                            
                                                         </td>
                                                         <td>
                                                             <?php echo $latestStatus; ?>
+                                                            
                                                         </td>
                                                         <td>
                                                             <?php echo date('Y-m-d H:i:s', $latestDocs[$docName]['time']); ?>
                                                         </td>
                                                         <td>
                                                             <button type="button" class="btn btn-outline-warning"
-                                                                onclick="sendEmail('<?php echo $docName; ?>', '<?php echo $latestStatus; ?>')">
+                                                                onclick="sendEmail('<?php echo $docName; ?>', '<?php echo $latestStatus; ?>','<?php echo $member_email; ?>' )">
                                                                 <i class="fas fa-fw fa-bell" aria-hidden="true"></i>
                                                             </button>
                                                         </td>
@@ -258,11 +260,12 @@ $user = new User();
             var currentValue = parseInt(cell.innerHTML) || 0; // Get current value and convert to integer
             cell.innerHTML = currentValue + 1; // Increment the value
         }
-        function sendEmail(docName, latestStatus) {
+        function sendEmail(docName, latestStatus,member_email) {
             // สร้าง FormData เพื่อเก็บข้อมูล
             var formData = new FormData();
             formData.append('docName', docName);
             formData.append('latestStatus', latestStatus);
+            formData.append('member_email', member_email);
 
 
             $.ajax({

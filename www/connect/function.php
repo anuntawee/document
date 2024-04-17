@@ -833,6 +833,7 @@ class insert extends dbh
 		// รับค่าจาก POST request
 		$docName = $data['docName'];
 		$latestStatus = $data['latestStatus'];
+		$member_email = $data['member_email'];
 
 		try {
 			// สร้างอ็อบเจ็กต์ PHPMailer
@@ -840,12 +841,12 @@ class insert extends dbh
 
 			// ตั้งค่าการส่งอีเมล
 			$mail->isSMTP();
-			$mail->Host = 'smtp.office365.com';  // เซิร์ฟเวอร์ SMTP ของ Gmail
+			$mail->Host = 'smtp.office365.com';  
 			$mail->SMTPAuth = true;
 			$mail->Username = 'anuntaweett@gmail.com';
 			$mail->Password = '#';
-			$mail->SMTPSecure = 'tls'; // เลือก 'tls' หรือ 'ssl' (ถ้ามี)
-			$mail->Port = 587; // หรือ 465 (เพื่อ 'ssl')
+			$mail->SMTPSecure = 'tls'; 
+			$mail->Port = 587; 
 
 			// ตั้งค่าผู้รับและหัวข้อ
 			$mail->setFrom('anuntaweett@gmail.com', 'Report');
@@ -855,7 +856,7 @@ class insert extends dbh
 			// เนื้อหาของอีเมล
 			$mail->isHTML(true);
 			$mail->CharSet = 'UTF-8';
-			$body = "มีการติดตามเอกสารโครงการ $docName สถานะล่าสุดของเอกสารคือ $latestStatus <br> กรุณาตรวจสอบ";
+			$body = "มีการติดตามเอกสารโครงการ $docName <br> จาก $member_email <br> สถานะล่าสุดของเอกสารคือ $latestStatus <br> กรุณาตรวจสอบ";
 			$mail->Body = $body;
 
 			// ส่งอีเมล
