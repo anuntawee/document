@@ -843,13 +843,13 @@ class insert extends dbh
 			$mail->isSMTP();
 			$mail->Host = 'smtp.office365.com';  
 			$mail->SMTPAuth = true;
-			$mail->Username = 'anuntaweett@gmail.com';
-			$mail->Password = '#';
+			$mail->Username = 'test_send11@outlook.co.th';
+			$mail->Password = 'Pair24122538';
 			$mail->SMTPSecure = 'tls'; 
 			$mail->Port = 587; 
 
 			// ตั้งค่าผู้รับและหัวข้อ
-			$mail->setFrom('anuntaweett@gmail.com', 'Report');
+			$mail->setFrom('test_send11@outlook.co.th', 'Report');
 			$mail->addAddress('ditthita.t@merudy.com', 'ditthita.t@merudy.com');
 			$mail->Subject = '=?UTF-8?B?' . base64_encode('แจ้งเตือนสถานะเอกสาร: ' . $docName) . '?=';
 
