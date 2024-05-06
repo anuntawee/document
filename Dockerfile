@@ -27,7 +27,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN composer require phpmailer/phpmailer
 
-COPY ./vendor/phpmailer/phpmailer/ /var/www/html/vendor/phpmailer/phpmailer/
+COPY www/vardor ./var/www/html/
 
 # เปิดพอร์ต 80 หรือพอร์ตที่ต้องการ
 EXPOSE 80
