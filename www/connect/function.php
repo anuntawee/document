@@ -10,11 +10,11 @@ class dbh
 
 	protected function connect()
 	{
-		$this->host = "localhost";
+		$this->host = "db";
 		$this->Username = "root";
-		$this->password = "";
+		$this->password = "root";
 		$this->db = "projectscg";
-		$con = new mysqli($this->host = "localhost", $this->Username = "root", $this->password = "", $this->db = "projectscg");
+		$con = new mysqli($this->host = "db", $this->Username = "root", $this->password = "root", $this->db = "projectscg");
 		$con->set_charset("utf8");
 		date_default_timezone_set('Asia/Bangkok');
 		return $con;
@@ -607,7 +607,8 @@ class insert extends dbh
 	public function add_user($data)
 	{
 		$db = $this->connect();
-		$add_user = $db->prepare("INSERT INTO `tb_member` (`member_id`, `member_name`, `member_lastname`, `member_email`, `member_pass`, `member_role`, `member_view`, `member_comment`, `member_edits`, `member_approve`, `member_signoff`) VALUES (NULL, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, NULL);");
+		$add_user = $db->prepare("INSERT INTO `tb_member` (`member_id`, `member_name`, `member_lastname`, `member_email`, `member_pass`, `member_role`) VALUES (NULL, ?, ?, ?, ?, ?);");
+	
 		$add_user->bind_param("sssss", $data['member_name'], $data['member_lastname'], $data['member_email'], $data['member_pass'], $data['member_role']);
 		if (!$add_user->execute()) {
 			echo $db->error;

@@ -8,6 +8,7 @@ $objResult = mysqli_fetch_array($objQuery, MYSQLI_ASSOC);
 if (!$objResult) {
 	var_dump($_POST);
 	echo "Username and Password Incorrect!";
+	header("Location: ../index.php");
 } else {
 	// ตั้งค่า session
 	$_SESSION["member_id"] = $objResult["member_id"];

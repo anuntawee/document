@@ -49,6 +49,16 @@ if ($_SESSION['member_id'] == "") {
     <link rel="stylesheet" href="css\style.css">
 
 </head>
+<style>
+    #nameList {
+        padding: 0;
+        margin: 0;
+    }
+    .btn.btn-outlinedanger {
+        margin-left: auto;
+    }
+</style>
+
 <?php
 include 'connect/function.php';
 $user = new User();
@@ -440,17 +450,29 @@ $user = new User();
             nameList.innerHTML = '';
             selectedOptions.forEach((option, index) => {
                 const listItem = document.createElement('li');
-                listItem.textContent = option;
-                listItem.dataset.index = index;
-                listItem.addEventListener('click', () => removeOption(index));
+                listItem.style.display = 'flex';
+                listItem.style.justifyContent = 'space-between';
+                listItem.style.alignItems = 'center';
+
+                const textSpan = document.createElement('span');
+                textSpan.textContent = option;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'ลบ';
+                deleteButton.className = 'btn btn-outline-danger'; 
+                deleteButton.addEventListener('click', () => removeOption(index));
+
+                listItem.appendChild(textSpan);
+                listItem.appendChild(deleteButton);
+
                 nameList.appendChild(listItem);
             });
         }
 
         function removeOption(index) {
             selectedOptions.splice(index, 1);
-            renderSelectedOptions(); }
-
+            renderSelectedOptions();
+        }
     </script>
 
 </body>

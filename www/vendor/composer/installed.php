@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'anor/www',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => '00118b9141f1d0549018bcae17be154757ecc7ab',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'anor/www' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '00118b9141f1d0549018bcae17be154757ecc7ab',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

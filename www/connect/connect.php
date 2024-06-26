@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost";  // Change to your server name
+$servername = "db";  // Change to your server name
 $username = "root"; // Change to your MySQL username
-$password = ""; // Change to your MySQL password
+$password = "root"; // Change to your MySQL password
 $dbname = "projectscg";   // Change to your database name
 
 // Create a connection
