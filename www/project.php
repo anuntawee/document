@@ -35,9 +35,7 @@ if ($_SESSION['member_id'] == "") {
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Prompt:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Prompt:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -49,6 +47,16 @@ if ($_SESSION['member_id'] == "") {
     <link rel="stylesheet" href="css\style.css">
 
 </head>
+<style>
+    #nameList {
+        padding: 0;
+        margin: 0;
+    }
+    .btn.btn-outlinedanger {
+        margin-left: auto;
+    }
+</style>
+
 <?php
 include 'connect/function.php';
 $user = new User();
@@ -98,18 +106,14 @@ $user = new User();
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -124,14 +128,12 @@ $user = new User();
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -167,8 +169,7 @@ $user = new User();
                                 <div class="card-body">
                                     <h1>จัดการโครงการ</h1>
                                     <!-- Button to Open the Modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#myModal">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                                         เพิ่มโครงการ
                                     </button>
 
@@ -180,20 +181,16 @@ $user = new User();
                                                 <!-- Modal Header -->
                                                 <div class="modal-header">
                                                     <h4 class="modal-title"> เพิ่มโครงการ</h4>
-                                                    <button type="button" class="btn-close"
-                                                        data-bs-dismiss="modal"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
                                                 <!-- Modal body -->
                                                 <div class="modal-body">
-                                                    <form id="add_user_form" method="POST" name="id_project"
-                                                        class="validated" enctype="multipart/form-data">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="ชื่อโครงการ" name="project_name">
+                                                    <form id="add_user_form" method="POST" name="id_project" class="validated" enctype="multipart/form-data">
+                                                        <input type="text" class="form-control" placeholder="ชื่อโครงการ" name="project_name">
                                                         <br>
                                                         <!-- <input type="text" id="project_person" name="project_person"
                                                             placeholder="Enter ผู้รับชอบ..." class="form-control"> -->
-                                                        <select id="project_person" name="project_person"
-                                                            class="form-control">
+                                                        <select id="project_person" name="project_person" class="form-control">
                                                             <option selected="เพิ่มผู้รับชอบ">เพิ่มผู้รับชอบ</option>
                                                             <?php
                                                             $getalluser = $user->getalluser();
@@ -206,12 +203,12 @@ $user = new User();
                                                                         if (!in_array($memberRole, $displayedRoles)) {
                                                                             // ถ้ายังไม่มีก็แสดงชื่อนี้
                                                                             $value = $rowree['member_name'] . ' ' . $rowree['member_lastname'] . ',' . $rowree['member_role'];
-                                                                            ?>
+                                                            ?>
                                                                             <option value="<?php echo $value; ?>">
                                                                                 <?php echo $rowree['member_name']; ?>
                                                                                 <?php echo $rowree['member_lastname']; ?>
                                                                             </option>
-                                                                            <?php
+                                                            <?php
                                                                             // เพิ่มชื่อนี้เข้าไปในรายการที่เคยแสดงแล้ว
                                                                             $displayedRoles[] = $memberRole;
                                                                         }
@@ -226,11 +223,9 @@ $user = new User();
                                                 </div>
                                                 <!-- Modal footer -->
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary "
-                                                        onclick="return add_user_form();">Save
+                                                    <button type="button" class="btn btn-primary " onclick="return add_user_form();">Save
                                                         changes</button>
-                                                    <button type="button" class="btn btn-danger"
-                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                                     </form>
                                                 </div>
 
@@ -260,9 +255,9 @@ $user = new User();
                                                         $items = str_replace([' ', '[', ']',], ',', $items);
                                                         // $array = explode(',', $items);
                                                         // $count = count($array);
-                                            
+
                                                     }
-                                                    ?>
+                                            ?>
                                                     <tr>
                                                         <td width="5%">
                                                             <?php echo "" . ($i + 1); ?>
@@ -276,7 +271,7 @@ $user = new User();
                                                             foreach ($sections as $section) {
                                                                 if (strpos($section, 'Project') !== false || strpos($section, 'Manager') !== false || strpos($section, 'Coordinator') !== false) { // ตรวจสอบว่าพบคำว่า 'Manager' หรือ 'Coordinator' ในส่วนไหน
                                                                     $parts = explode(',', $section); // แยกส่วนย่อยๆ ด้วยเครื่องหมาย ,
-                                                                    echo $parts[0] . ' ' . $parts[1] . '<br>'; 
+                                                                    echo $parts[0] . ' ' . $parts[1] . '<br>';
                                                                 }
                                                             }
                                                             // for ($i = 0; $i < count($array); $i += 2) {
@@ -297,12 +292,11 @@ $user = new User();
                                                                 <button type="button" class="btn btn-outline-warning"> <i
                                                                         class="fas fa-fw fa-calendar"
                                                                         aria-hidden="true"></i></button> -->
-                                                            <button type="button" class="btn btn-outline-danger"
-                                                                onclick="return delete_project(<?php echo $rowre['project_id']; ?>);">
+                                                            <button type="button" class="btn btn-outline-danger" onclick="return delete_project(<?php echo $rowre['project_id']; ?>);">
                                                                 <i class="fas fa-fw fa-trash" aria-hidden="true"></i></button>
                                                         </td>
                                                     </tr>
-                                                    <?php
+                                            <?php
 
                                                 }
                                             } else {
@@ -346,8 +340,7 @@ $user = new User();
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -388,7 +381,7 @@ $user = new User();
         const nameList = document.getElementById('nameList');
         let selectedOptions = [];
 
-        input.addEventListener('change', function (e) {
+        input.addEventListener('change', function(e) {
             const selectedOption = e.target.value;
             if (!selectedOptions.includes(selectedOption)) {
                 selectedOptions.push(selectedOption);
@@ -408,7 +401,7 @@ $user = new User();
                 data: formData,
                 processData: false, // Prevent jQuery from processing data
                 contentType: false, // Prevent jQuery from setting content type
-                success: function (data) {
+                success: function(data) {
                     //close modal
                     $(".close").trigger("click");
                     //show result
@@ -419,6 +412,7 @@ $user = new User();
             });
             return false;
         }
+
         function delete_project(id) {
             if (confirm("คุณต้องการลบข้อมูลหรือไม่")) {
                 $.ajax({
@@ -427,7 +421,7 @@ $user = new User();
                     data: {
                         delete_project: id
                     },
-                    success: function (data) {
+                    success: function(data) {
                         alert(data);
                         location.reload();
                     }
@@ -440,17 +434,32 @@ $user = new User();
             nameList.innerHTML = '';
             selectedOptions.forEach((option, index) => {
                 const listItem = document.createElement('li');
-                listItem.textContent = option;
-                listItem.dataset.index = index;
-                listItem.addEventListener('click', () => removeOption(index));
+                listItem.style.display = 'flex';
+                listItem.style.justifyContent = 'space-between';
+                listItem.style.alignItems = 'center';
+
+                const textSpan = document.createElement('span');
+                textSpan.textContent = option;
+
+                // สร้างปุ่มลบ
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'ลบ';
+                deleteButton.className = 'btn btn-outline-danger'; // เพิ่ม class
+                deleteButton.addEventListener('click', () => removeOption(index));
+
+                // เพิ่มข้อความและปุ่มลบเข้าไปใน li
+                listItem.appendChild(textSpan);
+                listItem.appendChild(deleteButton);
+
+                // เพิ่ม li เข้าไปใน nameList
                 nameList.appendChild(listItem);
             });
         }
 
         function removeOption(index) {
             selectedOptions.splice(index, 1);
-            renderSelectedOptions(); }
-
+            renderSelectedOptions();
+        }
     </script>
 
 </body>

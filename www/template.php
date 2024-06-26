@@ -196,16 +196,16 @@ if ($_SESSION['member_id'] == "") {
                                         </div>
                                         <div class="col-10">
                                             <span>
-                                                <h5 onclick="downloadFile()">1) Business Requirement Document</h5>
-                                                <h5 onclick="downloadFile2()">2) Acceptance Record</h5>
-                                                <h5 onclick="downloadFile3()">3) Change Request </h5>
-                                                <!-- <h5 onclick="downloadFile4()">4) Correction Register</h5> -->
+                                                <!-- <h5 onclick="downloadFile()">1) Business Requirement Document</h5> -->
+                                                <h5 onclick="downloadFile()">1) Acceptance Record</h5>
+                                                <h5 onclick="downloadFile2()">2) Change Request </h5>
+                                                <h5 onclick="downloadFile3()">3) Correction Register</h5>
                                                 <h5 onclick="downloadFile5()">4) Maintenance Documentation</h5>
                                                 <!-- <h5 onclick="downloadFile6()">6) Product Operation Guide</h5> -->
                                                 <h5 onclick="downloadFile7()">5) Progress Status Record</h5>
                                                 <h5 onclick="downloadFile8()">6) Project Plan</h5>
                                                 <!-- <h5 onclick="downloadFile9()">9) Project Repository</h5> -->
-                                                <h5 onclick="downloadFile10()">7) Project Repository Backup</h5>
+                                                <h5 onclick="downloadFile9()">7) Project Repository Backup</h5>
                                                 <h5 onclick="downloadFile11()">8) Requirements Specification</h5>
                                                 <!-- <h5 onclick="downloadFile12()">12) Software</h5>
                                                 <h5 onclick="downloadFile13()">13) Software Component</h5>
@@ -319,26 +319,26 @@ if ($_SESSION['member_id'] == "") {
             downloadFileWithName('#', 'template/#');
         }
         function downloadFile5() {
-            downloadFileWithName('05_MOM.docx', 'template/05_MOM.docx');
+            downloadFileWithName('04_MOM.docx', 'template/05_MOM.docx');
         }
         function downloadFile6() {
             downloadFileWithName('#', 'template/#');
         }
         function downloadFile7() {
-            downloadFileWithName('07_Implementation Timeline (SI Process).xlsx', 'template/07_Implementation Timeline (SI Process).xlsx');
+            downloadFileWithName('05_Implementation Timeline (SI Process).xlsx', 'template/07_Implementation Timeline (SI Process).xlsx');
         }
         function downloadFile8() {
-            downloadFileWithName('08_Project Plan.docx', 'template/08_Project Plan.docx');
-            downloadFileWithName('08_Project Team Info.xlsx', 'template/08_Project Team Info.xlsx');
+            downloadFileWithName('06_Project Plan.docx', 'template/08_Project Plan.docx');
+            
         }
         function downloadFile9() {
-            downloadFileWithName('#', 'template/#');
+            downloadFileWithName('07_Project Team Info.xlsx', 'template/08_Project Team Info.xlsx');
         }
         function downloadFile10() {
-            downloadFileWithName('03_Correction Register.xlsx', 'template/03_Correction Register.xlsx');
+            downloadFileWithName('#', 'template/#');
         }
         function downloadFile11() {
-            downloadFileWithName('11_SRS.docx', 'template/11_SRS.docx');
+            downloadFileWithName('08_SRS.docx', 'template/11_SRS.docx');
         }
         function downloadFile12() {
             downloadFileWithName('#', 'template/#');
@@ -350,26 +350,26 @@ if ($_SESSION['member_id'] == "") {
             downloadFileWithName('#', 'template/#');
         }
         function downloadFile15() {
-            downloadFileWithName('15_Data Dictionary.docx', 'template/15_Data Dictionary.docx');
-            downloadFileWithName('15_Software Design.docx', 'template/15_Software Design.docx');
+            downloadFileWithName('09_Data Dictionary.docx', 'template/15_Data Dictionary.docx');
+            downloadFileWithName('09_Software Design.docx', 'template/15_Software Design.docx');
         }
         function downloadFile16() {
             downloadFileWithName('#', 'template/#');
         }
         function downloadFile17() {
-            downloadFileWithName('17_StatementofWork.docx', 'template/17_StatementofWork.docx');
+            downloadFileWithName('10_StatementofWork.docx', 'template/17_StatementofWork.docx');
         }
         function downloadFile18() {
             downloadFileWithName('#', 'template/#');
         }
         function downloadFile19() {
-            downloadFileWithName('19_Test Report (Correction).xlsx', 'template/19_Test Report (Correction).xlsx');
+            downloadFileWithName('11_Test Report (Correction).xlsx', 'template/19_Test Report (Correction).xlsx');
         }
         function downloadFile20() {
-            downloadFileWithName('20_Traceability Record.xlsx', 'template/20_Traceability Record.xlsx');
+            downloadFileWithName('12_Traceability Record.xlsx', 'template/20_Traceability Record.xlsx');
         }
         function downloadFile21() {
-            downloadFileWithName('21_UAT.docx', 'template/21_UAT.docx');
+            downloadFileWithName('13_UAT.docx', 'template/21_UAT.docx');
         }
         function downloadFile22() {
             downloadFileWithName('#', 'template/#');
